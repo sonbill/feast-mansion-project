@@ -1,0 +1,85 @@
+﻿@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_HomeLayout";
+}
+
+<div>
+    @*CAROUSEL*@
+    <div class="h-[600px] mb-10">
+            <div id="carouselExampleControls" class="carousel slide h-full" data-bs-ride="carousel">
+                <div class="carousel-inner h-full">
+                    <div class="carousel-item active h-full">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="w-full h-full object-cover" alt="...">
+                    </div>
+                    <div class="carousel-item h-full">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="w-full h-full object-cover" alt="...">
+                    </div>
+                    <div class="carousel-item h-full">
+                        <img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="w-full h-full object-cover" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+     </div>
+    @*CATEGORY*@
+<div class="max-w-screen-xl mx-auto p-3 md:p-0">
+    <h1 class="font-bold text-2xl mb-10">DANH MỤC MÓN ĂN</h1>
+    <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        @foreach (var category in Model.Categories)
+        {
+            @*01*@
+            <div>
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+                    <a asp-controller="Home" asp-action="Menu" asp-route-categoryId="@category.Id">
+                        <img class="rounded-t-lg w-[382px] h-[255px]" src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="" />
+                    </a>
+                    <div class="p-3">
+                        @*<a href="Product/Details/@category.Id">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">@category.Name</h5>
+                        </a>*@
+                        <a asp-controller="Home" asp-action="Menu" asp-route-categoryId="@category.Id">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">@category.Name</h5>
+                        </a>                        
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    @*RECOMMEND*@
+    <div>
+        <h1 class="font-bold text-2xl my-10">CÓ THỂ BẠN SẼ THÍCH MÓN NÀY</h1>
+        <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+            <a href="#">
+                <div class="w-[382px] h-[264px]">
+                    <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                </div>
+            </a>
+            <div class="px-3 pb-3">
+                <div class="mb-2">
+                    <a href="#">
+                        <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                    </a>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                    <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+   
+</div>
+
+

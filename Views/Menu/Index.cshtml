@@ -1,0 +1,360 @@
+﻿@{
+    ViewData["Title"] = "Order Page";
+    Layout = "_HomeLayout";
+}
+
+<div class="p-3 md:p-5">
+    <div class="p-5 rounded bg-red-800 space-y-6">
+        <h1 class="font-bold text-xl text-white mb-3">THỰC ĐƠN</h1>
+        <p class="text-white text-justify">
+            Với thực đơn đa dạng và đầy màu sắc, nhà hàng của chúng tôi cung cấp cho khách hàng những trải nghiệm ẩm thực độc đáo. Chúng tôi tự hào về việc sử dụng các nguyên liệu tươi và đạt chuẩn, đảm bảo món ăn của chúng tôi đạt được hương vị hoàn hảo.
+        </p>
+        <div class="w-full h-64 rounded-xl">
+            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" class="w-full h-full object-cover rounded-xl"/>
+        </div>
+    </div>
+    @*CATEGORY*@
+<div>
+    @*VEGANS*@
+    <div>
+        <div class="my-10">
+            <h1 class="font-bold text-xl">ĐỒ CHAY</h1>
+            <p class="text-gray-500 text-justify">Các món đồ chay thường được làm từ các loại rau củ quả, đậu hạt và các loại nấm. Chúng có thể được chế biến thành các món ăn như salad, xào, nấu súp và nhiều loại món khác.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Trái cây thập cẩm</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">65,500 VND</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1631311695255-8dde6bf96cb5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHZlZ2FuJTIwZm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Trái cây với hạt</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">65,500 VND</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1604085804781-04a7d1adba36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHZlZ2FuJTIwZm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Mứt trái cây</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">65,500 VND</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1519996409144-56c88c9aa612?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHZlZ2FuJTIwZm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Mứt đậu hỗn hợp</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">65,500 VND</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*VEGANS*@
+    <div>
+        <div class="my-10">
+            <h1 class="font-bold text-xl">ĐỒ CHIÊN</h1>
+            <p class="text-gray-500 text-justify">Các món đồ chay thường được làm từ các loại rau củ quả, đậu hạt và các loại nấm. Chúng có thể được chế biến thành các món ăn như salad, xào, nấu súp và nhiều loại món khác.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*VEGANS*@
+    <div>
+        <div class="my-10">
+            <h1 class="font-bold text-xl">ĐỒ CHAY</h1>
+            <p class="text-gray-500 text-justify">Các món đồ chay thường được làm từ các loại rau củ quả, đậu hạt và các loại nấm. Chúng có thể được chế biến thành các món ăn như salad, xào, nấu súp và nhiều loại món khác.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*VEGANS*@
+    <div>
+        <div class="my-10">
+            <h1 class="font-bold text-xl">ĐỒ CHAY</h1>
+            <p class="text-gray-500 text-justify">Các món đồ chay thường được làm từ các loại rau củ quả, đậu hạt và các loại nấm. Chúng có thể được chế biến thành các món ăn như salad, xào, nấu súp và nhiều loại món khác.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            @*01*@
+            <div class="col-span-1 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <a href="#">
+                    <div class="w-full h-[264px]">
+                        <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
+                    </div>
+                </a>
+                <div class="px-3 pb-3">
+                    <div class="mb-2">
+                        <a href="#">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">$599</span>
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 md:px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+

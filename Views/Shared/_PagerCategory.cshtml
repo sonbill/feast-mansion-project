@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+
+@model CategoryViewModel
+
+
+@if (Model.TotalPages > 1)
+{
+    <ul class="inline-flex -space-x-px">
+        @if (Model.CurrentPage > 1)
+        {
+            @*<li><a href="@Url.Action("Index", new { page = 1, pageSize = Model.PageSize })">First</a></li>*@
+            <li><a href="@Url.Action("Index", new { page = Model.CurrentPage - 1, pageSize = Model.PageSize })" class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Prev</a></li>
+        }
+        else
+        {
+            <li><a class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white cursor-default">Prev</a></li>
+        }
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            if (i == Model.CurrentPage)
+            {
+                <li><a class="active px-3 py-2 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">@i</a></li>
+            }
+            else
+            {
+                <li><a href="@Url.Action("Index", new { page = i, pageSize = Model.PageSize })" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">@i</a></li>
+            }
+        }
+
+        @if (Model.CurrentPage < Model.TotalPages)
+        {
+            <li><a href="@Url.Action("Index", new { page = Model.CurrentPage + 1, pageSize = Model.PageSize })" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a></li>
+            @*<li><a href="@Url.Action("Index", new { page = Model.TotalPages, pageSize = Model.PageSize })" class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Last</a></li>*@
+        }
+        else
+        {
+            <li><a class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white cursor-default">Next</a></li>
+        }
+    </ul>
+}
+

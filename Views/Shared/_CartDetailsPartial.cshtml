@@ -1,0 +1,81 @@
+﻿@model IEnumerable<feast_mansion_project.Models.CartDetail>
+
+@{
+    decimal totalPrice = 0;
+    decimal totalWithShipping = 0;
+    decimal shippingFree = 20000;
+}
+
+@foreach (var item in Model)
+{
+    decimal subTotal = item.Product.Price * item.Quantity;
+    totalPrice += subTotal;
+    totalWithShipping = totalPrice + shippingFree;
+    @*PRODUCT 1*@
+    <div class="flex p-3 justify-between border rounded">
+        @*DETAIL PRODUCTS*@
+        <div>
+            <div class="flex items-center space-x-3">
+                @*IMG*@
+                <div class="w-[204px] h-[166px]">
+                    <img src="@Url.Content("~/Uploads/" + item.Product.ImagePath)"
+                         class="w-full h-full object-cover" />
+                </div>
+                @*DETAIL*@
+                <div>
+                    <h3 class="text-xl font-bold">@item.Product.Name</h3>
+                    <p class="text-gray-500">@item.Product.Description</p>
+
+                    <button id="delete-cart-btn" data-id="@item.Product.Id" class="font-bold text-red-500">Xoá</button>
+
+
+                </div>
+            </div>
+        </div>
+        @*CONTROL*@
+        <div class="flex items-center space-x-5">
+            <button>
+                <span class="material-icons text-3xl">
+                    add_circle_outline
+                </span>
+            </button>
+            <p>1</p>
+            <button>
+                <span class="material-icons text-3xl">
+                    remove_circle_outline
+                </span>
+            </button>
+            <p class="font-bold">@item.Product.Price</p>
+        </div>
+    </div>
+}
+
+<div class="border rounded">
+    <div class="p-3">
+        @*TITLE*@
+        <div class="pb-2 mb-3 border-b flex items-center space-x-5">
+            <h2 class="text-xl font-bold">TỔNG TIỀN</h2>
+            <p class="text-md text-gray-500 font-bold">#2 MÓN</p>
+        </div>
+        @*DETAIL PRICES*@
+        <div class="pb-2 mb-3 border-b flex flex-col">
+            <div class="flex mb-3 items-center justify-between">
+                <p class="">Tổng đơn hàng</p>
+                <p>@totalPrice VND</p>
+            </div>
+            <div class="flex mb-3 items-center justify-between">
+                <p class="">Phí vận chuyển</p>
+                <p>@shippingFree VND</p>
+            </div>
+            <div class="flex items-center justify-between text-xl font-bold">
+                <p class="">Tổng thanh toán</p>
+                <p>@totalWithShipping</p>
+            </div>
+        </div>
+        @*CHECKOUT*@
+        <div class="bg-red-500 px-3 py-2 border rounded-2xl flex justify-between">
+            <button class="font-bold text-white">THANH TOÁN</button>
+            <p class="text-white font-bold">@totalWithShipping</p>
+        </div>
+    </div>
+</div>

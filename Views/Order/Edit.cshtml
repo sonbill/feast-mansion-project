@@ -1,0 +1,145 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Order Page";
+    Layout = "_Layout";
+
+    string bgColor;
+    switch (@Model.Status)
+    {
+        case "Shipping":
+            bgColor = "#2563eb";
+            break;
+        case "Pending":
+            bgColor = "#a1a1aa";
+            break;
+        case "Complete":
+            bgColor = "#16a34a";
+            break;
+        case "Cooking":
+            bgColor = "#ff9500";
+            break;
+        case "Cancel":
+            bgColor = "#dc2626";
+            break;
+        default:
+            bgColor = "#ca8a04";
+            break;
+    }
+}
+
+<div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="p-6 bg-white border-b border-gray-200">
+            <h2 class="text-2xl font-bold mb-4">Order Details</h2>
+
+            <p class="text-sm font-medium mb-2">Order ID: @Model.OrderId</p>
+            <p class="text-sm font-medium mb-2">Customer: @Model.Customer.FullName</p>
+
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product Name</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price Per Unit</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Price</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var orderDetail in Model.OrderDetails)
+                    {
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">@orderDetail.Product.Name</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="w-24 h-24">
+                                    <img src="@Url.Content("~/Uploads/" + @orderDetail.Product.ImagePath)" alt="Product Image" class="w-full h-full object-cover" />
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">@string.Format("{0:N0} VNĐ", @orderDetail.PricePerUnit)</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">@orderDetail.Quantity</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">@string.Format("{0:N0} VNĐ", (orderDetail.PricePerUnit * orderDetail.Quantity))</div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="text-sm font-medium mt-4 flex">
+                <p>
+                    Total Price:
+                </p>
+                <span>
+                    @string.Format("{0:N0} VNĐ", @Model.TotalPrice)
+                </span>
+            </div>
+            <div class="text-sm font-medium flex">
+                <p>Order Date: </p>
+                <span>@Model.OrderDate</span>                
+            </div>
+            <div class="text-sm font-medium flex items-center">
+                <p>Status:</p>
+                @if (Model.Status == "Complete")
+                {
+                    <span class="material-icons text-[@bgColor]">
+                        check_circle
+                    </span>
+                }
+                else if (Model.Status == "Cancel")
+                {
+                    <span class="material-icons text-[@bgColor]">
+                        cancel
+                    </span>
+                }
+                else if (Model.Status == "Shipping")
+                {
+                    <span class="material-icons text-[@bgColor]">
+                        delivery_dining
+                    </span>
+                }
+                else if (Model.Status == "Pending")
+                {
+                    <span class="material-icons text-[@bgColor]">
+                        pending_actions
+                    </span>
+                }                
+                else
+                {
+                <span class="material-icons text-[@bgColor]">
+                    room_service
+                </span>
+                }
+
+                <span class="text-[@bgColor]">@Model.Status</span>
+            </div>
+            @if (Model.Status == "Pending")
+            {
+                <form asp-controller="Order" asp-action="ApproveOrder" asp-route-orderId="@Model.OrderId" method="post">
+                    <button type="submit" class="bg-[@bgColor] px-3 py-1 rounded-lg text-white">Approve</button>
+                </form>
+            }
+            else if (Model.Status == "Cooking")
+            {
+                <form asp-controller="Order" asp-action="CompleteCooking" asp-route-orderId="@Model.OrderId" method="post">
+                    <button type="submit" class="bg-[@bgColor] px-3 py-1 rounded-lg text-white">Shipping</button>
+                </form>
+            }
+            else if (Model.Status == "Shipping")
+            {
+                <form asp-controller="Order" asp-action="CompleteShipping" asp-route-orderId="@Model.OrderId" method="post">
+                    <button type="submit" class="bg-[@bgColor] px-3 py-1 rounded-lg text-white">Hoàn tất</button>
+                </form>
+            }
+            <form asp-controller="Order" asp-action="CancelOrder" asp-route-orderId="@Model.OrderId" method="post">
+                <button type="submit" class="bg-red-700 px-3 py-1 rounded-lg text-white">Huỷ đơn hàng</button>
+            </form>
+        </div>
+    </div>
+</div>

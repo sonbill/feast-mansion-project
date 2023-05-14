@@ -1,0 +1,42 @@
+﻿@model feast_mansion_project.Models.Product
+
+
+@{
+    ViewData["Title"] = "Detail Product";
+    Layout = "_HomeLayout";
+}
+
+<div class="max-w-screen-xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-2 grid-rows-1">
+        <div class="col-span-1">
+            <div class="h-[669px] mx-auto">
+                <img src="@Url.Content("~/Uploads/" + @Model.ImagePath)" alt="Product Image" class="w-full h-full object-cover" />
+            </div>
+        </div>
+        <div class="col-span-1 p-20 space-y-5">
+            <div class="space-y-3">
+                <p class="text-sm text-gray-600 font-medium">@Model.Category.Name</p>
+                <h1 class="font-bold text-3xl">@Model.Name</h1>
+            </div>
+            <hr class="h-px my-8 bg-gray-200 border-1 dark:bg-gray-700">
+            <div class="space-y-3">
+                <p>DESCRIPTION: @Model.Description</p>
+                <p>SKU: @Model.SKU</p>
+                <p>PRICE: @string.Format("{0:N0} VNĐ", @Model.Price)</p>
+            </div>
+            <div class="space-x-7">
+                @*<button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+            Add to cart
+        </button>*@
+                <form asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@Model.Id">
+                    <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                        <svg aria-hidden="true" class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>
+                        Thêm vào giỏ hàng
+                    </button>
+                </form>
+                <a asp-controller="Home" asp-action="Index" class="hover:underline">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+

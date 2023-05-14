@@ -1,0 +1,230 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+<!DOCTYPE html>
+
+<html class="scroll-smooth">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<title>@ViewBag.Title</title>*@
+    @*<link href="/css/dist/output.css" rel="stylesheet">*@
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    @RenderSection("Scripts", required: false)
+</head>
+<body>
+    <header>
+        <nav class="fixed top-0 z-50 bg-white w-full border-gray-200 border border-b border-gray-100">
+            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
+                <div class="flex items-center space-x-5 md:space-x-10">
+                    @*LOGO*@
+                    <div>
+                        <a asp-controller="Home" asp-action="Index" class="flex items-center">
+                            <img class="w-10 h-10 mr-2" src="/assets/logo/feast-mansion-logo.png" alt="logo">
+                            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">FeastMansion</span>
+                        </a>
+                    </div>
+                    @*MENU*@
+                    <div>
+                        <a asp-controller="Home" asp-action="Menu" class="font-bold block py-2 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">THỰC ĐƠN</a>
+                    </div>
+                    @*SEARCH*@
+                    <div class="w-[500px]">
+                        <form asp-controller="Home" asp-action="Search" method="GET" class="">
+                            <div class="relative flex w-full flex-wrap items-stretch">
+                                <input type="text"
+                                       name="searchQuery"
+                                       class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l-xl border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                                       placeholder="Search"
+                                       aria-label="Search"
+                                       aria-describedby="button-addon1" />
+
+                                <!--Search button-->
+                                <button class="relative z-[2] flex items-center rounded-r-xl bg-red-700 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg"
+                                        type="submit"
+                                        id="button-addon1"
+                                        data-te-ripple-init
+                                        data-te-ripple-color="light">
+                                    <span class="material-icons">
+                                        search
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button data-collapse-toggle="mega-menu-full" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mega-menu-full" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                </button>
+                @*PC*@
+                <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1">
+                    <ul class="flex flex-col text-sm font-medium md:flex-row md:space-x-8 md:mt-0 items-center">
+                        @*<li>
+                                <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                    <span class="material-icons text-3xl">
+                                        account_circle
+                                    </span>
+                                </a>
+                            </li>*@
+                        @if (HttpContextAccessor.HttpContext.Session.GetString("userId") != null)
+                        {
+                            <li>
+                                <a asp-controller="Cart" asp-action="Index" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                    <span class="material-icons text-3xl">
+                                        shopping_bag
+                                    </span>
+                                </a>
+                            </li>
+                            <a asp-controller="Home" asp-action="Profile">Welcome, @Html.ActionLink(@HttpContextAccessor.HttpContext.Session.GetString("Username"), "Index", "Home") </a>
+
+                            <li class="w-full">
+                                <a asp-controller="UserAuthentication" asp-action="Logout" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                    <p>Logout</p>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="w-full">
+                                <a asp-controller="UserAuthentication" asp-action="Login" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                    <p>Login</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Cart" asp-action="Index" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                    <span class="material-icons text-3xl">
+                                        shopping_bag
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                @*MOBILE*@
+                <div class="md:hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
+                    <ul class="flex flex-col text-sm font-medium md:flex-row md:space-x-8 md:mt-0 items-center">
+                        <li class="w-full">
+                            <a asp-controller="UserAuthentication" asp-action="Index" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                <span class="material-icons text-3xl">
+                                    account_circle
+                                </span>
+                                <p>Profile</p>
+                            </a>
+                        </li>
+                        <li class="w-full">
+                            <a asp-controller="UserAuthentication" asp-action="Login" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                <span class="material-icons text-3xl">
+                                    account_circle
+                                </span>
+                                <p>Login</p>
+                            </a>
+                        </li>
+                        <li class="w-full">
+                            <a asp-controller="Cart" asp-action="Index" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                <span class="material-icons text-3xl">
+                                    shopping_bag
+                                </span>
+                                <p>Cart</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="mt-[60px] md:mt-[76px]">
+        <div class="flex flex-col md:flex-row max-w-screen-xl mx-auto">
+            <div class="mt-0 md:mt-32 w-full md:w-[200px]">
+                <div class="border flex items-center md:flex-col md:space-y-3 rounded-lg">
+                    <a asp-controller="Home" asp-action="Profile" class="hover:bg-gray-500 p-3">                        
+                        <p>Profile</p>
+                    </a>
+                    <a asp-controller="Home" asp-action="ChangePassword" class="hover:bg-gray-500 p-3">
+                        <p>Đổi mật khẩu</p>
+                    </a>
+                    <a asp-controller="Home" asp-action="OrdersHistory" class="hover:bg-gray-500 p-3">
+                        <p>Lịch sử đặt hàng</p>
+                    </a>
+                </div>
+            </div>
+            <div class="w-full">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @*BANNER*@
+    <div class="w-full h-96 px-10 my-10 ">
+        <img src="/assets/Pictures/Free_Food_Banner.jpeg" class="w-full h-full object-cover rounded-lg" />
+    </div>
+    <footer>
+        <div class="bg-[#202124] text-white">
+            <div class="px-20 pt-20 pb-2 mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+                    @*LOGO*@
+                    <div class="flex flex-col justify-center items-center">
+                        <div class="w-32 mb-5">
+                            <img src="/assets/logo/feast-mansion-logo.png" class="w-full h-full object-cover" />
+                        </div>
+                        <p class="font-bold text-2xl">FEAST MANSION</p>
+                    </div>
+                    @*COL-1*@
+                    <div class="col-span-1">
+                        <h2 class="text-xl font-bold mb-2">Danh mục món ăn</h2>
+                        <div class="text-[#ABABAB]">
+                            <ul>
+                                <li>Món chay</li>
+                                <li>Món mặn</li>
+                                <li>Món Chiên</li>
+                                <li>Nước</li>
+                                <li>Bánh</li>
+                                <li>Cơm</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    @*COL-2*@
+                    <div class="col-span-1">
+                        <h2 class="text-xl font-bold mb-2">About us</h2>
+                        <div class="text-[#ABABAB]">
+                            <ul>
+                                <li>Câu chuyện về chúng tôi</li>
+                                <li>Tin khuyến mãi</li>
+                                <li>Liên hệ</li>
+                            </ul>
+                        </div>
+                    </div>
+                    @*COL-3*@
+                    <div class="col-span-1">
+                        <h2 class="text-xl font-bold mb-2">Chính sách</h2>
+                        <div class="text-[#ABABAB]">
+                            <ul>
+                                <li>Chính sách hoạt động</li>
+                                <li>Chính sách và quy định</li>
+                                <li>Chính sách bảo mật thông tin</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <p class="text-[#ABABAB] text-center text-sm font-thin">
+                        Copyright © 2023
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+    <script src="~/js/Tabs.js"></script>
+    <script src="~/js/toggleButtons.js"></script>
+    <script src="~/js/DeleteCartButton.js"></script>
+</body>
+</html>

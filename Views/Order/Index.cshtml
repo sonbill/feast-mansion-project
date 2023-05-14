@@ -1,0 +1,70 @@
+﻿@model OrderViewModel
+
+@{
+    ViewData["Title"] = "Order Page";
+    Layout = "_Layout";
+}
+
+<div class="flex my-10 items-center justify-between">
+    <h1 class="font-bold text-3xl ">Order</h1>
+</div>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th class="px-6 py-3">
+                    ID
+                </th>
+                <th class="px-6 py-3">
+                    STATUS
+                </th>
+
+                <th class="px-6 py-3">
+                    CUSTOMER
+                </th>
+                <th class="px-6 py-3">
+                    TOTAL PRICE
+                </th>
+                <th class="px-3 py-3">
+                    ORDER DATE
+                </th>              
+                <th class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.Orders)
+            {
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        @obj.OrderId
+                    </th>
+                    <td class="px-6 py-4">
+                        @obj.Status
+                    </td>
+                    <td class="px-6 py-4">
+                        @obj.Customer.FullName
+                    </td>
+                    <td class="px-6 py-4">
+                        @string.Format("{0:N0} VNĐ", @obj.TotalPrice)
+                    </td>
+
+                    <td class="px-2 py-4">
+                        @obj.OrderDate
+                    </td>                  
+
+                    <td class="px-6 py-4 space-x-3">
+                        <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    </td>
+                    @*<td>
+                            (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")
+                        </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
+        @Html.Partial("_PagerOrder", Model)
+    </div>
+</div>

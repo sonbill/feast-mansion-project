@@ -1,0 +1,86 @@
+﻿@model Order
+
+
+@{
+    ViewData["Title"] = "Orders History";
+    Layout = "_ProfileLayout";
+
+    string bgColor;
+    switch (@Model.Status)
+    {
+        case "Shipping":
+            bgColor = "#2563eb";
+            break;
+        case "Pending":
+            bgColor = "#a1a1aa";
+            break;
+        case "Complete":
+            bgColor = "#16a34a";
+            break;
+        case "Cooking":
+            bgColor = "#ff9500";
+            break;
+        case "Cancel":
+            bgColor = "#dc2626";
+            break;
+        default:
+            bgColor = "#ca8a04";
+            break;
+    }
+}
+
+
+
+<div class="max-w-screen-md mx-auto">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-semibold">Chi tiết đơn hàng</h2>
+        <p class="px-3 py-1 rounded-lg bg-[@bgColor] text-white">@Model.Status</p>
+    </div>
+
+    <div class="flex flex-col mb-8">
+        <div class="flex flex-row justify-between items-center mb-4">
+            <p class="font-semibold">Mã đơn hàng:</p>
+            <p>@Model.OrderId</p>
+        </div>
+        <div class="flex flex-row justify-between items-center mb-4">
+            <p class="font-semibold">Ngày đặt:</p>
+            <p>@Model.OrderDate</p>
+        </div>
+        <div class="flex flex-row justify-between items-center">
+            <p class="font-semibold">Tên khách hàng:</p>
+            <p>@Model.Customer.FullName</p>
+        </div>
+    </div>
+    <table class="w-full mb-8">
+        <thead>
+            <tr class="border-b border-gray-300">
+                <th class="pb-2">Product</th>
+                <th class="pb-2">Hình ảnh</th>
+                <th class="pb-2">Giá sản phẩm</th>
+                <th class="pb-2">Số lượng</th>
+                <th class="pb-2">Tạm tính</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detail in Model.OrderDetails)
+            {
+                <tr class="border-b border-gray-300">
+                    <td class="py-4">@detail.Product.Name</td>
+                    <td class="py-4">
+                        <img src="@Url.Content("~/Uploads/" + detail.Product.ImagePath)" alt="Product Image" class="w-16 h-16 object-cover rounded-lg" />
+                    </td>
+                    <td class="py-4">@string.Format("{0:N0} VNĐ", @detail.PricePerUnit)</td>
+                    <td class="py-4">@detail.Quantity</td>
+                    <td class="py-4">@string.Format("{0:N0} VNĐ", detail.PricePerUnit * detail.Quantity)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="">
+        <div class="flex items-center space-x-3">
+            <p class="font-bold">Tổng cộng:</p>
+            <p class="py-4">@string.Format("{0:N0} VNĐ", Model.TotalPrice)</p>
+        </div>
+        <a asp-controller="Home" asp-action="Profile" class="hover:underline">Quay lại</a>
+    </div>
+</div>
