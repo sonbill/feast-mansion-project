@@ -130,30 +130,32 @@ namespace feast_mansion_project.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _accountRepository.AuthenticateAsync(model.Email, model.Password);
-
-                if (user != null)
+                try
                 {
-                    HttpContext.Session.SetString("UserId", user.userId.ToString());
-                    HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
-                    //HttpContext.Session.SetUserId(user.userId);
-                    //HttpContext.Session.SetIsAuthenticated(true);
+                    var user = await _accountRepository.AuthenticateAsync(model.Email, model.Password);
 
-                    if (user.IsAdmin == true)
+                    if (user != null)
                     {
-                        return RedirectToAction("Index", "Dashboard");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                        HttpContext.Session.SetString("UserId", user.userId.ToString());
+                        HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
+                        //HttpContext.Session.SetUserId(user.userId);
+                        //HttpContext.Session.SetIsAuthenticated(true);
+
+                        if (user.IsAdmin == true)
+                        {
+                            return RedirectToAction("Index", "Dashboard");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }                   
                 }
-                else
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Invalid email or password.");
+                    TempData["ErrorMessage"] = "Invalid username or password" + ex.Message;
                 }
             }
-            ModelState.AddModelError("", "Invalid username or password");
             return View(model);
         }
         

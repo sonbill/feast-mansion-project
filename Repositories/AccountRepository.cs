@@ -4,6 +4,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures; 
 using feast_mansion_project.Models.DTO;
 using feast_mansion_project.Models.Domain;
 using feast_mansion_project.Models;
@@ -37,24 +39,34 @@ namespace feast_mansion_project.Repositories
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
 
-            if (user != null)
+            try
             {
-                var passwordHasher = new PasswordHasher<User>();
-                var result = passwordHasher.VerifyHashedPassword(user, user.Password, password);
-
-                if (result == PasswordVerificationResult.Success)
+                if (user != null)
                 {
-                    _httpContextAccessor.HttpContext.Session.SetString("userId", user.userId.ToString());
-                    _httpContextAccessor.HttpContext.Session.SetString("Username", user.Username);
-                    _httpContextAccessor.HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
-                    _httpContextAccessor.HttpContext.Session.SetString("Email", user.Email);
+                    var passwordHasher = new PasswordHasher<User>();
+                    var result = passwordHasher.VerifyHashedPassword(user, user.Password, password);
 
-                    // Set the IsAdmin property based on the value of IsAdmin
-                    //user.IsAdmin = user.IsAdmin ?? false;
+                    if (result == PasswordVerificationResult.Success)
+                    {
+                        _httpContextAccessor.HttpContext.Session.SetString("userId", user.userId.ToString());
+                        _httpContextAccessor.HttpContext.Session.SetString("Username", user.Username);
+                        _httpContextAccessor.HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
+                        _httpContextAccessor.HttpContext.Session.SetString("Email", user.Email);
 
-                    return user;
+                        // Set the IsAdmin property based on the value of IsAdmin
+                        //user.IsAdmin = user.IsAdmin ?? false;
+
+                        //TempData["ErrorMessage"] = "Error creating product: " + ex.Message;
+
+                        return user;
+                    }
                 }
-            }
+            } catch (Exception ex)
+            {
+                //TempData["ErrorMessage"] = "Error creating product: " + ex.Message;
+
+                return null;
+            }            
             return null;
         }
 
