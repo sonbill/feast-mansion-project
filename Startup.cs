@@ -15,6 +15,7 @@ using feast_mansion_project.Models;
 using Microsoft.AspNetCore.Identity;
 using feast_mansion_project.Middlewares;
 using feast_mansion_project.Middleware;
+using feast_mansion_project.Repositories;
 
 namespace feast_mansion_project
 {

@@ -24,6 +24,9 @@ builder.Services.AddSession(options => {
 });
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
 
 
 //Cookie

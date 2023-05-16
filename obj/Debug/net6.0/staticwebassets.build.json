@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "U+22riBsrzBx3WrWo1S/f7FKNAO4fT6DQPiZSKNFLOw=",
+  "Hash": "zHGzqD5Yo7IPNmIxQrWVD2s9BqM82yMVtQq2SeAArcg=",
   "Source": "feast-mansion-project",
   "BasePath": "_content/feast-mansion-project",
   "Mode": "Default",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/js/Charts.js",
+      "SourceId": "feast-mansion-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
+      "BasePath": "_content/feast-mansion-project",
+      "RelativePath": "js/Charts.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/Charts.js"
     },
     {
       "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/js/setTimeOut.js",

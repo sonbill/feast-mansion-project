@@ -10,8 +10,9 @@
     @*<link href="/css/dist/output.css" rel="stylesheet">*@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    @RenderSection("Scripts", required: false)
+    @*@RenderSection("Scripts", required: false)*@
 </head>
 <body>
     <div>
@@ -83,8 +84,12 @@
             <partial name="_Notifications" />
         </div>
         @RenderBody()
+
+        @RenderSection("Scripts", required: false)
+
     </div>
 
     <script src="~/js/setTimeOut.js"></script>
+
 </body>
 </html>

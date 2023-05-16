@@ -140,7 +140,7 @@ namespace feast_mansion_project.Controllers
             // Save changes to the database
             _dbContext.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "User");
         }
 
 

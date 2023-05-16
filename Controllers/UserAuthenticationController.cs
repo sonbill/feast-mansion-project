@@ -31,43 +31,25 @@ namespace feast_mansion_project.Controllers
         private readonly ApplicationDbContext _dbContext;
         private readonly IHttpContextAccessor context;
         private readonly IAccountRepository _accountRepository;
+        private readonly INotificationService _notificationService;
 
 
         public UserAuthenticationController(     
             ApplicationDbContext dbContext,
             IHttpContextAccessor httpContextAccessor,
-            IAccountRepository accountRepository
+            IAccountRepository accountRepository,
+            INotificationService notificationService
             )
         {    
             _dbContext = dbContext;
             context = httpContextAccessor;
             _accountRepository = accountRepository;
-
-        }
-
-        //public static string GetMD5(string str)
-        //{
-        //    MD5 md5 = new MD5CryptoServiceProvider();
-        //    byte[] fromData = Encoding.UTF8.GetBytes(str);
-        //    byte[] targetData = md5.ComputeHash(fromData);
-        //    string byte2String = null;
-
-        //    for (int i = 0; i < targetData.Length; i++)
-        //    {
-        //        byte2String += targetData[i].ToString("x2");
-        //    }
-        //    return byte2String;
-        //}
+            _notificationService = notificationService;
+        }        
 
         // GET: /<controller>/
         public IActionResult Register()
-        {
-
-            //ClaimsPrincipal claimsUser = HttpContext.User;
-
-            //if (claimsUser.Identity.IsAuthenticated)
-            //    return RedirectToAction("Index", "Home");
-
+        {           
             return View();
         }
 
@@ -78,51 +60,96 @@ namespace feast_mansion_project.Controllers
             if (ModelState.IsValid)
             {
                 var checkUser = _dbContext.Users.FirstOrDefault(s => s.Email == model.Email);
-                if (checkUser == null)
+                try
                 {
-                    var user = new User
+                    if (checkUser == null)
                     {
-                        Username = model.Username,
-                        Email = model.Email,
-                        IsAdmin = false
-                    };
-                    //user.Password = GetMD5(user.Password);
-                    var passwordHasher = new PasswordHasher<User>();
-                    user.Password = passwordHasher.HashPassword(user, model.Password);
+                        var user = new User
+                        {
+                            Username = model.Username,
+                            Email = model.Email,
+                            IsAdmin = false
+                        };
+                        //user.Password = GetMD5(user.Password);
+                        var passwordHasher = new PasswordHasher<User>();
+                        user.Password = passwordHasher.HashPassword(user, model.Password);
 
-                    _dbContext.Users.Add(user);
-                    await _dbContext.SaveChangesAsync();
+                        _dbContext.Users.Add(user);
+                        await _dbContext.SaveChangesAsync();
 
-                    var customer = new Customer
+                        var customer = new Customer
+                        {
+                            FullName = model.FullName,
+                            Address = model.Address,
+                            Phone = model.Phone,
+                            CreatedAt = DateTime.Now,
+                            User = user
+                        };
+
+                        _dbContext.Customers.Add(customer);
+
+                        await _dbContext.SaveChangesAsync();
+
+                        TempData["SuccessMessage"] = "Đăng ký tài khoản thành công.";
+
+                        return RedirectToAction("Login", "UserAuthentication");
+                    }
+                    else
                     {
-                        FullName = model.FullName,
-                        Address = model.Address,
-                        Phone = model.Phone,
-                        CreatedAt = DateTime.Now,
-                        User = user
-                    };
+                        TempData["ErrorMessage"] = "Email đã tồn tại, vui lòng chọn email khác.";
 
-                    _dbContext.Customers.Add(customer);
-                    await _dbContext.SaveChangesAsync();
-
-                    return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Register", "UserAuthentication");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = "Error authenticating user: " + ex.Message;
                 }
             }
-            Console.WriteLine(JsonConvert.SerializeObject(model));
+            //Console.WriteLine(JsonConvert.SerializeObject(model));
+
             return View(model);
         }
 
 
         [HttpGet]
         public IActionResult Login()
-        {
-            //ClaimsPrincipal claimsUser = HttpContext.User;
-
-            //if (claimsUser.Identity.IsAuthenticated)
-            //    return RedirectToAction("Index", "Home");
+        {           
             return View();
         }
-               
+
+
+        //public async Task<IActionResult> Login(LoginViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = await _accountRepository.AuthenticateAsync(model.Email, model.Password);
+        //        if (user != null)
+        //        {
+        //            HttpContext.Session.SetString("UserId", user.userId.ToString());
+        //            HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
+
+        //            if (user.IsAdmin == true)
+        //            {
+        //                return RedirectToAction("Index", "Dashboard");
+        //            }
+        //            else
+        //            {
+        //                return RedirectToAction("Index", "Home");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            _notificationService.Error("Invalid email or password.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        _notificationService.Error("Invalid input.");
+        //    }
+
+        //    return View(model);
+        //}
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
@@ -130,47 +157,29 @@ namespace feast_mansion_project.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    var user = await _accountRepository.AuthenticateAsync(model.Email, model.Password);
 
-                    if (user != null)
+                var user = await _accountRepository.AuthenticateAsync(model.Email, model.Password);
+                if (user != null)
+                {
+                    HttpContext.Session.SetString("UserId", user.userId.ToString());
+                    HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
+                    //HttpContext.Session.SetUserId(user.userId);
+                    //HttpContext.Session.SetIsAuthenticated(true);
+
+                    if (user.IsAdmin == true)
                     {
-                        HttpContext.Session.SetString("UserId", user.userId.ToString());
-                        HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
-                        //HttpContext.Session.SetUserId(user.userId);
-                        //HttpContext.Session.SetIsAuthenticated(true);
-
-                        if (user.IsAdmin == true)
-                        {
-                            return RedirectToAction("Index", "Dashboard");
-                        }
-                        else
-                        {
-                            return RedirectToAction("Index", "Home");
-                        }
-                    }                   
-                }
-                catch (Exception ex)
-                {
-                    TempData["ErrorMessage"] = "Invalid username or password" + ex.Message;
+                        return RedirectToAction("Index", "Dashboard");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
             }
             return View(model);
         }
-        
 
-        private IActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
-            }
-        }
+
 
         public async Task<IActionResult> Logout()
         {
