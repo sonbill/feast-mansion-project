@@ -56,9 +56,8 @@
             responsive: true,
                 scales: {
             y: {
-            beginAt
-Zero: true
-}
+            beginAtZero: true
+            }
 }
 }
 });
