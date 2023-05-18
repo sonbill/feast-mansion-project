@@ -36,23 +36,14 @@ namespace feast_mansion_project.Controllers
             _dbContext = dbContext;
 
 
-        }
-
-        // GET: /<controller>/
-        //public async Task<IActionResult> Index()
-        //{
-        //    // Check if user is authenticated and admin
-        //    if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-
-        //    return View();
-
-        //}
+        }       
 
         public IActionResult Index(int selectMonth = 0, int selectYear = 0)
         {
+            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             // Get the current month and year
             var currentMonth = DateTime.Now.Month;
             var currentYear = DateTime.Now.Year;
@@ -107,7 +98,11 @@ namespace feast_mansion_project.Controllers
 
                     CustomerId = customer.customerId,
 
-                    OrderDate = order.OrderDate
+                    OrderDate = order.OrderDate,
+
+                    Status = order.Status,
+
+                    TotalPrice = order.TotalPrice                    
 
                 };
 
@@ -132,12 +127,7 @@ namespace feast_mansion_project.Controllers
             ViewData["OrderViewModels"] = orderViewModels;
 
             return View();
-        }
-
-        //public IActionResult GetOrders(int selectMonth = 0, int selectYear = 0)
-        //{
-        //    return View("Index");
-        //}
+        }        
 
     }
 }

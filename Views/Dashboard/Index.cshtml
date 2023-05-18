@@ -26,7 +26,7 @@
 }
 
 
-<div class="container">
+<div class="max-w-screen-xl mx-auto py-10">
     <h2 class="text-2xl font-bold">Dashboard</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         @*Total Revenue*@
@@ -119,84 +119,111 @@
             <h4 class="text-lg font-bold text-gray-600">Revenue Chart</h4>
             <canvas id="revenueChart" width="250" height="150"></canvas>
         </div>
-        <div class="w-[300px] border shadow-lg p-5 rounded-lg col-span-1">
+        <div class="w-[300px] border shadow-lg p-5 rounded-lg col-span-1 space-y-5">
             <h4 class="text-lg font-bold text-gray-600">Tổng đơn hàng</h4>
-            <canvas id="orderChart" width="300" height="300"></canvas>
-            <div class="flex flex-col space-y-5">
+            <div class="flex justify-between items-center">
                 <div class="text-center">
-                    <p>Đơn đã giao</p>
+                    <p class="text-sm text-gray-500">Đơn đã giao</p>
                     <p class="text-4xl font-bold">@completedOrders</p>
                 </div>
                 <div class="text-center">
-                    <p>Đơn đã huỷ</p>
+                    <p class="text-sm text-gray-500">Đơn đã huỷ</p>
                     <p class="text-4xl font-bold"> @canceledOrders</p>
                 </div>
             </div>
-
-
+            <canvas id="orderChart" width="300" height="300"></canvas>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
+    <div class="space-y-5 pr-0 md:pr-4 mt-10">
+        <div>
             <form asp-controller="Dashboard" asp-action="Index" method="post">
-                <label>Select Date:</label>
-                <select class="form-control" id="selectMonth" name="selectMonth">
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
+                <label for="selectMonth" class="block mb-2 text-sm font-medium text-gray-900">Tìm đơn hàng theo tháng, năm</label>
+                <select id="selectMonth" name="selectMonth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+                    <option selected>Chọn tháng</option>
+                    <option value="1">Tháng 1</option>
+                    <option value="2">Tháng 2</option>
+                    <option value="3">Tháng 3</option>
+                    <option value="4">Tháng 4</option>
+                    <option value="5">Tháng 5</option>
+                    <option value="6">Tháng 6</option>
+                    <option value="7">Tháng 7</option>
+                    <option value="8">Tháng 8</option>
+                    <option value="9">Tháng 9</option>
+                    <option value="10">Tháng 10</option>
+                    <option value="11">Tháng 11</option>
+                    <option value="12">Tháng 12</option>
                 </select>
-                <select id="selectYear" name="selectYear">
-                    <option value="2022">2022</option>
+                <select id="selectYear" name="selectYear" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+                    <option selected>Chọn năm</option>
                     <option value="2023">2023</option>
-                    <option value="2024">2024</option>
                 </select>
-                <button type="submit" class="bg-red-700">Lấy kết quả</button>
+                <button type="submit" class="bg-red-700 p-2 rounded-lg text-white">Lấy kết quả</button>
             </form>
         </div>
-        <div class="col-md-6">
-            <h4>Order Statistics</h4>
-            <p>Đơn đã giao: @selectCompletedOrders</p>
-            <p>Đơn đã huỷ: @selectCanceledOrders</p>
-            <p>Doanh thu: @string.Format("{0:N0} VNĐ", @selectedMonthRevenue)</p>
-            <p>Tổng đơn hàng: @selectTotalOrders</p>
-        </div>
-    </div>
-    <!-- Display the orders -->
-    @if (ViewData["OrderViewModels"] != null)
-    {
-        List<OrderViewModel> orderViewModels = (List<OrderViewModel>)ViewData["OrderViewModels"];
-        <h4>Orders in Selected Month</h4>
-        <table>
-            <tr>
-                <th>Order ID</th>
-                <th>Customer Name</th>
-                <th>Order Date</th>
-                <th></th>
-            </tr>
-            @foreach (var orderViewModel in orderViewModels)
-            {
-                <tr>
-                    <td>@orderViewModel.OrderId</td>
-                    <td>@orderViewModel.CustomerId</td>
-                    <td>@orderViewModel.OrderDate</td>
-                    <td>
-                        <a asp-controller="Order" asp-action="Edit" asp-route-id="@orderViewModel.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                </tr>
-            }
-        </table>
-    }
-
+        @if (@selectTotalOrders != null)
+        {
+            <div class="border grid grid-cols-2 rounded-lg shadow-lg p-5 gap-5">
+                <div class="flex space-x-5 col-span-1">
+                    <span class="material-icons text-green-500 border rounded border-green-500 bg-green-100">
+                        delivery_dining
+                    </span>
+                    <p class="text-gray-600">Đơn đã giao</p>
+                    <p>@selectCompletedOrders</p>
+                </div>
+                <div class="flex space-x-5 col-span-1">
+                    <span class="material-icons border rounded text-red-500 border-red-500 bg-red-100">
+                        delivery_dining
+                    </span>
+                    <p class="text-gray-600">Đơn đã huỷ</p>
+                    <p>@selectCanceledOrders</p>
+                </div>
+                <div class="flex space-x-5 col-span-1">
+                    <span class="material-icons border rounded text-yellow-500 border-yellow-500 bg-yellow-100">
+                        monetization_on
+                    </span>
+                    <p class="text-gray-600">Doanh thu</p>
+                    <p>@string.Format("{0:N0} VNĐ", @selectedMonthRevenue)</p>
+                </div>
+                <div class="flex space-x-5 col-span-1">
+                    <span class="material-icons border rounded text-orange-500 border-orange-500 bg-orange-100">
+                        poll
+                    </span>
+                    <p class="text-gray-600">Tổng đơn hàng</p>
+                    <p>@selectTotalOrders</p>
+                </div>
+            </div>
+        }
+        @if (ViewData["OrderViewModels"] != null)
+        {
+            List<OrderViewModel> orderViewModels = (List<OrderViewModel>)ViewData["OrderViewModels"];
+            <table class="w-full text-sm text-left text-gray-500 shadow-lg rounded-lg">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 shadow-lg">
+                    <tr>
+                        <th class="px-6 py-3">Order ID</th>
+                        <th class="px-6 py-3">Customer Name</th>
+                        <th class="px-6 py-3">Trạng thái</th>
+                        <th class="px-6 py-3">Tổng tiền</th>
+                        <th class="px-6 py-3">Ngày đặt</th>
+                        <th class="px-6 py-3"></th>
+                    </tr>
+                </thead>
+                @foreach (var orderViewModel in orderViewModels)
+                {
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">@orderViewModel.OrderId</th>
+                        <td class="px-6 py-4">@orderViewModel.CustomerId</td>
+                        <td class="px-6 py-4">@orderViewModel.Status</td>
+                        <td class="px-6 py-4">@string.Format("{0:N0} VNĐ", @orderViewModel.TotalPrice)</td>
+                        <td class="px-6 py-4">@orderViewModel.OrderDate</td>
+                        <td class="px-6 py-4">
+                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@orderViewModel.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>    
 </div>
 
 @section Scripts {
