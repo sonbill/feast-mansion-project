@@ -22,14 +22,19 @@ namespace feast_mansion_project.Controllers
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IOrderRepository _orderRepository;
+        private readonly ApplicationDbContext _dbContext;
+
 
         public DashboardController(            
             IAccountRepository accountRepository,
-            IOrderRepository orderRepository
+            IOrderRepository orderRepository,
+            ApplicationDbContext dbContext
             )
         {            
             _accountRepository = accountRepository;
             _orderRepository = orderRepository;
+            _dbContext = dbContext;
+
 
         }
 
@@ -46,30 +51,93 @@ namespace feast_mansion_project.Controllers
 
         //}
 
-        public IActionResult Index()
+        public IActionResult Index(int selectMonth = 0, int selectYear = 0)
         {
             // Get the current month and year
             var currentMonth = DateTime.Now.Month;
             var currentYear = DateTime.Now.Year;
 
             // Get the total revenue for the current month
+
+            decimal selectedMonthRevenue = _orderRepository.GetTotalRevenueByMonth(selectMonth, selectYear);
+
             decimal currentMonthRevenue = _orderRepository.GetTotalRevenueByMonth(currentMonth, currentYear);
 
             // Get the total revenue for the previous month
             decimal previousMonthRevenue = _orderRepository.GetTotalRevenueByMonth(currentMonth - 1, currentYear);
 
+            decimal profit = currentMonthRevenue - previousMonthRevenue;
+
+            int selectCompletedOrders = _orderRepository.GetTotalCompletedOrdersByMonth(selectMonth, selectYear);
+
+            int selectCanceledOrders = _orderRepository.GetTotalCanceledOrdersByMonth(selectMonth, selectYear);
+
+            int currentCompletedOrders = _orderRepository.GetTotalCompletedOrdersByCurrentMonth(currentMonth, currentYear);
+
+            int currentCanceledOrders = _orderRepository.GetTotalCanceledOrdersByCurrentMonth(currentMonth, currentYear);
+
+            int previousCompletedOrders = _orderRepository.GetTotalCompletedOrdersByCurrentMonth(currentMonth - 1, currentYear);
+
+            int previousCanceledOrders = _orderRepository.GetTotalCompletedOrdersByCurrentMonth(currentMonth - 1, currentYear);
+
+            int numberOfCompletedOders = currentCompletedOrders - previousCompletedOrders;
+
+            int numberOfCanceledOders = currentCanceledOrders - previousCanceledOrders;
+
+
+
             // Get the total number of completed and canceled orders for the current month
-            int completedOrders = _orderRepository.GetTotalCompletedOrdersByMonth(currentMonth, currentYear);
-            int canceledOrders = _orderRepository.GetTotalCanceledOrdersByMonth(currentMonth, currentYear);
+
+
+            int selectTotalOrders = _orderRepository.GetTotalOrdersByMonth(selectMonth, selectYear);
+           
+            int totalOrders = _orderRepository.GetTotalOrdersByMonth(currentMonth, currentYear);
+            
+            List<Order> orders = _orderRepository.GetOrdersByMonth(selectMonth, selectYear);
+
+            List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
+
+            foreach (var order in orders)
+            {
+                var customer = _dbContext.Customers.FirstOrDefault(c => c.customerId == order.CustomerId);
+
+                var orderViewModel = new OrderViewModel
+                {
+                    OrderId = order.OrderId,
+
+                    CustomerId = customer.customerId,
+
+                    OrderDate = order.OrderDate
+
+                };
+
+                orderViewModels.Add(orderViewModel);
+            }
 
             // Pass the data to the view
             ViewData["CurrentMonthRevenue"] = currentMonthRevenue;
+            ViewData["SelectedMonthRevenue"] = selectedMonthRevenue;
             ViewData["PreviousMonthRevenue"] = previousMonthRevenue;
-            ViewData["CompletedOrders"] = completedOrders;
-            ViewData["CanceledOrders"] = canceledOrders;
+            ViewData["CompletedOrders"] = currentCompletedOrders;
+            ViewData["CanceledOrders"] = currentCanceledOrders;
+            ViewData["SelectCanceledOrders"] = selectCanceledOrders;
+            ViewData["SelectCompletedOrders"] = selectCompletedOrders;
+            ViewData["SelectTotalOrders"] = selectTotalOrders;
+            ViewData["TotalOrders"] = totalOrders;
+            ViewData["Profit"] = profit;
+            ViewData["PreviousCompletedOrders"] = previousCompletedOrders;
+            ViewData["PreviousCanceledOrders"] = previousCanceledOrders;
+            ViewData["NumberOfCompletedOrders"] = numberOfCompletedOders;
+            ViewData["NumberOfCanceledOrders"] = numberOfCanceledOders;
+            ViewData["OrderViewModels"] = orderViewModels;
 
             return View();
         }
+
+        //public IActionResult GetOrders(int selectMonth = 0, int selectYear = 0)
+        //{
+        //    return View("Index");
+        //}
 
     }
 }
