@@ -1,25 +1,40 @@
-﻿@model Category
+﻿@model CategoryViewModel
 @{
     ViewData["Title"] = "Create Category Page";
     Layout = "_Layout";
 }
 
-<h1 class="font-bold text-2xl">Create</h1>
 <div class="p-10">
-    <form asp-controller="Category" asp-action="CreateCategory" class="max-w-[500px] mx-auto">
+    <h1 class="font-bold text-2xl">Tạo</h1>
+    @Html.AntiForgeryToken()
+    <form asp-controller="Category" asp-action="CreateCategory" method="post" class="max-w-[500px] mx-auto" enctype="multipart/form-data">
         <div class="mb-6">
-            <label asp-for="Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-            <input asp-for="Name" type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 600" placeholder="Name category" required>
+            <label asp-for="Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên danh mục</label>
+            <input asp-for="Name" type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 600" placeholder="Name category">
             <span asp-validation-for="Name" class="text-red-500"></span>
         </div>
         <div class="mb-6">
-            <label asp-for="Description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+            <label asp-for="Description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mô tả</label>
             <textarea asp-for="Description" id="Description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Description..."></textarea>
             <span asp-validation-for="Description" class="text-red-500"></span>
         </div>
+        <div class="mb-6">
+            <label asp-for="ImagePath" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="category_thumbnail">Thumbnail</label>
+            <input asp-for="ImagePath" name="thumbnail" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" type="file" accept=".jpg, .jpeg, .png">
+            <span asp-validation-for="ImagePath" class="text-red-500"></span>
+
+        </div>
         <div class="space-x-5">
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Create</button>
-            <a asp-controller="Category" asp-action="Index" class="hover:text-blue-500">Back</a>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Tạo</button>
+            <a asp-controller="Category" asp-action="Index" class="hover:text-blue-500">Trở lại</a>
         </div>
     </form>
+    <div class="max-w-[500px] text-red-500 mx-auto mt-5 text-sm">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li  class="list-disc">@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
 </div>

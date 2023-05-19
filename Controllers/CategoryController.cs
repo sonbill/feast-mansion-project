@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 
 
 
@@ -18,11 +19,17 @@ namespace feast_mansion_project.Controllers
     [Route("Admin/Category")]
     public class CategoryController : Controller
     {
+        private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironment;
 
         private readonly ApplicationDbContext _dbContext;
 
-        public CategoryController(ApplicationDbContext dbContext)
+        public CategoryController(
+            ApplicationDbContext dbContext,
+            Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment
+            )
         {
+            _hostingEnvironment = hostingEnvironment;
+
             _dbContext = dbContext;
         }
 
@@ -72,18 +79,63 @@ namespace feast_mansion_project.Controllers
 
         //POST: Create Category 
         [HttpPost("Create")]
-        public IActionResult CreateCategory(Category obj)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateCategory(CategoryViewModel obj, IFormFile thumbnail)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
                 return RedirectToAction("Index", "Home");
             }
 
+            if (obj != null)
+            {
+                if (thumbnail != null && thumbnail.Length > 0)
+                {
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(thumbnail.FileName);
+
+                    var subfolderName = "CategoryThumbnail";
+
+                    // Get the wwwroot folder path
+                    var webRootPath = _hostingEnvironment.WebRootPath;
+
+                    // Set the folder path
+                    var folderPath = Path.Combine(webRootPath, "Uploads", subfolderName);
+
+                    // If the folder doesn't exist, create it
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    // Set the file path
+                    var filePath = Path.Combine(folderPath, fileName);
+
+                    // Upload file to path
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await thumbnail.CopyToAsync(stream);
+                    }
+
+                    // Set product image path
+                    //obj.ImagePath = Path.Combine("Uploads", subfolderName, fileName);
+                    obj.ImagePath = fileName;
+                }                
+            }            
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _dbContext.Categories.Add(obj);
+                    var category = new Category
+                    {
+                        Name = obj.Name,
+
+                        Description = obj.Description,                        
+
+                        ImagePath = obj.ImagePath
+                    };
+
+                    _dbContext.Categories.Add(category);
 
                     _dbContext.SaveChanges();
 
@@ -106,7 +158,7 @@ namespace feast_mansion_project.Controllers
 
 
         //GET: Update Category
-        [Route("Edit/{id}")]
+        [HttpGet("Edit/{id}")]
         public IActionResult Edit(int? id)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
@@ -128,33 +180,93 @@ namespace feast_mansion_project.Controllers
             }
 
 
-            return View(categoryFromDb);
+            return View("Edit", categoryFromDb);
         }
 
         //PUT: Update Category
             
         [HttpPost("Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public IActionResult EditCategory(int id, Category obj)
+        public async Task<IActionResult> EditCategory(Category obj, IFormFile? newThumbnail)
         {
+            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var category = await _dbContext.Categories.FindAsync(obj.Id);
+
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            string oldImagePath = category.ImagePath;
+
+            if (newThumbnail != null && newThumbnail.Length > 0)
+            {
+                // Generate unique file name
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(newThumbnail.FileName);
+
+                var subfolderName = "CategoryThumbnail";
+
+                // Get the wwwroot folder path
+                var webRootPath = _hostingEnvironment.WebRootPath;
+
+                // Set the folder path
+                var folderPath = Path.Combine(webRootPath, "Uploads", subfolderName);
+
+                // Set the file path
+                var filePath = Path.Combine(folderPath, fileName);
+
+                // Upload file to path
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await newThumbnail.CopyToAsync(stream);
+                }
+
+                // Set product image path
+                obj.ImagePath = fileName;
+
+                // Delete old image file
+                if (!string.IsNullOrEmpty(oldImagePath))
+                {
+                    var oldFilePath = Path.Combine(folderPath, oldImagePath);
+
+                    if (System.IO.File.Exists(oldFilePath))
+                    {
+                        System.IO.File.Delete(oldFilePath);
+                    }
+                }
+            }
+            else
+            {
+                obj.ImagePath = oldImagePath;
+            }
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _dbContext.Categories.Update(obj);
+                    category.Name = obj.Name;
 
-                    _dbContext.SaveChanges();
+                    category.Description = obj.Description;                    
+
+                    category.ImagePath = obj.ImagePath;
+                    //_dbContext.Categories.Update(category);
+
+                    _dbContext.SaveChangesAsync();
 
                     TempData["SuccessMessage"] = "Category updated successfully";
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Edit", obj);
                 }
                 catch (Exception ex)
                 {
                     TempData["ErrorMessage"] = "Error creating product: " + ex.Message;
                 }                
             }
-            return View(obj);
+            return View("Edit", obj);
         }
 
 
@@ -176,6 +288,19 @@ namespace feast_mansion_project.Controllers
                 {
                     // Delete the product from the database
                     _dbContext.Categories.Remove(category);
+
+                    var subfolderName = "CategoryThumbnail";
+
+                    // Set the folder path
+                    var folderPath = Path.Combine("wwwroot", "Uploads", subfolderName);
+
+                    // Set the file path
+                    var oldFilePath = Path.Combine(folderPath, category.ImagePath);
+
+                    if (System.IO.File.Exists(oldFilePath))
+                    {
+                        System.IO.File.Delete(oldFilePath);
+                    }
 
                     await _dbContext.SaveChangesAsync();
 

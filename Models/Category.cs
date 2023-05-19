@@ -16,7 +16,7 @@ namespace feast_mansion_project.Models
 
         public string Description { get; set; }
 
-        public string ImagePath { get; set; }
+        public string? ImagePath { get; set; }
 
         [ForeignKey("CategoryId")]
         public ICollection<Product> ?Products { get; set; }

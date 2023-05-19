@@ -46,6 +46,7 @@
     <Folder Include="Views\Menu\" />
     <Folder Include="Helper\" />
     <Folder Include="Views\User\" />
+    <Folder Include="wwwroot\Uploads\CategoryThumbnail\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\" />
@@ -54,6 +55,7 @@
     <Content Remove="wwwroot\Uploads\" />
     <Content Remove="wwwroot\Uploads\Products\" />
     <Content Remove="wwwroot\assets\Pictures\" />
+    <Content Remove="wwwroot\Uploads\CategoryThumbnail\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
