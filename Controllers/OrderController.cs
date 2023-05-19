@@ -81,7 +81,7 @@ namespace feast_mansion_project.Controllers
 
         // GET: Edit Order
         [HttpGet("Edit/{id}")]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(string id)
         {
             var order = await _dbContext.Orders
                 .Include(o => o.Customer)

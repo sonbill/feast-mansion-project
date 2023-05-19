@@ -17,32 +17,32 @@
                     ID
                 </th>
                 <th class="px-6 py-3">
-                    SKU
+                    MÃ MÓN ĂN
                 </th>
 
                 <th class="px-6 py-3">
-                    Name
+                    TÊN
                 </th>
                 <th class="px-6 py-3">
-                    PRICE
+                    GIÁ
                 </th>
                 <th class="px-3 py-3">
-                    Description
+                    MÔ TẢ
                 </th>
                 <th class="px-6 py-3">
-                    IMAGE
+                    HÌNH ẢNH
                 </th>
                 <th class="px-6 py-3">
-                    Action
+                    
                 </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var obj in Model.Products)
             {
-                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        @obj.Id
+                <tr class="bg-white border-b">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        @obj.ProductId
                     </th>
                     <td class="px-6 py-4">
                         @obj.SKU
@@ -65,8 +65,8 @@
                     </td>
 
                     <td class="px-6 py-4 space-x-3">
-                        <a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                        <a asp-controller="Product" asp-action="DeleteConfirmed" asp-route-id="@obj.Id" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                        <a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.ProductId" class="font-medium text-blue-600 hover:underline">Edit</a>
+                        <a asp-controller="Product" asp-action="DeleteConfirmed" asp-route-id="@obj.ProductId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
                     </td>
                     @*<td>
                             (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")

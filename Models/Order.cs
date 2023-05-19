@@ -7,13 +7,15 @@ namespace feast_mansion_project.Models
 	public class Order
 	{
         [Key]
-        public int OrderId { get; set; }
+        public string OrderId { get; set; }
 
         [Required]
         [Range(0, double.MaxValue)]
         public decimal TotalPrice { get; set; }
 
         public string Status { get; set; }
+        [Required]
+        public string PaymentMethod { get; set; }
 
         [Required]
         public int CustomerId { get; set; }

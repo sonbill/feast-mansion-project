@@ -36,7 +36,7 @@ namespace feast_mansion_project.Repositories
 
         public async Task<User> GetUserById(int userId)
         {
-            return await _dbContext.Users.FirstOrDefaultAsync(u => u.userId == userId);
+            return await _dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
         }
 
         public async Task<User> AuthenticateAsync(string email, string password)
@@ -50,8 +50,7 @@ namespace feast_mansion_project.Repositories
 
                 if (result == PasswordVerificationResult.Success)
                 {
-                    _httpContextAccessor.HttpContext.Session.SetString("userId", user.userId.ToString());
-                    _httpContextAccessor.HttpContext.Session.SetString("Username", user.Username);
+                    _httpContextAccessor.HttpContext.Session.SetString("userId", user.UserId.ToString());
                     _httpContextAccessor.HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
                     _httpContextAccessor.HttpContext.Session.SetString("Email", user.Email);
 

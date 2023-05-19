@@ -8,7 +8,7 @@ namespace feast_mansion_project.Models
 	public class OrderViewModel
 	{
         [Key]
-        public int OrderId { get; set; }
+        public string OrderId { get; set; }
 
         public decimal TotalPrice { get; set; }
 

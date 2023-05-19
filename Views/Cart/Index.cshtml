@@ -39,7 +39,7 @@
                                 <div>
                                     <h3 class="text-xl font-bold">@item.Product.Name</h3>
                                     <p class="text-gray-500">@item.Product.Description</p>
-                                    <form asp-controller="Cart" asp-action="DeleteCartItem" asp-route-productId="@item.Product.Id">
+                                    <form asp-controller="Cart" asp-action="DeleteCartItem" asp-route-productId="@item.Product.ProductId">
                                         
                                         <button type="submit" class="font-bold text-red-500">Xoá</button>
                                     </form>                                
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         @*CONTROL*@
-                        <form asp-controller="Cart" asp-action="UpdateCartItem" asp-route-productId="@item.Product.Id" method="post">
+                        <form asp-controller="Cart" asp-action="UpdateCartItem" asp-route-productId="@item.Product.ProductId" method="post">
                             <div class="flex items-center space-x-5">                            
                                 <button type="submit" name="changeQuantity" value="increase">
                                     <span class="material-icons text-3xl">

@@ -59,7 +59,7 @@ namespace feast_mansion_project.Controllers
             }
 
             var products = await _dbContext.Products.Include(p => p.Category)
-                .FirstOrDefaultAsync(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.ProductId == id);
 
 
             //var categories = _dbContext.Categories.ToList();
@@ -82,7 +82,7 @@ namespace feast_mansion_project.Controllers
         [HttpGet("Profile")]
         public async Task<IActionResult> Profile(int page = 1, int pageSize = 5)
         {
-            if (HttpContext.Session.GetString("UserId") == null)
+            if (HttpContext.Session.GetString("userId") == null)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -97,14 +97,14 @@ namespace feast_mansion_project.Controllers
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
             var paginatedProducts = order.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
-            User user = _dbContext.Users.FirstOrDefault(u => u.userId == userId);
+            User user = _dbContext.Users.FirstOrDefault(u => u.UserId == userId);
 
             Customer customer = _dbContext.Customers.FirstOrDefault(c => c.UserId == userId);
 
             var orders = _dbContext.Orders
             .Include(o => o.OrderDetails)
             .ThenInclude(od => od.Product)
-            .Where(o => o.CustomerId == user.Customer.customerId)
+            .Where(o => o.CustomerId == user.Customer.CustomerId)
             .ToList();
 
             
@@ -275,7 +275,7 @@ namespace feast_mansion_project.Controllers
         //}
 
         [HttpGet("OrdersHistory/{orderId}")]
-        public async Task<IActionResult> OrdersHistory(int orderId)
+        public async Task<IActionResult> OrdersHistory(string orderId)
         {
             if (HttpContext.Session.GetString("UserId") == null)
             {

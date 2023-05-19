@@ -28,6 +28,8 @@ namespace feast_mansion_project.Models.Domain
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
+        public DbSet<Feedback> Feedbacks { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,10 +41,35 @@ namespace feast_mansion_project.Models.Domain
                 .HasForeignKey(cd => cd.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            //modelBuilder.Entity<User>()
+            //    .HasOne(u => u.Customer)
+            //    .WithOne(c => c.User)
+            //    .HasForeignKey<Customer>(c => c.UserId);
+
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Customer)
                 .WithOne(c => c.User)
-                .HasForeignKey<Customer>(c => c.UserId);
+                .HasForeignKey<Customer>(c => c.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Cart>()
+                .HasOne(c => c.User)
+                .WithMany()
+                .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Feedback>()
+                .HasOne(f => f.User)
+                .WithMany()
+                .HasForeignKey(f => f.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Feedback>()
+                .HasOne(f => f.Customer)
+                .WithMany()
+                .HasForeignKey(f => f.CustomerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             //modelBuilder.Entity<CartDetail>()
             //    .HasOne(cd => cd.Product)

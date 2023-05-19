@@ -41,7 +41,7 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var products = _dbContext.Products.OrderBy(c => c.Id);
+            var products = _dbContext.Products.OrderBy(c => c.ProductId);
 
             int totalItems = await products.CountAsync();
 
@@ -160,7 +160,7 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var product = _dbContext.Products.Include(p => p.Category).FirstOrDefault(p => p.Id == id);
+            var product = _dbContext.Products.Include(p => p.Category).FirstOrDefault(p => p.ProductId == id);
 
             var productFromDb = _dbContext.Products.Find(id);
 
@@ -187,7 +187,7 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var product = await _dbContext.Products.FindAsync(model.Id);
+            var product = await _dbContext.Products.FindAsync(model.ProductId);
 
             if (product == null)
             {
@@ -271,7 +271,7 @@ namespace feast_mansion_project.Controllers
             }
 
             // Retrieve the product from the database
-            var product = _dbContext.Products.FirstOrDefault(p => p.Id == id);
+            var product = _dbContext.Products.FirstOrDefault(p => p.ProductId == id);
 
             if (product != null)
             {               

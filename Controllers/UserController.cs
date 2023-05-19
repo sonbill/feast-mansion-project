@@ -60,7 +60,7 @@ namespace feast_mansion_project.Controllers
 
             var CustomerViewModel = new CustomerViewModel()
             {
-                CustomerId = customerFromDb.customerId,
+                CustomerId = customerFromDb.CustomerId,
 
                 FullName = customerFromDb.FullName,
 
@@ -116,7 +116,7 @@ namespace feast_mansion_project.Controllers
         public IActionResult DeleteCustomer(int id)
         {
             // Find the customer record with the given ID
-            var customer = _dbContext.Customers.FirstOrDefault(c => c.customerId == id);
+            var customer = _dbContext.Customers.FirstOrDefault(c => c.CustomerId == id);
 
             if (customer == null)
             {
@@ -124,7 +124,7 @@ namespace feast_mansion_project.Controllers
             }
 
             // Find the user record associated with the customer record
-            var user = _dbContext.Users.FirstOrDefault(u => u.Customer != null && u.Customer.customerId == customer.customerId);
+            var user = _dbContext.Users.FirstOrDefault(u => u.Customer != null && u.Customer.CustomerId == customer.CustomerId);
 
             if (user == null)
             {
@@ -142,9 +142,6 @@ namespace feast_mansion_project.Controllers
 
             return RedirectToAction("Index", "User");
         }
-
-
-
 
     }
 }

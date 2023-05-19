@@ -15,10 +15,6 @@ namespace feast_mansion_project.Models
         [Range(0, double.MaxValue)]
         public decimal Price { get; set; }
 
-        [Required]
-        [Range(0, double.MaxValue)]
-        public decimal TotalPrice { get; set; }
-
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         [Required]

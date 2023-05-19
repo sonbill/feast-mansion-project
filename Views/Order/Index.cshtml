@@ -16,20 +16,20 @@
                     ID
                 </th>
                 <th class="px-6 py-3">
-                    STATUS
+                    TÌNH TRẠNG
                 </th>
 
                 <th class="px-6 py-3">
-                    CUSTOMER
+                    KHÁCH HÀNG
                 </th>
                 <th class="px-6 py-3">
-                    TOTAL PRICE
+                    TỔNG GIÁ
                 </th>
                 <th class="px-3 py-3">
-                    ORDER DATE
+                    NGÀY ĐẶT
                 </th>              
                 <th class="px-6 py-3">
-                    Action
+                    
                 </th>
             </tr>
         </thead>
@@ -55,7 +55,7 @@
                     </td>                  
 
                     <td class="px-6 py-4 space-x-3">
-                        <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
                     </td>
                     @*<td>
                             (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")

@@ -66,7 +66,7 @@ namespace feast_mansion_project.Controllers
                     {
                         var user = new User
                         {
-                            Username = model.Username,
+                            //Username = model.Username,
                             Email = model.Email,
                             IsAdmin = false
                         };
@@ -161,7 +161,7 @@ namespace feast_mansion_project.Controllers
                 var user = await _accountRepository.AuthenticateAsync(model.Email, model.Password);
                 if (user != null)
                 {
-                    HttpContext.Session.SetString("UserId", user.userId.ToString());
+                    HttpContext.Session.SetString("UserId", user.UserId.ToString());
                     HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
                     //HttpContext.Session.SetUserId(user.userId);
                     //HttpContext.Session.SetIsAuthenticated(true);

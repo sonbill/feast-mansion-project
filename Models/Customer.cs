@@ -8,7 +8,7 @@ namespace feast_mansion_project.Models
 	public class Customer
 	{
         [Key]
-        public int customerId { get; set; }
+        public int CustomerId { get; set; }
 
 		public string FullName { get; set; }
 
@@ -22,10 +22,12 @@ namespace feast_mansion_project.Models
 
         public ICollection<Cart> Carts { get; set; }
 
-        [ForeignKey("UserId")]
-        public int ?UserId { get; set; }
+        public ICollection<Feedback> Feedbacks { get; set; }
 
-		public User ?User { get; set; }
+        [ForeignKey("UserId")]
+        public int UserId { get; set; }
+
+		public User? User { get; set; }
     }
 }
 

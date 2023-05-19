@@ -35,7 +35,7 @@ namespace feast_mansion_project.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            int currentUser = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            int currentUser = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
 
             if (currentUser == null)
             {
@@ -91,7 +91,7 @@ namespace feast_mansion_project.Controllers
                 _dbContext.Carts.Add(cart);
             }
 
-            var product = await _dbContext.Products.FirstOrDefaultAsync(p => p.Id == productId);
+            var product = await _dbContext.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
             if (product == null)
             {
                 return NotFound();
@@ -106,7 +106,7 @@ namespace feast_mansion_project.Controllers
                     ProductId = productId,
                     Quantity = quantity,
                     Price = product.Price,
-                    TotalPrice = quantity * product.Price,
+                    //TotalPrice = quantity * product.Price,
                     CartId = cart.CartId
                 };
                 cart.CartDetails.Add(cartDetail);
@@ -114,7 +114,7 @@ namespace feast_mansion_project.Controllers
             else
             {
                 //cartDetail.Quantity += quantity;
-                cartDetail.TotalPrice = cartDetail.Quantity * @product.Price;
+                //cartDetail.TotalPrice = cartDetail.Quantity * @product.Price;
                 _dbContext.CartDetails.Update(cartDetail);
             }           
 
@@ -129,7 +129,7 @@ namespace feast_mansion_project.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteCartItem(int productId)
         {
-            var cartDetail = _dbContext.CartDetails.FirstOrDefault(cd => cd.Product.Id == productId);
+            var cartDetail = _dbContext.CartDetails.FirstOrDefault(cd => cd.Product.ProductId == productId);
 
             if (cartDetail == null)
             {
@@ -162,7 +162,7 @@ namespace feast_mansion_project.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateCartItem(int productId, string changeQuantity)
         {
-            var cartDetail = _dbContext.CartDetails.FirstOrDefault(cd => cd.Product.Id == productId);
+            var cartDetail = _dbContext.CartDetails.FirstOrDefault(cd => cd.Product.ProductId == productId);
 
             if (cartDetail == null)
             {
@@ -190,7 +190,7 @@ namespace feast_mansion_project.Controllers
 
             var totalPrice = cartDetails.Sum(cd => cd.Product.Price * cd.Quantity);
 
-            cartDetail.TotalPrice = cartDetail.Quantity * cartDetail.Price ;
+            //cartDetail.TotalPrice = cartDetail.Quantity * cartDetail.Price ;
 
 
             _dbContext.SaveChanges();
@@ -265,7 +265,7 @@ namespace feast_mansion_project.Controllers
             {
                 TotalPrice = cart.CartDetails.Sum(cd => cd.Price * cd.Quantity),
                 Status = "Pending",
-                CustomerId = customer.customerId,
+                CustomerId = customer.CustomerId,
                 OrderDate = DateTime.Now,
                 //PaymentMethod = model.PaymentMethod
             };

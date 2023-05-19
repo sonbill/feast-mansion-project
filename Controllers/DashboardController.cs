@@ -90,13 +90,13 @@ namespace feast_mansion_project.Controllers
 
             foreach (var order in orders)
             {
-                var customer = _dbContext.Customers.FirstOrDefault(c => c.customerId == order.CustomerId);
+                var customer = _dbContext.Customers.FirstOrDefault(c => c.CustomerId == order.CustomerId);
 
                 var orderViewModel = new OrderViewModel
                 {
                     OrderId = order.OrderId,
 
-                    CustomerId = customer.customerId,
+                    CustomerId = customer.CustomerId,
 
                     OrderDate = order.OrderDate,
 

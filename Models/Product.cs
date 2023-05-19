@@ -6,7 +6,7 @@ namespace feast_mansion_project.Models
     public class Product
     {
         [Key]
-        public int Id { get; set; }
+        public int ProductId { get; set; }
 
         //[StringLength(50)]
         [Required]
@@ -23,6 +23,8 @@ namespace feast_mansion_project.Models
         public decimal Price { get; set; }
 
         public string Description { get; set; }
+
+        public string IsPin { get; set; }
 
         [Required]
         public int CategoryId { get; set; }

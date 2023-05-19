@@ -10,9 +10,7 @@ namespace feast_mansion_project.Models
 	public class User
     {
         [Key]
-        public int userId { get; set; }
-
-		public string Username { get; set; }
+        public int UserId { get; set; }
 
 		public string Password { get; set; }
 
@@ -22,7 +20,7 @@ namespace feast_mansion_project.Models
 
 		public DateTime CreatedAt { get; set; } = DateTime.Now;
    
-        public Customer ?Customer { get; set; }
+        public Customer? Customer { get; set; }
 	}
 }
 

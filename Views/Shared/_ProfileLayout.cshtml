@@ -24,12 +24,12 @@
                     <div>
                         <a asp-controller="Home" asp-action="Index" class="flex items-center">
                             <img class="w-10 h-10 mr-2" src="/assets/logo/feast-mansion-logo.png" alt="logo">
-                            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">FeastMansion</span>
+                            <span class="self-center text-xl font-semibold whitespace-nowrap">FeastMansion</span>
                         </a>
                     </div>
                     @*MENU*@
                     <div>
-                        <a asp-controller="Home" asp-action="Menu" class="font-bold block py-2 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">THỰC ĐƠN</a>
+                        <a asp-controller="Home" asp-action="Menu" class="font-bold block py-2 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400" aria-current="page">THỰC ĐƠN</a>
                     </div>
                     @*SEARCH*@
                     <div class="w-[500px]">
@@ -37,7 +37,7 @@
                             <div class="relative flex w-full flex-wrap items-stretch">
                                 <input type="text"
                                        name="searchQuery"
-                                       class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l-xl border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                                       class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l-xl border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                                        placeholder="Search"
                                        aria-label="Search"
                                        aria-describedby="button-addon1" />
@@ -56,7 +56,7 @@
                         </form>
                     </div>
                 </div>
-                <button data-collapse-toggle="mega-menu-full" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mega-menu-full" aria-expanded="false">
+                <button data-collapse-toggle="mega-menu-full" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="mega-menu-full" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
                     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
                 </button>
@@ -64,25 +64,27 @@
                 <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1">
                     <ul class="flex flex-col text-sm font-medium md:flex-row md:space-x-8 md:mt-0 items-center">
                         @*<li>
-                                <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
-                                    <span class="material-icons text-3xl">
-                                        account_circle
-                                    </span>
-                                </a>
-                            </li>*@
+            <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                <span class="material-icons text-3xl">
+                    account_circle
+                </span>
+            </a>
+        </li>*@
                         @if (HttpContextAccessor.HttpContext.Session.GetString("userId") != null)
                         {
                             <li>
-                                <a asp-controller="Cart" asp-action="Index" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                <a asp-controller="Cart" asp-action="Index" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
                                     <span class="material-icons text-3xl">
                                         shopping_bag
                                     </span>
                                 </a>
                             </li>
-                            <a asp-controller="Home" asp-action="Profile">Welcome, @Html.ActionLink(@HttpContextAccessor.HttpContext.Session.GetString("Username"), "Index", "Home") </a>
+                            @*<a asp-controller="Home" asp-action="Profile">Welcome, @Html.ActionLink(@HttpContextAccessor.HttpContext.Session.GetString("Username"), "Index", "Home") </a>*@
+                            <a asp-controller="Home" asp-action="Profile">Profile</a>
+
 
                             <li class="w-full">
-                                <a asp-controller="UserAuthentication" asp-action="Logout" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                <a asp-controller="UserAuthentication" asp-action="Logout" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
                                     <p>Logout</p>
                                 </a>
                             </li>
@@ -90,12 +92,12 @@
                         else
                         {
                             <li class="w-full">
-                                <a asp-controller="UserAuthentication" asp-action="Login" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                <a asp-controller="UserAuthentication" asp-action="Login" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
                                     <p>Login</p>
                                 </a>
                             </li>
                             <li>
-                                <a asp-controller="Cart" asp-action="Index" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                                <a asp-controller="Cart" asp-action="Index" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
                                     <span class="material-icons text-3xl">
                                         shopping_bag
                                     </span>

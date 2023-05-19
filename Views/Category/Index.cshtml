@@ -6,24 +6,24 @@
 }
 
 <div class="flex my-10 items-center justify-between">
-    <h1 class="font-bold text-3xl">Category</h1>
-     <a asp-controller="Category" asp-action="Create" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Category</a>
+    <h1 class="font-bold text-3xl">Danh mục</h1>
+     <a asp-controller="Category" asp-action="Create" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Tạo danh mục</a>
 </div>
 <div class="relative shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 h-full">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table class="w-full text-sm text-left text-gray-500 h-full">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
                 <th class="px-6 py-3">
                     ID
                 </th>
                 <th class="px-6 py-3">
-                    Name
+                    Tên danh mục
                 </th>
                 <th class="px-3 py-3">
-                    Description
+                    Mô tả
                 </th>
                 <th class="px-6 py-3">
-                    Action
+                    
                 </th>
             </tr>
         </thead>
@@ -42,7 +42,7 @@
                         @obj.Description
                     </td>
                     <td class="px-6 py-4 space-x-3">
-                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
                     </td>
                     @*<td>
                             (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")
