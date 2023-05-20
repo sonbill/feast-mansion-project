@@ -26,21 +26,21 @@
             </select>
         </div>
         <div class="mb-6">
-            <label asp-for="SKU" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sku</label>
+            <label asp-for="SKU" class="block mb-2 text-sm font-medium text-gray-900">Sku</label>
             <input asp-for="SKU" type="text" id="SKU" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Sku" required>
             <span asp-validation-for="SKU" class="text-danger"></span>
         </div>
         <div class="mb-6">
-            <label asp-for="Price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+            <label asp-for="Price" class="block mb-2 text-sm font-medium text-gray-900">Price</label>
             <input asp-for="Price" type="text" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Price" required>
             <span asp-validation-for="Price" class="text-danger"></span>
-        </div>
+        </div>        
         <div class="mb-6">
-            <label asp-for="ImagePath" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload file</label>
+            <label asp-for="ImagePath" class="block mb-2 text-sm font-medium text-gray-900" for="user_avatar">Upload file</label>
             <input asp-for="ImagePath" name="userFile" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" type="file" accept=".jpg, .jpeg, .png">
         </div>
         <div class="mb-6">
-            <label asp-for="Description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+            <label asp-for="Description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
             <textarea asp-for="Description" id="Description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Description..."></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>

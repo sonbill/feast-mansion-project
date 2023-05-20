@@ -18,10 +18,9 @@
             </div>
             <div class="mb-6">
                 <label for="categories" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                 <select id="categories" asp-for="CategoryId" asp-items="@ViewBag.Categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                <select id="categories" asp-for="CategoryId" asp-items="@ViewBag.Categories" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option value="">Choose a category</option>
                 </select>
-
             </div>
             <div class="mb-6">
                 <label asp-for="SKU" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sku</label>
@@ -45,11 +44,19 @@
                 <textarea asp-for="Description" id="Description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Description..."></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="space-x-5">
-                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Update</button>
-                <button type="submit" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.ProductId">Xoá món ăn</button>
-                <a asp-controller="Product" asp-action="Index" class="hover:text-blue-500">Trở lại</a>
+            <div class="mb-6">
+                <label asp-for="IsPin" class="block mb-2 text-sm font-medium text-gray-900">Giới thiệu món ăn</label>
+                <select asp-for="IsPin" id="IsPin" name="IsPin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option selected>Tuỳ chọn giới thiệu</option>
+                    <option value="None">Gỡ giới thiệu</option>
+                    <option value="Recommended">Giới thiệu</option>
+                </select>
             </div>
-        </form>
+            <div class="space-x-5">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Cập nhật</button>
+                <button type="submit" asp-controller="Product" asp-action="Delete" asp-route-id="@Model.ProductId" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Xoá món ăn</button>
+                <a asp-controller="Product" asp-action="Index" class="hover:text-blue-500 hover:underline">Trở lại</a>
+            </div>
+        </form>        
     </div>
 </div>

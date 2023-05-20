@@ -120,6 +120,8 @@ namespace feast_mansion_project.Controllers
 
                         Description = model.Description,
 
+                        IsPin = "None",
+
                         Price = model.Price,
 
                         CategoryId = model.CategoryId,
@@ -242,6 +244,8 @@ namespace feast_mansion_project.Controllers
                     product.CategoryId = model.CategoryId;
 
                     product.SKU = model.SKU;
+
+                    product.IsPin = model.IsPin;
 
                     product.ImagePath = model.ImagePath;
 

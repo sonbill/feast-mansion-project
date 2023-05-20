@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LrEdS2rN86G7dcyl9pvQ6qCmjAU3IhSbWN5GcPFXtg4=",
+  "Hash": "ZGTey0Gdz99nmbKF9NHlIyfTI2Ec6F3vR/K0926pnLw=",
   "Source": "feast-mansion-project",
   "BasePath": "_content/feast-mansion-project",
   "Mode": "Default",
@@ -1207,12 +1207,12 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
     },
     {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/06e30fa9-0b04-4035-b1a4-5df02e015b31.png",
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/213c154e-2f40-4f84-8040-0537ee804995.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
       "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "Uploads/06e30fa9-0b04-4035-b1a4-5df02e015b31.png",
+      "RelativePath": "Uploads/213c154e-2f40-4f84-8040-0537ee804995.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1221,15 +1221,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Uploads/06e30fa9-0b04-4035-b1a4-5df02e015b31.png"
+      "OriginalItemSpec": "wwwroot/Uploads/213c154e-2f40-4f84-8040-0537ee804995.png"
     },
     {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/890e82b3-c05d-4c9a-a955-60bc0f78a97a.jpg",
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/046ac60e-bc55-4cb4-81bc-3eed58082c9a.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
       "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "Uploads/890e82b3-c05d-4c9a-a955-60bc0f78a97a.jpg",
+      "RelativePath": "Uploads/CategoryThumbnail/046ac60e-bc55-4cb4-81bc-3eed58082c9a.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1238,15 +1238,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Uploads/890e82b3-c05d-4c9a-a955-60bc0f78a97a.jpg"
+      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/046ac60e-bc55-4cb4-81bc-3eed58082c9a.png"
     },
     {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/ad5d7ec4-4297-4887-b6e2-def3a48cd331.png",
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/0d488115-4d8d-4762-a40d-a846bc0fea80.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
       "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "Uploads/ad5d7ec4-4297-4887-b6e2-def3a48cd331.png",
+      "RelativePath": "Uploads/CategoryThumbnail/0d488115-4d8d-4762-a40d-a846bc0fea80.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1255,15 +1255,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Uploads/ad5d7ec4-4297-4887-b6e2-def3a48cd331.png"
+      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/0d488115-4d8d-4762-a40d-a846bc0fea80.png"
     },
     {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/b63c6431-587b-471b-8ad5-85f1da3b04b0.png",
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/14538856-00fc-489e-b5fa-ba3f6de3f1d4.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
       "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "Uploads/b63c6431-587b-471b-8ad5-85f1da3b04b0.png",
+      "RelativePath": "Uploads/CategoryThumbnail/14538856-00fc-489e-b5fa-ba3f6de3f1d4.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1272,15 +1272,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Uploads/b63c6431-587b-471b-8ad5-85f1da3b04b0.png"
+      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/14538856-00fc-489e-b5fa-ba3f6de3f1d4.png"
     },
     {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/0d314e1f-1196-481c-8010-819794cf5c90.png",
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/18aaee7d-b050-4fa5-b20f-a0da803d108c.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
       "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "Uploads/CategoryThumbnail/0d314e1f-1196-481c-8010-819794cf5c90.png",
+      "RelativePath": "Uploads/CategoryThumbnail/18aaee7d-b050-4fa5-b20f-a0da803d108c.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1289,15 +1289,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/0d314e1f-1196-481c-8010-819794cf5c90.png"
+      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/18aaee7d-b050-4fa5-b20f-a0da803d108c.png"
     },
     {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/1aca7422-595a-462f-a778-cb931247dae7.png",
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/41a4b9b3-dde7-40e7-8780-f135d1dd19a7.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
       "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "Uploads/CategoryThumbnail/1aca7422-595a-462f-a778-cb931247dae7.png",
+      "RelativePath": "Uploads/CategoryThumbnail/41a4b9b3-dde7-40e7-8780-f135d1dd19a7.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1306,15 +1306,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/1aca7422-595a-462f-a778-cb931247dae7.png"
+      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/41a4b9b3-dde7-40e7-8780-f135d1dd19a7.png"
     },
     {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/fe830ff4-ef47-4fb1-bc0f-d93cbb2edf56.png",
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/54486705-7005-4427-aed2-a20cee6c3d54.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
       "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "Uploads/CategoryThumbnail/fe830ff4-ef47-4fb1-bc0f-d93cbb2edf56.png",
+      "RelativePath": "Uploads/CategoryThumbnail/54486705-7005-4427-aed2-a20cee6c3d54.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1323,15 +1323,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/fe830ff4-ef47-4fb1-bc0f-d93cbb2edf56.png"
+      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/54486705-7005-4427-aed2-a20cee6c3d54.png"
     },
     {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/cea64528-e7bc-45e4-a569-c7d62ce4546f.png",
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/5fd91d51-8ab5-4cf7-a741-600bd8d65d62.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
       "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "Uploads/cea64528-e7bc-45e4-a569-c7d62ce4546f.png",
+      "RelativePath": "Uploads/CategoryThumbnail/5fd91d51-8ab5-4cf7-a741-600bd8d65d62.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1340,15 +1340,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Uploads/cea64528-e7bc-45e4-a569-c7d62ce4546f.png"
+      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/5fd91d51-8ab5-4cf7-a741-600bd8d65d62.png"
     },
     {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/d276e877-7a0a-4d2d-a82b-0388e1e3f28a.png",
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/d914dc3f-1fd4-4656-8b04-16edc0a61be0.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
       "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "Uploads/d276e877-7a0a-4d2d-a82b-0388e1e3f28a.png",
+      "RelativePath": "Uploads/CategoryThumbnail/d914dc3f-1fd4-4656-8b04-16edc0a61be0.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1357,7 +1357,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Uploads/d276e877-7a0a-4d2d-a82b-0388e1e3f28a.png"
+      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/d914dc3f-1fd4-4656-8b04-16edc0a61be0.png"
     }
   ]
 }

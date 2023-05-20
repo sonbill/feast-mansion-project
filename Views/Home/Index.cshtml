@@ -41,14 +41,16 @@
             <div>
                 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
                     <a asp-controller="Home" asp-action="Menu" asp-route-categoryId="@category.Id">
-                        <img class="rounded-t-lg w-[382px] h-[255px]" src="https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="" />
+                        <div class="p-3">
+                            <img src="@Url.Content("~/Uploads/CategoryThumbnail/" + @category.ImagePath)" alt="Category Thumbnail" class="rounded-t-lg w-[382px] h-[255px]" />
+                        </div>
                     </a>
                     <div class="p-3">
                         @*<a href="Product/Details/@category.Id">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">@category.Name</h5>
                         </a>*@
                         <a asp-controller="Home" asp-action="Menu" asp-route-categoryId="@category.Id">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">@category.Name</h5>
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 hover:underline">@category.Name</h5>
                         </a>                        
                     </div>
                 </div>
@@ -57,25 +59,39 @@
     </div>
     @*RECOMMEND*@
     <div>
-        <h1 class="font-bold text-2xl my-10">CÓ THỂ BẠN SẼ THÍCH MÓN NÀY</h1>
-        <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow">
-            <a href="#">
-                <div class="w-[382px] h-[264px]">
-                    <img class="p-3 rounded-t-lg w-full h-full object-cover" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80" alt="product image" />
-                </div>
-            </a>
-            <div class="px-3 pb-3">
-                <div class="mb-2">
-                    <a href="#">
-                        <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Chicken grilled</h5>
-                    </a>
-                </div>
-                <div class="flex items-center justify-between">
-                    <span class="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
-                    <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
-                </div>
-            </div>
-        </div>
+        <h1 class="font-bold text-2xl my-10">CÓ THỂ BẠN SẼ THÍCH MÓN NÀY
+            <span class="material-icons text-yellow-500 text-xl">
+                auto_awesome
+            </span>
+        </h1>
+        @foreach (var product in Model.Products)
+        {
+            @if (product.IsPin == "Recommended")
+            {
+                <div class="px-2 md:px-0 w-[300px]">
+                    <div class="border rounded border-gray-600 p-3">
+                        <div class="w-full sm:max-w-[303px] h-full sm:h-[304px] md:h-[304px] mb-3 mx-auto">
+                            <span class="material-icons text-yellow-500 w-full text-right" style="font-size: 2rem;">
+                                star
+                            </span>
+                            <a asp-controller="Home" asp-action="Details" asp-route-id="@product.ProductId">
+                                <img class="w-full h-full object-cover " src="@Url.Content($"~/Uploads/{product.ImagePath}")" alt="@product.Name">
+                            </a>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="text-lg font-bold">@product.Name</p>
+                            <p class="">@string.Format("{0:N0} VNĐ", @product.Price)</p>
+                            <form asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId">
+                                <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center inline-flex items-center mr-2">
+                                    <svg aria-hidden="true" class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>
+                                    Thêm vào giỏ hàng
+                                </button>
+                            </form>                            
+                        </div>
+                    </div>
+                </div>                
+            }
+        }
 
     </div>
 </div>
