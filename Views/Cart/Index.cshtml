@@ -61,7 +61,7 @@
                                         remove_circle_outline
                                     </span>
                                 </button>
-                                <p class="font-bold">@item.Product.Price</p>
+                                <p class="font-bold">@string.Format("{0:N0} VNĐ", @item.Product.Price)</p>
                             </div>
                         </form>                            
                     </div>
@@ -80,21 +80,21 @@
                         <div class="pb-2 mb-3 border-b flex flex-col">
                             <div class="flex mb-3 items-center justify-between">
                                 <p class="">Tổng đơn hàng</p>
-                                <p>@totalPrice VND</p>
+                                <p>@string.Format("{0:N0} VNĐ", @totalPrice)</p>
                             </div>
                             <div class="flex mb-3 items-center justify-between">
                                 <p class="">Phí vận chuyển</p>
-                                <p>@shippingFree VND</p>
+                                <p>@string.Format("{0:N0} VNĐ", @shippingFree)</p>
                             </div>
                             <div class="flex items-center justify-between text-xl font-bold">
                                 <p class="">Tổng thanh toán</p>
-                                <p>@totalWithShipping</p>
+                                <p>@string.Format("{0:N0} VNĐ", @totalWithShipping)</p>
                             </div>
                         </div>
                         @*CHECKOUT*@
                         <div class="bg-red-500 px-3 py-2 border rounded-2xl flex justify-between">
                             <a asp-action="Checkout" asp-controller="Cart" class="font-bold text-white">THANH TOÁN</a>
-                            <p class="text-white font-bold">@totalWithShipping</p>
+                            <p class="text-white font-bold">@string.Format("{0:N0} VNĐ", @totalWithShipping)</p>
                         </div>
                     </div>
                 </div>

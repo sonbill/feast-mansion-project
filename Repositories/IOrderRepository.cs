@@ -28,7 +28,7 @@ namespace feast_mansion_project.Repositories
         public decimal GetTotalRevenueByMonth(int month, int year)
         {
             return _dbContext.Orders
-                .Where(o => o.OrderDate.Month == month && o.OrderDate.Year == year)
+                .Where(o => o.OrderDate.Month == month && o.OrderDate.Year == year && o.Status == "Complete")
                 .Sum(o => o.TotalPrice);
         }
         //Completed Orders

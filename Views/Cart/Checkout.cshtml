@@ -17,25 +17,25 @@
             <div class="card-body">
                 <form asp-action="ProcessCheckout" asp-controller="Cart" method="post" class="space-y-5">
                     <div class="form-group">
-                        <label for="FullName">Full Name</label>
+                        <label for="FullName">Tên khách hàng</label>
                         <input type="text" class="form-control" id="FullName" name="FullName" value="@Model.Customer.FullName" required>
                     </div>
                     <div class="form-group">
-                        <label for="Address">Address</label>
+                        <label for="Address">Địa chỉ</label>
                         <input type="text" class="form-control" id="Address" name="Address" value="@Model.Customer.Address" required>
                     </div>
                     <div class="form-group">
-                        <label for="Phone">Phone</label>
+                        <label for="Phone">Số điện thoại</label>
                         <input type="text" class="form-control" id="Phone" name="Phone" value="@Model.Customer.Phone" required>
                     </div>
                     <div class="form-group">
-                        <label for="PaymentMethod">Payment Method</label>
-                        <select class="form-control" id="PaymentMethod" name="PaymentMethod">
+                        <label asp-for="PaymentMethod" for="PaymentMethod">Phương thức thanh toán</label>
+                        <select asp-for="PaymentMethod" class="form-control" id="PaymentMethod" name="PaymentMethod">
                             <option value="COD">Cash on delivery</option>
                         </select>
                     </div>
                     <div>
-                        <p class="text-xl"><strong>Total price: </strong>@Model.TotalPrice VND</p>
+                        <p class="text-xl"><strong>Tổng tiền: </strong>@string.Format("{0:N0} VNĐ", (@Model.TotalPrice + 20000))</p>
                     </div>
                     <div class="space-x-5">
                         <button type="submit" class="font-bold text-white bg-red-700 px-3 py-2 border rounded-2xl">Thanh toán</button>
@@ -64,16 +64,16 @@
                             {
                                 <tr>
                                     <td>@item.Product.Name</td>
-                                    <td>@item.Product.Price VND</td>
+                                    <td>@string.Format("{0:N0} VNĐ", @item.Product.Price)</td>
                                     <td>@item.Quantity</td>
-                                    <td>@(item.Product.Price * item.Quantity) VND</td>
+                                    <td>@string.Format("{0:N0} VNĐ", (@item.Product.Price * @item.Quantity))</td>
                                 </tr>
                             }
                             <tr>
                                 <td>Phí vận chuyển</td>
                                 <td></td>
                                 <td></td>
-                                <td>20.000 VND</td>
+                                <td>@string.Format("{0:N0} VNĐ", 20000)</td>
                             </tr>
                         </tbody>
                     </table>

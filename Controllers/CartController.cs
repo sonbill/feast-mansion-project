@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using feast_mansion_project.Helper;
 using feast_mansion_project.Models;
@@ -17,11 +18,40 @@ namespace feast_mansion_project.Controllers
 {
     public class CartController : Controller
     {
+        private List<string> generatedWords = new List<string>();
         private readonly ApplicationDbContext _dbContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
 
+        private string GenerateRandomNonsenseWord(int length)
+        {
+            const string allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+            var random = new Random();
+
+            var word = new StringBuilder(length);
+
+            do
+            {
+                for (int i = 0; i < length; i++)
+                {
+                    int index = random.Next(allowedChars.Length);
+
+                    word.Append(allowedChars[index]);
+                }
+            }
+            while (generatedWords.Contains(word.ToString()));
+
+            generatedWords.Add(word.ToString());
+
+            return word.ToString();
+        }
+
+        private int GenerateRandomNumber()
+        {
+            Random random = new Random();
+            return random.Next(1000, 9999);
+        }
 
         public CartController(ApplicationDbContext dbContext, IHttpContextAccessor httpContextAccessor)
         {
@@ -228,11 +258,16 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Cart");
             }
 
+            var shippingFree = 20000;
+
             var model = new CheckoutViewModel
             {
                 Customer = customer,
+
                 CartDetails = cart.CartDetails.ToList(),
+
                 TotalPrice = cart.CartDetails.Sum(cd => cd.Price * cd.Quantity),
+
                 PaymentMethod = "COD" // Default payment method
             };
 
@@ -261,13 +296,26 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Cart");
             }
 
+            var shippingFree = 20000;
+
+            // Generate a unique OrderId
+            var randomWord = GenerateRandomNonsenseWord(4); // Generate a random 4-letter word
+            var randomNumber = GenerateRandomNumber();
+            var orderId = "HD" + randomWord + randomNumber.ToString("D4");        
+
             var order = new Order
             {
+                OrderId = orderId,
+
                 TotalPrice = cart.CartDetails.Sum(cd => cd.Price * cd.Quantity),
+
                 Status = "Pending",
+
                 CustomerId = customer.CustomerId,
+
                 OrderDate = DateTime.Now,
-                //PaymentMethod = model.PaymentMethod
+
+                PaymentMethod = model.PaymentMethod
             };
 
             order.OrderDetails = new List<OrderDetail>();

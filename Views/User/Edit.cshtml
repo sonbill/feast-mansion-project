@@ -6,24 +6,24 @@
 }
 
 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-    <h1>Edit Customer Information</h1>
+    <h1 class="font-bold text-2xl">Cập nhật thông tin khách hàng</h1>
 
     <div class="bg-white overflow-hidden shadow sm:rounded-lg p-10">
         <form asp-controller="User" asp-action="Edit" method="post">
             <input type="hidden" asp-for="CustomerId" />
             <div class="mb-6">
-                <label asp-for="FullName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Name</label>
+                <label asp-for="FullName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên đầy đủ</label>
                 <input asp-for="FullName" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="FullName" name="FullName" value="@Model.FullName" required>
             </div>
             <div class="mb-6">
-                <label asp-for="Address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                <label asp-for="Address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Địa chỉ</label>
                 <input asp-for="Address" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="Address" name="Address" value="@Model.Address" required>
             </div>
             <div class="mb-6">
-                <label asp-for="Phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+                <label asp-for="Phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Số điện thoại</label>
                 <input asp-for="Phone" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="Phone" name="Phone" value="@Model.Phone" required>
             </div>
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Save Changes</button>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Cập nhật</button>
             <button type="submit" asp-controller="User" asp-action="DeleteCustomer" asp-route-id="@Model.CustomerId" method="post" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center inline-flex items-center mr-2">
                 Xoá khách hàng
             </button>

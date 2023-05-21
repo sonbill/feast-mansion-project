@@ -98,7 +98,7 @@ namespace feast_mansion_project.Controllers
         }
 
         [HttpPost("approve/{orderId}")]
-        public async Task<IActionResult> ApproveOrder(int orderId)
+        public async Task<IActionResult> ApproveOrder(string orderId)
         {
             var order = await _dbContext.Orders.FindAsync(orderId);
 
@@ -118,7 +118,7 @@ namespace feast_mansion_project.Controllers
         }
 
         [HttpPost("complete-cooking/{orderId}")]
-        public async Task<IActionResult> CompleteCooking(int orderId)
+        public async Task<IActionResult> CompleteCooking(string orderId)
         {
             var order = _dbContext.Orders.Find(orderId);
 
@@ -144,7 +144,7 @@ namespace feast_mansion_project.Controllers
         }
 
         [HttpPost("complete-shipping/{orderId}")]
-        public async Task<IActionResult> CompleteShipping(int orderId)
+        public async Task<IActionResult> CompleteShipping(string orderId)
         {
             var order = _dbContext.Orders.Find(orderId);
             if (order == null)
@@ -169,7 +169,7 @@ namespace feast_mansion_project.Controllers
         }
 
         [HttpPost("cancel/{orderId}")]
-        public async Task<IActionResult> CancelOrder(int orderId)
+        public async Task<IActionResult> CancelOrder(string orderId)
         {
             var order = _dbContext.Orders.Find(orderId);
 
