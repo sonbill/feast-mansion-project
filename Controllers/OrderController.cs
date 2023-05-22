@@ -83,6 +83,11 @@ namespace feast_mansion_project.Controllers
         [HttpGet("Edit/{id}")]
         public async Task<IActionResult> Edit(string id)
         {
+            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var order = await _dbContext.Orders
                 .Include(o => o.Customer)
                 .Include(o => o.OrderDetails)
@@ -100,6 +105,11 @@ namespace feast_mansion_project.Controllers
         [HttpPost("approve/{orderId}")]
         public async Task<IActionResult> ApproveOrder(string orderId)
         {
+            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var order = await _dbContext.Orders.FindAsync(orderId);
 
             if (order == null)
@@ -120,6 +130,11 @@ namespace feast_mansion_project.Controllers
         [HttpPost("complete-cooking/{orderId}")]
         public async Task<IActionResult> CompleteCooking(string orderId)
         {
+            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var order = _dbContext.Orders.Find(orderId);
 
             if (order == null)
@@ -146,6 +161,11 @@ namespace feast_mansion_project.Controllers
         [HttpPost("complete-shipping/{orderId}")]
         public async Task<IActionResult> CompleteShipping(string orderId)
         {
+            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var order = _dbContext.Orders.Find(orderId);
             if (order == null)
             {
@@ -171,6 +191,11 @@ namespace feast_mansion_project.Controllers
         [HttpPost("cancel/{orderId}")]
         public async Task<IActionResult> CancelOrder(string orderId)
         {
+            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var order = _dbContext.Orders.Find(orderId);
 
             order.Status = "Cancel";

@@ -15,20 +15,20 @@
                 <h4 class="font-bold text-white">Thông tin khách hàng</h4>
             </div>
             <div class="card-body">
-                <form asp-action="ProcessCheckout" asp-controller="Cart" method="post" class="space-y-5">
-                    <div class="form-group">
+                <form id="ProcessCheckoutForm" asp-action="ProcessCheckout" asp-controller="Cart" method="post" class="space-y-5">
+                    <div>
                         <label for="FullName">Tên khách hàng</label>
                         <input type="text" class="form-control" id="FullName" name="FullName" value="@Model.Customer.FullName" required>
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label for="Address">Địa chỉ</label>
                         <input type="text" class="form-control" id="Address" name="Address" value="@Model.Customer.Address" required>
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label for="Phone">Số điện thoại</label>
                         <input type="text" class="form-control" id="Phone" name="Phone" value="@Model.Customer.Phone" required>
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label asp-for="PaymentMethod" for="PaymentMethod">Phương thức thanh toán</label>
                         <select asp-for="PaymentMethod" class="form-control" id="PaymentMethod" name="PaymentMethod">
                             <option value="COD">Cash on delivery</option>
@@ -38,7 +38,8 @@
                         <p class="text-xl"><strong>Tổng tiền: </strong>@string.Format("{0:N0} VNĐ", (@Model.TotalPrice + 20000))</p>
                     </div>
                     <div class="space-x-5">
-                        <button type="submit" class="font-bold text-white bg-red-700 px-3 py-2 border rounded-2xl">Thanh toán</button>
+                        <button type="button" id="showPopup" class="font-bold text-white bg-red-700 px-3 py-2 border rounded-2xl">Thanh toán</button>
+                        <button type="submit" id="checkoutBtn" class="font-bold text-white bg-red-700 px-3 py-2 border rounded-2xl hidden">Thanh toán</button>
                         <a asp-action="Index" asp-controller="Cart" class="hover:underline">Quay lại giỏ hàng</a>
                     </div>
                 </form>
@@ -82,3 +83,36 @@
         </div>
     </div>
 </div>
+
+<div id="confirmationPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-5 rounded-lg">
+        <h4 class="font-bold text-xl mb-3">Xác nhận thanh toán</h4>
+        <p class="mb-5">Bạn có chắc chắn muốn thanh toán không?</p>
+        <div class="flex justify-end">
+            <button type="button" id="confirmBtn" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Xác nhận</button>
+            <a asp-controller="Cart" asp-action="Checkout" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Huỷ</a>
+        </div>
+    </div>
+</div>
+
+<script>// JavaScript code to handle the checkout button click
+    document.getElementById("checkoutBtn").addEventListener("click", function () {
+        document.getElementById("confirmationPopup").classList.remove("hidden");
+    });
+    document.getElementById("showPopup").addEventListener("click", function () {
+        document.getElementById("confirmationPopup").classList.remove("hidden");
+    });
+    // JavaScript code to handle the confirmation button click
+    document.getElementById("confirmBtn").addEventListener("click", function () {
+        document.getElementById("confirmationPopup").classList.add("hidden");
+        setTimeout(function () {
+            document.getElementById("ProcessCheckoutForm").submit();
+        }, 100);
+    });
+
+    // JavaScript code to handle the cancel button click
+    document.getElementById("cancelBtn").addEventListener("click", function () {
+        document.getElementById("confirmationPopup").classList.add("hidden");
+        window.location.href = "/Cart/Checkout"; // Replace with the appropriate URL
+    });
+</script>

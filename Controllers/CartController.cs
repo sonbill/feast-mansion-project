@@ -67,7 +67,7 @@ namespace feast_mansion_project.Controllers
         {
             int currentUser = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
 
-            if (currentUser == null)
+            if (currentUser == 0)
             {
                 return RedirectToAction("Login", "UserAuthentication");
             }
@@ -99,7 +99,7 @@ namespace feast_mansion_project.Controllers
         {
             // Check if user is logged in
             int currentUser = Convert.ToInt32(HttpContext.Session.GetString("userId"));
-            if (currentUser == null)
+            if (currentUser == 0)
             {
                 // If not, redirect to login view
                 return RedirectToAction("Login", "UserAuthentication");
@@ -151,6 +151,8 @@ namespace feast_mansion_project.Controllers
             // Save changes to database
             await _dbContext.SaveChangesAsync();
 
+            TempData["SuccessMessage"] = "Đã thêm vào giỏ hàng";
+
             //return RedirectToAction("Index");
             return RedirectToAction("Menu", "Home");
         }
@@ -159,6 +161,14 @@ namespace feast_mansion_project.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteCartItem(int productId)
         {
+            // Check if user is logged in
+            int currentUser = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            if (currentUser == 0)
+            {
+                // If not, redirect to login view
+                return RedirectToAction("Login", "UserAuthentication");
+            }
+
             var cartDetail = _dbContext.CartDetails.FirstOrDefault(cd => cd.Product.ProductId == productId);
 
             if (cartDetail == null)
@@ -169,8 +179,6 @@ namespace feast_mansion_project.Controllers
             _dbContext.CartDetails.Remove(cartDetail);
 
             _dbContext.SaveChanges();
-
-            int currentUser = Convert.ToInt32(HttpContext.Session.GetString("userId"));
 
             var cart = _dbContext.Carts.FirstOrDefault(c => c.UserId == currentUser);
 
@@ -192,6 +200,14 @@ namespace feast_mansion_project.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateCartItem(int productId, string changeQuantity)
         {
+            // Check if user is logged in
+            int currentUser = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+            if (currentUser == 0)
+            {
+                // If not, redirect to login view
+                return RedirectToAction("Login", "UserAuthentication");
+            }
+
             var cartDetail = _dbContext.CartDetails.FirstOrDefault(cd => cd.Product.ProductId == productId);
 
             if (cartDetail == null)
@@ -210,9 +226,6 @@ namespace feast_mansion_project.Controllers
                     cartDetail.Quantity--;
                 }
             }
-
-            // Calculate new total price for cart
-            var currentUser = Convert.ToInt32(HttpContext.Session.GetString("userId"));
 
             var cart = _dbContext.Carts.FirstOrDefault(c => c.UserId == currentUser);
 
@@ -241,9 +254,9 @@ namespace feast_mansion_project.Controllers
         
             var userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
 
-            if (userId == null)
+            if (userId == 0)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "UserAuthentication");
             }
 
             var customer = _dbContext.Customers.FirstOrDefault(c => c.UserId == userId);
@@ -257,8 +270,6 @@ namespace feast_mansion_project.Controllers
             {
                 return RedirectToAction("Index", "Cart");
             }
-
-            var shippingFree = 20000;
 
             var model = new CheckoutViewModel
             {
@@ -279,7 +290,7 @@ namespace feast_mansion_project.Controllers
         {
             var userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
 
-            if (userId == null)
+            if (userId == 0)
             {
                 return RedirectToAction("Login", "UserAuthentication");
             }
@@ -298,6 +309,8 @@ namespace feast_mansion_project.Controllers
 
             var shippingFree = 20000;
 
+            var totalPrice = cart.CartDetails.Sum(cd => cd.Price * cd.Quantity);
+
             // Generate a unique OrderId
             var randomWord = GenerateRandomNonsenseWord(4); // Generate a random 4-letter word
             var randomNumber = GenerateRandomNumber();
@@ -307,7 +320,7 @@ namespace feast_mansion_project.Controllers
             {
                 OrderId = orderId,
 
-                TotalPrice = cart.CartDetails.Sum(cd => cd.Price * cd.Quantity),
+                TotalPrice = totalPrice + shippingFree,
 
                 Status = "Pending",
 
@@ -345,8 +358,17 @@ namespace feast_mansion_project.Controllers
 
             _dbContext.SaveChanges();
 
+            TempData["SuccessMessage"] = "Đặt hàng thành công";
+
             return RedirectToAction("Index");
-        }        
+        }
+
+        [HttpPost]
+        public IActionResult ConfirmCheckout(CheckoutViewModel model)
+        {
+            return PartialView("_Confirmation", model);
+        }
+
     }
 }
 

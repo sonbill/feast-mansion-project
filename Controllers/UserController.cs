@@ -24,6 +24,11 @@ namespace feast_mansion_project.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var users = _dbContext.Users.Include(u => u.Customer).ToList();
             var customers = _dbContext.Customers.Include(c => c.User).ToList();
 
@@ -115,6 +120,11 @@ namespace feast_mansion_project.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteCustomer(int id)
         {
+            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             // Find the customer record with the given ID
             var customer = _dbContext.Customers.FirstOrDefault(c => c.CustomerId == id);
 

@@ -65,7 +65,12 @@
                     @if (HttpContextAccessor.HttpContext.Session.GetString("userId") != null)
                     {
                         @*<a asp-controller="Home" asp-action="Profile">Welcome, @Html.ActionLink(@HttpContextAccessor.HttpContext.Session.GetString("Username"), "Index", "Home") </a>*@
-                        <a asp-controller="Home" asp-action="Profile">Profile</a>
+                        <a asp-controller="Home" asp-action="Profile" class="flex items-center space-x-2 p-2 text-base font-normal text-gray-900 rounded-lg hover:bg-gray-100">
+                            <span class="material-icons">
+                                    account_circle
+                                </span>
+                                <p class="flex-shrink-0 w-6 h-6 transition duration-75 group-hover:text-gray-900">Profile</p>
+                        </a>
 
 
                         <div class="w-full">
