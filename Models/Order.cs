@@ -17,6 +17,8 @@ namespace feast_mansion_project.Models
         [Required]
         public string PaymentMethod { get; set; }
 
+        public string Note { get; set; }
+
         [Required]
         public int CustomerId { get; set; }
 

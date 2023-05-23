@@ -21,11 +21,6 @@ namespace feast_mansion_project.Models
         public int CustomerId { get; set; }
 
         public Customer Customer { get; set; }
-
-        [Required]
-        public int UserId { get; set; }
-
-        public User User { get; set; }
     }
 }
 

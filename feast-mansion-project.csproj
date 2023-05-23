@@ -23,6 +23,7 @@
     <None Remove="Views\Menu\" />
     <None Remove="Helper\" />
     <None Remove="Views\User\" />
+    <None Remove="Views\Feedback\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -47,6 +48,7 @@
     <Folder Include="Helper\" />
     <Folder Include="Views\User\" />
     <Folder Include="wwwroot\Uploads\CategoryThumbnail\" />
+    <Folder Include="Views\Feedback\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\" />

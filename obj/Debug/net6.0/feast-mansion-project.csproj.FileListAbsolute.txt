@@ -69,3 +69,8 @@
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/bin/Debug/net6.0/Newtonsoft.Json.dll
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Debug/net6.0/staticwebassets/msbuild.feast-mansion-project.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Debug/net6.0/staticwebassets/msbuild.build.feast-mansion-project.props
+/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.feast-mansion-project.props
+/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.feast-mansion-project.props
+/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Debug/net6.0/staticwebassets.pack.json

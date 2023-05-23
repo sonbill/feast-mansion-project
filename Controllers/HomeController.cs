@@ -308,6 +308,48 @@ namespace feast_mansion_project.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> SendFeedback(Feedback obj)
+        {
+            if (HttpContext.Session.GetString("userId") == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var feedback = new Feedback
+                    {
+                        OpinionState = obj.OpinionState,
+
+                        FeedbackCategory = obj.FeedbackCategory,
+
+                        FeedbackMessage = obj.FeedbackMessage,
+
+                        CustomerId = userId
+                    };
+
+                    // Add new product to database
+                    _dbContext.Feedbacks.Add(feedback);
+
+                    await _dbContext.SaveChangesAsync();
+
+                    TempData["SuccessMessage"] = "Phản hồi đã được gửi thành công";
+
+                    return RedirectToAction("Home", "Index");
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = "Error creating product: " + ex.Message;
+                }
+            }
+            return View("Feedback");
+        }
+
         public async Task<IActionResult> Logout()
         {
 

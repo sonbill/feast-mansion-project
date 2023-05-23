@@ -58,17 +58,24 @@ namespace feast_mansion_project.Models.Domain
                 .HasForeignKey(c => c.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Feedback>()
-                .HasOne(f => f.User)
-                .WithMany()
-                .HasForeignKey(f => f.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<Feedback>()
+            //    .HasOne(f => f.User)
+            //    .WithMany()
+            //    .HasForeignKey(f => f.UserId)
+            //    .OnDelete(DeleteBehavior.Restrict);
+
+            //modelBuilder.Entity<Feedback>()
+            //    .HasOne(f => f.Customer)
+            //    .WithMany()
+            //    .HasForeignKey(f => f.CustomerId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Feedback>()
                 .HasOne(f => f.Customer)
-                .WithMany()
+                .WithMany(c => c.Feedbacks)
                 .HasForeignKey(f => f.CustomerId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
 
 
             //modelBuilder.Entity<CartDetail>()

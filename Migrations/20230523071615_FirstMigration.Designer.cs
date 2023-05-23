@@ -12,7 +12,7 @@ using feast_mansion_project.Models.Domain;
 namespace feast_mansion_project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230519093504_FirstMigration")]
+    [Migration("20230523071615_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,7 +98,6 @@ namespace feast_mansion_project.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -158,9 +157,6 @@ namespace feast_mansion_project.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CustomerId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("FeedbackCategory")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -173,16 +169,9 @@ namespace feast_mansion_project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("FeedbackId");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("CustomerId1");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Feedbacks");
                 });
@@ -194,6 +183,10 @@ namespace feast_mansion_project.Migrations
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -369,24 +362,12 @@ namespace feast_mansion_project.Migrations
             modelBuilder.Entity("feast_mansion_project.Models.Feedback", b =>
                 {
                     b.HasOne("feast_mansion_project.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Feedbacks")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("feast_mansion_project.Models.Customer", null)
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("CustomerId1");
-
-                    b.HasOne("feast_mansion_project.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Customer");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("feast_mansion_project.Models.Order", b =>
