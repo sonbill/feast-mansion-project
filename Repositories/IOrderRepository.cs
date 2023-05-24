@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using feast_mansion_project.Models;
 using feast_mansion_project.Models.Domain;
+using OfficeOpenXml;
 
 namespace feast_mansion_project.Repositories
 {
@@ -13,6 +15,9 @@ namespace feast_mansion_project.Repositories
         int GetTotalCompletedOrdersByCurrentMonth(int currentMonth, int currentYear);
         int GetTotalCanceledOrdersByCurrentMonth(int currentMonth, int currentYear);
         List<Order> GetOrdersByMonth(int month, int year);
+        //byte[] ExportTotalRevenueToExcel(DateTime startDate, DateTime endDate);
+        decimal GetTotalRevenueByDays(DateTime startDate, DateTime endDate);
+        int GetOrderCountByDays(DateTime startDate, DateTime endDate);
 
     }
 
@@ -68,6 +73,18 @@ namespace feast_mansion_project.Repositories
                 .ToList();
         }
 
+        public decimal GetTotalRevenueByDays(DateTime startDate, DateTime endDate)
+        {
+            return _dbContext.Orders
+                .Where(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete")
+                .Sum(o => o.TotalPrice);
+        }
+
+        public int GetOrderCountByDays(DateTime startDate, DateTime endDate)
+        {
+            return _dbContext.Orders
+                .Count(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete");
+        }
     }
 }
 

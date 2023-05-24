@@ -137,8 +137,8 @@
 
     <div class="space-y-5 pr-0 md:pr-4 mt-10">
         <div>
-            <form asp-controller="Dashboard" asp-action="Index" method="post">
-                <label for="selectMonth" class="block mb-2 text-sm font-medium text-gray-900">Tìm đơn hàng theo tháng, năm</label>
+            <form asp-controller="Dashboard" asp-action="Index" method="get">
+                <label for="selectMonth" class="block mb-2 text-sm font-bold text-gray-900">Tìm đơn hàng theo tháng, năm</label>
                 <select id="selectMonth" name="selectMonth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
                     <option selected>Chọn tháng</option>
                     <option value="1">Tháng 1</option>
@@ -223,6 +223,24 @@
                 }
             </table>
         }
+        <form asp-controller="Dashboard" asp-action="ExportToExcel" method="post" class="flex items-center space-x-5">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold" for="startDate">Ngày bắt đầu:</label>
+                <input class="border rounded py-2 px-3 text-gray-700" type="date" for="startDate" id="startDate" name="startDate" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold">Ngày kết thúc:</label>
+                <input class="border rounded py-2 px-3 text-gray-700" type="date" for="endDate" id="endDate" name="endDate" required>
+            </div>
+            <div>
+                <button type="submit" class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded flex items-center space-x-2">
+                    <span class="material-icons">
+                        file_download
+                    </span>
+                    <p>Xuất ra file Excel</p>                    
+                </button>
+            </div>
+        </form>
     </div>    
 </div>
 
