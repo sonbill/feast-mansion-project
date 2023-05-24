@@ -32,7 +32,9 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var feedbacks = _dbContext.Feedbacks.OrderBy(c => c.FeedbackId);
+            //var feedbacks = _dbContext.Feedbacks.OrderBy(c => c.FeedbackId);
+
+            var feedbacks = _dbContext.Feedbacks.Include(o => o.Customer).OrderBy(c => c.FeedbackId);
 
             int totalItems = feedbacks.Count();
 

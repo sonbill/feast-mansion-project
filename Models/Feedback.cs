@@ -20,7 +20,7 @@ namespace feast_mansion_project.Models
         [Required]
         public int CustomerId { get; set; }
 
-        public Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
     }
 }
 

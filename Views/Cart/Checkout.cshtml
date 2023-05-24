@@ -35,6 +35,10 @@
                         </select>
                     </div>
                     <div>
+                        <label asp-for="Note" for="Note">Ghi chú</label>
+                        <textarea class="form-control" id="Note" name="Note">@Model.Note</textarea>
+                    </div>
+                    <div>
                         <p class="text-xl"><strong>Tổng tiền: </strong>@string.Format("{0:N0} VNĐ", (@Model.TotalPrice + 20000))</p>
                     </div>
                     <div class="space-x-5">

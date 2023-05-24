@@ -23,13 +23,16 @@
                     KHÁCH HÀNG
                 </th>
                 <th class="px-6 py-3">
+                    GHI CHÚ
+                </th>
+                <th class="px-6 py-3">
                     TỔNG GIÁ
                 </th>
                 <th class="px-3 py-3">
                     NGÀY ĐẶT
-                </th>              
+                </th>
                 <th class="px-6 py-3">
-                    
+
                 </th>
             </tr>
         </thead>
@@ -47,19 +50,22 @@
                         @obj.Customer.FullName
                     </td>
                     <td class="px-6 py-4">
+                        @obj.Note
+                    </td>
+                    <td class="px-6 py-4">
                         @string.Format("{0:N0} VNĐ", @obj.TotalPrice)
                     </td>
 
                     <td class="px-2 py-4">
                         @obj.OrderDate
-                    </td>                  
+                    </td>
 
                     <td class="px-6 py-4 space-x-3">
                         <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
                     </td>
                     @*<td>
-                            (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")
-                        </td>*@
+            (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")
+        </td>*@
                 </tr>
             }
         </tbody>

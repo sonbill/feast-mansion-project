@@ -324,6 +324,8 @@ namespace feast_mansion_project.Controllers
 
                 Status = "Pending",
 
+                Note = model.Note,
+
                 CustomerId = customer.CustomerId,
 
                 OrderDate = DateTime.Now,

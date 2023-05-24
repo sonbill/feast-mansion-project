@@ -27,6 +27,9 @@
                 <th class="px-6 py-3">
                     NGÀY TẠO
                 </th>
+                <th class="px-6 py-3">
+                    
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -43,7 +46,7 @@
                         @obj.FeedbackCategory
                     </td>
                     <td class="px-2 py-4">
-                        @obj.CustomerId
+                        @obj.Customer.FullName
                     </td>
                     <td class="px-2 py-4">
                         @obj.CreatedAt

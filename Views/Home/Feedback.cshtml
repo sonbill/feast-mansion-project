@@ -1,19 +1,31 @@
-﻿@model Feedback
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@model Feedback
+
 
 @{
     ViewData["Title"] = "Feedback Page";
 
     Layout = "_HomeLayout";
+
+    int customerId = 0;
+    var userId = HttpContextAccessor.HttpContext.Session.GetString("userId");
+    if (!string.IsNullOrEmpty(userId))
+    {
+        customerId = int.Parse(userId);
+    }
 }
 
 <div class="max-w-screen-xl mx-auto mt-20">
     <form asp-controller="Home" asp-action="SendFeedback" method="post" class="flex flex-col w-[500px] mx-auto">
+        <input type="hidden" asp-for="CustomerId" value="@customerId" />
         <h1 class="text-2xl font-bold text-center">We would like your feedback to improve our website</h1>
         <div class="w-full py-4 space-y-7 border-b-2">
             <p class="text-center text-gray-500">What is your opinion of this page?</p>
             <div class="flex items-center justify-between">
                 <div>
-                    <input asp-for="OpinionState" type="radio" id="very-unhappy" name="feedback_opinion" value="very-unhappy" class="hidden peer" required>
+                    <input asp-for="OpinionState" type="radio" id="very-unhappy" name="OpinionState" value="very-unhappy" class="hidden peer" required>
                     <label asp-for="OpinionState" for="very-unhappy" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
                         <span class="material-icons" style="font-size: 48px;">
                             sentiment_very_dissatisfied
@@ -21,7 +33,7 @@
                     </label>
                 </div>
                 <div>
-                    <input asp-for="OpinionState" type="radio" id="unhappy" name="feedback_opinion" value="unhappy" class="hidden peer" required>
+                    <input asp-for="OpinionState" type="radio" id="unhappy" name="OpinionState" value="unhappy" class="hidden peer" required>
                     <label asp-for="OpinionState" for="unhappy" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
                         <span class="material-icons" style="font-size: 48px;">
                             sentiment_dissatisfied
@@ -29,7 +41,7 @@
                     </label>
                 </div>
                 <div>
-                    <input asp-for="OpinionState" type="radio" id="normal" name="feedback_opinion" value="normal" class="hidden peer" required>
+                    <input asp-for="OpinionState" type="radio" id="normal" name="OpinionState" value="normal" class="hidden peer" required>
                     <label asp-for="OpinionState" for="normal" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
                         <span class="material-icons" style="font-size: 48px;">
                             sentiment_neutral
@@ -37,7 +49,7 @@
                     </label>
                 </div>
                 <div>
-                    <input asp-for="OpinionState" type="radio" id="happy" name="feedback_opinion" value="happy" class="hidden peer" required>
+                    <input asp-for="OpinionState" type="radio" id="happy" name="OpinionState" value="happy" class="hidden peer" required>
                     <label asp-for="OpinionState" for="happy" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
                         <span class="material-icons" style="font-size: 48px;">
                             sentiment_satisfied
@@ -45,7 +57,7 @@
                     </label>
                 </div>
                 <div>
-                    <input asp-for="OpinionState" type="radio" id="very-happy" name="feedback_opinion" value="very-happy" class="hidden peer" required>
+                    <input asp-for="OpinionState" type="radio" id="very-happy" name="OpinionState" value="very-happy" class="hidden peer" required>
                     <label asp-for="OpinionState" for="very-happy" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
                         <span class="material-icons" style="font-size: 48px;">
                             sentiment_very_satisfied
@@ -58,19 +70,19 @@
             <p class="text-center text-gray-500">Please select your feedback category below.</p>
             <div class="flex items-center justify-between">
                 <div>
-                    <input asp-for="FeedbackCategory" type="radio" id="suggestion" name="feedback_category" value="suggestion" class="hidden peer" required>
+                    <input asp-for="FeedbackCategory" type="radio" id="suggestion" name="FeedbackCategory" value="suggestion" class="hidden peer" required>
                     <label asp-for="FeedbackCategory" for="suggestion" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
                         Suggestion
                     </label>
                 </div>
                 <div>
-                    <input asp-for="FeedbackCategory" type="radio" id="issue" name="feedback_category" value="issue" class="hidden peer" required>
+                    <input asp-for="FeedbackCategory" type="radio" id="issue" name="FeedbackCategory" value="issue" class="hidden peer" required>
                     <label asp-for="FeedbackCategory" for="issue" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-red-600 peer-checked:text-red-600 hover:text-gray-600 hover:bg-red-100">
                         Something is not quite right
                     </label>
                 </div>
                 <div>
-                    <input asp-for="FeedbackCategory" type="radio" id="compliment" name="feedback_category" value="compliment" class="hidden peer" required>
+                    <input asp-for="FeedbackCategory" type="radio" id="compliment" name="FeedbackCategory" value="compliment" class="hidden peer" required>
                     <label asp-for="FeedbackCategory" for="compliment" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-green-600 peer-checked:text-green-600 hover:text-gray-600 hover:bg-gray-100">
                         Compliment
                     </label>
@@ -87,6 +99,6 @@
             <button type="submit" class="font-bold text-white bg-red-700 w-full px-3 py-2 border rounded-2xl">Gửi</button>
             <a asp-action="Index" asp-controller="Home" class="hover:underline">Quay về trang chủ</a>
         </div>
-    </form>   
+    </form>
 
 </div>

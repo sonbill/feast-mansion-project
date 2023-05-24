@@ -322,25 +322,16 @@ namespace feast_mansion_project.Controllers
             {
                 try
                 {
-                    var feedback = new Feedback
-                    {
-                        OpinionState = obj.OpinionState,
-
-                        FeedbackCategory = obj.FeedbackCategory,
-
-                        FeedbackMessage = obj.FeedbackMessage,
-
-                        CustomerId = userId
-                    };
+                    obj.CustomerId = userId;
 
                     // Add new product to database
-                    _dbContext.Feedbacks.Add(feedback);
+                    _dbContext.Feedbacks.Add(obj);
 
                     await _dbContext.SaveChangesAsync();
 
                     TempData["SuccessMessage"] = "Phản hồi đã được gửi thành công";
 
-                    return RedirectToAction("Home", "Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)
                 {

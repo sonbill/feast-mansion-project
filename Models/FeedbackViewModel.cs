@@ -16,8 +16,6 @@ namespace feast_mansion_project.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        public int UserId { get; set; }
-
         public int CustomerId { get; set; }
 
         public int TotalItems { get; set; }
