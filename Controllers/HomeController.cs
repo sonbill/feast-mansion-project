@@ -145,13 +145,18 @@ namespace feast_mansion_project.Controllers
         [HttpGet("OrdersHistory")]
         public async Task<IActionResult> OrdersHistory(int page = 1, int pageSize = 5)
         {
+            if (HttpContext.Session.GetString("userId") == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
 
             var orders = _dbContext.Orders
-                .OrderBy(c => c.OrderId)
                 .Include(o => o.OrderDetails)
                 .ThenInclude(od => od.Product)
-                .Where(o => o.CustomerId == userId);
+                .Where(o => o.CustomerId == userId)
+                .OrderByDescending(o => o.OrderDate);
 
             //var orders = _dbContext.Orders
             //.Include(o => o.OrderDetails)
@@ -163,10 +168,7 @@ namespace feast_mansion_project.Controllers
 
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            var paginatedOrders = orders.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-
-
-            
+            var paginatedOrders = orders.Skip((page - 1) * pageSize).Take(pageSize).ToList();            
 
             OrderHistoryViewModel orderHistoryViewModel = new OrderHistoryViewModel
             {

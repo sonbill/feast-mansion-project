@@ -55,7 +55,10 @@ namespace feast_mansion_project.Controllers
 
             //var orders = _dbContext.Orders.OrderBy(o => o.OrderId);
 
-            var orders = _dbContext.Orders.Include(o => o.Customer).OrderBy(o => o.OrderId);
+            //var orders = _dbContext.Orders.Include(o => o.Customer).OrderBy(o => o.OrderId);
+            var orders = _dbContext.Orders
+                .Include(o => o.Customer)
+                .OrderByDescending(o => o.OrderDate);
 
             int totalItems = await orders.CountAsync();
 
