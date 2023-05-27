@@ -77,7 +77,7 @@
                 </tbody>
             </table>
             <div class="space-y-3">
-                <div class="text-sm font-medium mt-4 flex">
+                <div class="text-sm font-medium mt-4 flex space-x-2">
                     <p>
                         Phí ship:
                     </p>
@@ -85,7 +85,7 @@
                         @string.Format("{0:N0} VNĐ", 20000)
                     </span>
                 </div>
-                <div class="text-sm font-medium mt-4 flex">
+                <div class="text-sm font-medium mt-4 flex space-x-2">
                     <p>
                         Tổng giá đơn hàng:
                     </p>
@@ -93,11 +93,11 @@
                         @string.Format("{0:N0} VNĐ", @Model.TotalPrice)
                     </span>
                 </div>
-                <div class="text-sm font-medium flex">
+                <div class="text-sm font-medium flex space-x-2">
                     <p>Ngày tạo đơn: </p>
                     <span>@Model.OrderDate</span>
                 </div>
-                <div class="text-sm font-medium flex items-center">
+                <div class="text-sm font-medium flex items-center space-x-2">
                     <p>Tình trạng:</p>
                     @if (Model.Status == "Complete")
                     {
@@ -151,7 +151,8 @@
                     </form>
                 }
                 <form asp-controller="Order" asp-action="CancelOrder" asp-route-orderId="@Model.OrderId" method="post">
-                    <button type="submit" class="bg-red-700 px-3 py-1 rounded-lg text-white">Huỷ đơn hàng</button>
+                    <button type="submit" class="bg-red-700 px-3 py-1 rounded-lg text-white" @(Model.Status == "Complete" ? "disabled" : "")>Huỷ đơn hàng</button>
+
                 </form>
             </div>            
         </div>

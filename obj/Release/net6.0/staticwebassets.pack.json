@@ -1,0 +1,349 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/scopedcss/projectbundle/feast-mansion-project.bundle.scp.css",
+      "PackagePath": "staticwebassets/feast-mansion-project.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/.DS_Store",
+      "PackagePath": "staticwebassets/.DS_Store"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/213c154e-2f40-4f84-8040-0537ee804995.png",
+      "PackagePath": "staticwebassets/Uploads/213c154e-2f40-4f84-8040-0537ee804995.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/2c29978a-af71-4d83-9806-f7319c5850cf.png",
+      "PackagePath": "staticwebassets/Uploads/2c29978a-af71-4d83-9806-f7319c5850cf.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/66bb3486-84f0-4a1c-ab9b-f0e1ec253a5a.png",
+      "PackagePath": "staticwebassets/Uploads/66bb3486-84f0-4a1c-ab9b-f0e1ec253a5a.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/046ac60e-bc55-4cb4-81bc-3eed58082c9a.png",
+      "PackagePath": "staticwebassets/Uploads/CategoryThumbnail/046ac60e-bc55-4cb4-81bc-3eed58082c9a.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/0d488115-4d8d-4762-a40d-a846bc0fea80.png",
+      "PackagePath": "staticwebassets/Uploads/CategoryThumbnail/0d488115-4d8d-4762-a40d-a846bc0fea80.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/14538856-00fc-489e-b5fa-ba3f6de3f1d4.png",
+      "PackagePath": "staticwebassets/Uploads/CategoryThumbnail/14538856-00fc-489e-b5fa-ba3f6de3f1d4.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/18aaee7d-b050-4fa5-b20f-a0da803d108c.png",
+      "PackagePath": "staticwebassets/Uploads/CategoryThumbnail/18aaee7d-b050-4fa5-b20f-a0da803d108c.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/41a4b9b3-dde7-40e7-8780-f135d1dd19a7.png",
+      "PackagePath": "staticwebassets/Uploads/CategoryThumbnail/41a4b9b3-dde7-40e7-8780-f135d1dd19a7.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/54486705-7005-4427-aed2-a20cee6c3d54.png",
+      "PackagePath": "staticwebassets/Uploads/CategoryThumbnail/54486705-7005-4427-aed2-a20cee6c3d54.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/5fd91d51-8ab5-4cf7-a741-600bd8d65d62.png",
+      "PackagePath": "staticwebassets/Uploads/CategoryThumbnail/5fd91d51-8ab5-4cf7-a741-600bd8d65d62.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/d3c8f1b7-8f51-4e3f-b198-9de074181d3e.png",
+      "PackagePath": "staticwebassets/Uploads/CategoryThumbnail/d3c8f1b7-8f51-4e3f-b198-9de074181d3e.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/d914dc3f-1fd4-4656-8b04-16edc0a61be0.png",
+      "PackagePath": "staticwebassets/Uploads/CategoryThumbnail/d914dc3f-1fd4-4656-8b04-16edc0a61be0.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/eb8f8a86-bf0c-4143-8252-f57119b49069.jpg",
+      "PackagePath": "staticwebassets/Uploads/eb8f8a86-bf0c-4143-8252-f57119b49069.jpg"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/.DS_Store",
+      "PackagePath": "staticwebassets/assets/.DS_Store"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/Free_Food_Banner.jpeg",
+      "PackagePath": "staticwebassets/assets/Pictures/Free_Food_Banner.jpeg"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/banner.png",
+      "PackagePath": "staticwebassets/assets/Pictures/banner.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/logo/feast-mansion-logo.png",
+      "PackagePath": "staticwebassets/assets/logo/feast-mansion-logo.png"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/js/Charts.js",
+      "PackagePath": "staticwebassets/js/Charts.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/js/Tabs.js",
+      "PackagePath": "staticwebassets/js/Tabs.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/js/setTimeOut.js",
+      "PackagePath": "staticwebassets/js/setTimeOut.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/js/toggleButtons.js",
+      "PackagePath": "staticwebassets/js/toggleButtons.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/LICENSE",
+      "PackagePath": "staticwebassets/lib/bootstrap"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery-validation/LICENSE.md",
+      "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery/dist/jquery.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery/dist/jquery.min.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
+    },
+    {
+      "Id": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/lib/jquery/dist/jquery.min.map",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "obj/Release/net6.0/staticwebassets/msbuild.build.feast-mansion-project.props",
+      "PackagePath": "build\\feast-mansion-project.props"
+    },
+    {
+      "Id": "obj/Release/net6.0/staticwebassets/msbuild.buildMultiTargeting.feast-mansion-project.props",
+      "PackagePath": "buildMultiTargeting\\feast-mansion-project.props"
+    },
+    {
+      "Id": "obj/Release/net6.0/staticwebassets/msbuild.buildTransitive.feast-mansion-project.props",
+      "PackagePath": "buildTransitive\\feast-mansion-project.props"
+    },
+    {
+      "Id": "obj/Release/net6.0/staticwebassets/msbuild.feast-mansion-project.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

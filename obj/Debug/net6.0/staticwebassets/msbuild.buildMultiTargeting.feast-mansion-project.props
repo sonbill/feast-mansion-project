@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/feast-mansion-project.props" />
+</Project>

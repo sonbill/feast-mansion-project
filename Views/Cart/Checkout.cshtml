@@ -18,15 +18,15 @@
                 <form id="ProcessCheckoutForm" asp-action="ProcessCheckout" asp-controller="Cart" method="post" class="space-y-5">
                     <div>
                         <label for="FullName">Tên khách hàng</label>
-                        <input type="text" class="form-control" id="FullName" name="FullName" value="@Model.Customer.FullName" required>
+                        <input type="text" class="form-control" id="FullName" name="FullName" value="@Model.Customer.FullName" disabled>
                     </div>
                     <div>
                         <label for="Address">Địa chỉ</label>
-                        <input type="text" class="form-control" id="Address" name="Address" value="@Model.Customer.Address" required>
+                        <input type="text" class="form-control" id="Address" name="Address" value="@Model.Customer.Address" disabled>
                     </div>
                     <div>
                         <label for="Phone">Số điện thoại</label>
-                        <input type="text" class="form-control" id="Phone" name="Phone" value="@Model.Customer.Phone" required>
+                        <input type="text" class="form-control" id="Phone" name="Phone" value="@Model.Customer.Phone" disabled>
                     </div>
                     <div>
                         <label asp-for="PaymentMethod" for="PaymentMethod">Phương thức thanh toán</label>

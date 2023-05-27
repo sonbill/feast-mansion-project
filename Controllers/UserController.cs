@@ -69,7 +69,7 @@ namespace feast_mansion_project.Controllers
 
                 FullName = customerFromDb.FullName,
 
-                Address = customerFromDb.Address,
+                Address = customerFromDb.Address + " Tp. Hồ Chí Minh",
 
                 Phone = customerFromDb.Phone,                
             };

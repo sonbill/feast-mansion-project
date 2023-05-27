@@ -80,7 +80,7 @@ namespace feast_mansion_project.Controllers
                         var customer = new Customer
                         {
                             FullName = model.FullName,
-                            Address = model.Address,
+                            Address = model.Address + " Tp. Hồ Chí Minh",
                             Phone = model.Phone,
                             CreatedAt = DateTime.Now,
                             User = user
