@@ -5,10 +5,11 @@ namespace feast_mansion_project.Models.DTO
 {
 	public class LoginViewModel
 	{
-        [Required, EmailAddress]
+        [Required(ErrorMessage = "Yêu cầu nhập Email.")]
+        [EmailAddress(ErrorMessage = "Định dạng Email không hợp lệ.")]
         public string Email { get; set; } = null!;
 
-        [Required]
+        [Required(ErrorMessage = "Yêu cầu nhập mật khẩu.")]
         public string Password { get; set; } = null!;
     }
 }
