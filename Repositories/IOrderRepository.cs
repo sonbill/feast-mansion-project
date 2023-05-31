@@ -18,6 +18,9 @@ namespace feast_mansion_project.Repositories
         //byte[] ExportTotalRevenueToExcel(DateTime startDate, DateTime endDate);
         decimal GetTotalRevenueByDays(DateTime startDate, DateTime endDate);
         int GetOrderCountByDays(DateTime startDate, DateTime endDate);
+        decimal GetTotalRevenueByDaysForExcel(DateTime startDate, DateTime endDate);
+        int GetOrderCountByDaysForExcel(DateTime startDate, DateTime endDate);
+
 
     }
 
@@ -81,6 +84,19 @@ namespace feast_mansion_project.Repositories
         }
 
         public int GetOrderCountByDays(DateTime startDate, DateTime endDate)
+        {
+            return _dbContext.Orders
+                .Count(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete");
+        }
+
+        public decimal GetTotalRevenueByDaysForExcel(DateTime startDate, DateTime endDate)
+        {
+            return _dbContext.Orders
+                .Where(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete")
+                .Sum(o => o.TotalPrice);
+        }
+
+        public int GetOrderCountByDaysForExcel(DateTime startDate, DateTime endDate)
         {
             return _dbContext.Orders
                 .Count(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete");

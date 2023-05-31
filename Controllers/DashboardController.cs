@@ -126,66 +126,38 @@ namespace feast_mansion_project.Controllers
             return View();
         }
 
-        public byte[] ExportTotalRevenueToExcel(DateTime startDate, DateTime endDate)
-        {
-            var revenueAndOrderCountByDay = new Dictionary<DateTime, (decimal Revenue, int OrderCount)>();
-
-            // Iterate over each day in the date range
-            for (DateTime date = startDate.Date; date <= endDate.Date; date = date.AddDays(1))
-            {
-                var totalRevenue = _orderRepository.GetTotalRevenueByDays(date, date.AddDays(1).AddSeconds(-1));
-                var orderCount = _orderRepository.GetOrderCountByDays(date, date.AddDays(1).AddSeconds(-1));
-                revenueAndOrderCountByDay[date] = (totalRevenue, orderCount);
-            }
-
-            // Create a new Excel package
-            using (var package = new ExcelPackage())
-            {
-                // Create a worksheet
-                var worksheet = package.Workbook.Worksheets.Add("Total Revenue and Order Count");
-
-                // Set the header text
-                worksheet.Cells["A1"].Value = "Ngày";
-                worksheet.Cells["B1"].Value = "Doanh thu";
-                worksheet.Cells["C1"].Value = "Tổng đơn hàng trong ngày";
-
-                // Populate the data rows
-                int rowIndex = 2;
-                foreach (var entry in revenueAndOrderCountByDay)
-                {
-                    worksheet.Cells[rowIndex, 1].Value = entry.Key.ToShortDateString();
-                    worksheet.Cells[rowIndex, 2].Value = entry.Value.Revenue;
-                    worksheet.Cells[rowIndex, 3].Value = entry.Value.OrderCount;
-                    rowIndex++;
-                }
-
-                // Auto-fit columns for better readability
-                worksheet.Cells.AutoFitColumns();
-
-                // Convert the Excel package to a byte array
-                byte[] excelBytes = package.GetAsByteArray();
-
-                return excelBytes;
-            }
-        }
         //public byte[] ExportTotalRevenueToExcel(DateTime startDate, DateTime endDate)
         //{
-        //    var totalRevenue = _orderRepository.GetTotalRevenueByDays(startDate, endDate);
+        //    var revenueAndOrderCountByDay = new Dictionary<DateTime, (decimal Revenue, int OrderCount)>();
+
+        //    // Iterate over each day in the date range
+        //    for (DateTime date = startDate.Date; date <= endDate.Date; date = date.AddDays(1))
+        //    {
+        //        var totalRevenue = _orderRepository.GetTotalRevenueByDays(date, date.AddDays(1).AddSeconds(-1));
+        //        var orderCount = _orderRepository.GetOrderCountByDays(date, date.AddDays(1).AddSeconds(-1));
+        //        revenueAndOrderCountByDay[date] = (totalRevenue, orderCount);
+        //    }
 
         //    // Create a new Excel package
         //    using (var package = new ExcelPackage())
         //    {
         //        // Create a worksheet
-        //        var worksheet = package.Workbook.Worksheets.Add("Total Revenue");
+        //        var worksheet = package.Workbook.Worksheets.Add("Total Revenue and Order Count");
 
         //        // Set the header text
-        //        worksheet.Cells["A1"].Value = "Total Revenue";
-        //        worksheet.Cells["A2"].Value = "Start Date";
-        //        worksheet.Cells["B2"].Value = startDate.ToShortDateString();
-        //        worksheet.Cells["A3"].Value = "End Date";
-        //        worksheet.Cells["B3"].Value = endDate.ToShortDateString();
-        //        worksheet.Cells["A4"].Value = "Revenue";
-        //        worksheet.Cells["B4"].Value = totalRevenue;
+        //        worksheet.Cells["A1"].Value = "Ngày";
+        //        worksheet.Cells["B1"].Value = "Doanh thu";
+        //        worksheet.Cells["C1"].Value = "Tổng đơn hàng trong ngày";
+
+        //        // Populate the data rows
+        //        int rowIndex = 2;
+        //        foreach (var entry in revenueAndOrderCountByDay)
+        //        {
+        //            worksheet.Cells[rowIndex, 1].Value = entry.Key.ToShortDateString();
+        //            worksheet.Cells[rowIndex, 2].Value = entry.Value.Revenue;
+        //            worksheet.Cells[rowIndex, 3].Value = entry.Value.OrderCount;
+        //            rowIndex++;
+        //        }
 
         //        // Auto-fit columns for better readability
         //        worksheet.Cells.AutoFitColumns();
@@ -197,18 +169,115 @@ namespace feast_mansion_project.Controllers
         //    }
         //}
 
-        [HttpPost]
+        //public byte[] ExportTotalRevenueToExcel(DateTime startDate, DateTime endDate)
+        //{
+        //    var orders = _dbContext.Orders
+        //        .Where(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete")
+        //        .ToList();
+
+        //    if (orders.Count != 0)
+        //    {
+        //        using (var package = new ExcelPackage())
+        //        {
+        //            var worksheet = package.Workbook.Worksheets.Add("Total Revenue");
+
+        //            // Add headers
+        //            worksheet.Cells[1, 1].Value = "Order ID";
+        //            worksheet.Cells[1, 2].Value = "Order Date";
+        //            worksheet.Cells[1, 3].Value = "Total Price";
+
+        //            // Populate data
+        //            for (var i = 0; i < orders.Count; i++)
+        //            {
+        //                var order = orders[i];
+        //                worksheet.Cells[i + 2, 1].Value = order.OrderId;
+        //                worksheet.Cells[i + 2, 2].Value = order.OrderDate.ToString("yyyy-MM-dd");
+        //                worksheet.Cells[i + 2, 3].Value = order.TotalPrice;
+        //            }
+
+        //            // Auto-fit columns
+        //            worksheet.Cells.AutoFitColumns();
+
+        //            // Convert the Excel package to a byte array
+        //            return package.GetAsByteArray();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        TempData["ErrorMessage"] = "No value";
+        //        return null;
+        //    }            
+        //}
+
+
+        //[HttpPost]
+        //public IActionResult ExportToExcel(DateTime startDate, DateTime endDate)
+        //{
+        //    if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+
+        //    byte[] excelBytes = ExportTotalRevenueToExcel(startDate, endDate);
+
+        //    // Return the Excel file as a downloadable attachment
+        //    return File(excelBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "TotalRevenue.xlsx");
+        //}
+
         public IActionResult ExportToExcel(DateTime startDate, DateTime endDate)
         {
-            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            var revenueAndOrderCountByDay = new Dictionary<DateTime, (decimal Revenue, int OrderCount)>();
+
+            var orders = _dbContext.Orders
+                .Where(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete")
+                .ToList();
+
+            if (orders.Count != 0)
             {
-                return RedirectToAction("Index", "Home");
+                // Iterate over each day in the date range
+                for (DateTime date = startDate.Date; date <= endDate.Date; date = date.AddDays(1))
+                {
+                    var totalRevenue = _orderRepository.GetTotalRevenueByDaysForExcel(date, date.AddDays(1).AddSeconds(-1));
+                    var orderCount = _orderRepository.GetOrderCountByDaysForExcel(date, date.AddDays(1).AddSeconds(-1));
+                    revenueAndOrderCountByDay[date] = (totalRevenue, orderCount);
+                }
+
+                // Create a new Excel package
+                using (var package = new ExcelPackage())
+                {
+                    // Create a worksheet
+                    var worksheet = package.Workbook.Worksheets.Add("Total Revenue and Order Count");
+
+                    // Set the header text
+                    worksheet.Cells["A1"].Value = "Ngày";
+                    worksheet.Cells["B1"].Value = "Doanh thu";
+                    worksheet.Cells["C1"].Value = "Tổng đơn hàng trong ngày";
+
+                    // Populate the data rows
+                    int rowIndex = 2;
+                    foreach (var entry in revenueAndOrderCountByDay)
+                    {
+                        worksheet.Cells[rowIndex, 1].Value = entry.Key.ToShortDateString();
+                        worksheet.Cells[rowIndex, 2].Value = entry.Value.Revenue;
+                        worksheet.Cells[rowIndex, 3].Value = entry.Value.OrderCount;
+                        rowIndex++;
+                    }
+
+                    // Auto-fit columns for better readability
+                    worksheet.Cells.AutoFitColumns();
+
+                    // Convert the Excel package to a byte array
+                    byte[] excelBytes = package.GetAsByteArray();
+
+                    // Return the Excel file as a downloadable attachment
+                    return File(excelBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "TotalRevenue.xlsx");
+                }
             }
-
-            byte[] excelBytes = ExportTotalRevenueToExcel(startDate, endDate);
-
-            // Return the Excel file as a downloadable attachment
-            return File(excelBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "TotalRevenue.xlsx");
+            else
+            {
+                TempData["ErrorMessage"] = "No value";
+                return RedirectToAction("Index", "Dashboard");
+            }
         }
 
     }
