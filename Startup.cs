@@ -16,9 +16,32 @@ using Microsoft.AspNetCore.Identity;
 using feast_mansion_project.Middlewares;
 using feast_mansion_project.Middleware;
 using feast_mansion_project.Repositories;
+using Microsoft.Extensions.Options;
+
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using System.Globalization;
 
 namespace feast_mansion_project
 {
+    public class CustomRequestCultureProvider : IRequestCultureProvider
+    {
+        public Task<ProviderCultureResult> DetermineProviderCultureResult(HttpContext httpContext)
+        {
+            var vietnamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Ho_Chi_Minh"); // Time zone ID for Vietnam
+            var currentDateTimeUtc = DateTime.UtcNow;
+            var vietnamDateTime = TimeZoneInfo.ConvertTimeFromUtc(currentDateTimeUtc, vietnamTimeZone);
+
+            var cultureResult = new ProviderCultureResult("vi-VN", "vi-VN");
+
+            httpContext.Items["TimeZoneInfo"] = vietnamTimeZone;
+            httpContext.Items["VietnamDateTime"] = vietnamDateTime;
+
+            return Task.FromResult(cultureResult);           
+        }
+    }
+
     public class Startup
     {
 
@@ -31,7 +54,21 @@ namespace feast_mansion_project
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(30);
                 options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
+                options.Cookie.IsEssential = true;               
+            });
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new List<CultureInfo>
+                {
+                    new CultureInfo("vi-VN") // Replace "en-US" with the culture you want to use
+                };
+
+                var vietnamTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Ho_Chi_Minh"); // Time zone ID for Vietnam
+
+                options.DefaultRequestCulture = new RequestCulture("vi-VN", "vi-VN"); // Replace "en-US" with the culture you want to use
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+                options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider());
             });
         }
 

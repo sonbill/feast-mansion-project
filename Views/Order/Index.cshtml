@@ -83,6 +83,79 @@
     </div>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <h1>Is Pending</h1>
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3">
+                        ID
+                    </th>
+                    <th class="px-6 py-3">
+                        TÌNH TRẠNG
+                    </th>
+
+                    <th class="px-6 py-3">
+                        KHÁCH HÀNG
+                    </th>
+                    <th class="px-6 py-3">
+                        GHI CHÚ
+                    </th>
+                    <th class="px-6 py-3">
+                        TỔNG GIÁ
+                    </th>
+                    <th class="px-3 py-3">
+                        NGÀY ĐẶT
+                    </th>
+                    <th class="px-6 py-3">
+
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var obj in Model.Orders)
+                {
+                    @if (obj.Status == "Cooking")
+                    {
+                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                @obj.OrderId
+                            </th>
+                            <td class="px-6 py-4">
+                                @obj.Status
+                            </td>
+                            <td class="px-6 py-4">
+                                @obj.Customer.FullName
+                            </td>
+                            <td class="px-6 py-4">
+                                @obj.Note
+                            </td>
+                            <td class="px-6 py-4">
+                                @string.Format("{0:N0} VNĐ", @obj.TotalPrice)
+                            </td>
+
+                            <td class="px-2 py-4">
+                                @obj.OrderDate
+                            </td>
+
+                            <td class="px-6 py-4 space-x-3">
+                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
+                            </td>
+                            @*<td>
+                                    (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")
+                                </td>*@
+                        </tr>
+                    }
+
+                }
+            </tbody>
+        </table>
+        <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
+            @Html.Partial("_PagerOrder", Model)
+        </div>
+    </div>    
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <h1>Shipping</h1>
         <table class="w-full text-sm text-left text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">

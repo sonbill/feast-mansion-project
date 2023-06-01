@@ -45,7 +45,7 @@
             <div class="text-sm">
                 @if (currentMonthRevenue < previousMonthRevenue)
                 {
-                    <p class="text-red-700">Lãi: - @string.Format("{0:N0} VNĐ", @profit)</p>
+                    <p class="text-red-700">Lỗ: @string.Format("{0:N0} VNĐ", @profit)</p>
                 }
                 else
                 {
@@ -62,8 +62,8 @@
                     <p class="text-2xl text-white font-bold">@completedOrders</p>
                 </div>
                 <div class="text-sm">
-                    @if (numberOfCompletedOrders < previousCompletedOrders)
-                    {
+                    @if (completedOrders < previousCompletedOrders) //previousCompletedOrders
+                        {
                         <p class="text-red-700 font-bold text-2xl">
                             <span class="material-icons">
                                 arrow_downward
