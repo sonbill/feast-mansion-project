@@ -10,7 +10,7 @@
     <form asp-controller="Category" asp-action="CreateCategory" method="post" class="max-w-[500px] mx-auto" enctype="multipart/form-data">
         <div class="mb-6">
             <label asp-for="Name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tên danh mục</label>
-            <input asp-for="Name" type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 600" placeholder="Name category">
+            <input asp-for="Name" type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name category">
             <span asp-validation-for="Name" class="text-red-500"></span>
         </div>
         <div class="mb-6">
@@ -33,7 +33,7 @@
         <ul>
             @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
             {
-                <li  class="list-disc">@error.ErrorMessage</li>
+                <li class="list-disc">@error.ErrorMessage</li>
             }
         </ul>
     </div>

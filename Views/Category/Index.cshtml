@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<Category>*@
-@model CategoryViewModel
+﻿@model CategoryViewModel
 @{
     ViewData["Title"] = "Category Page";
     Layout = "_Layout";
@@ -7,7 +6,7 @@
 
 <div class="flex my-10 items-center justify-between">
     <h1 class="font-bold text-3xl">Quản lý danh mục</h1>
-     <a asp-controller="Category" asp-action="Create" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Tạo danh mục</a>
+    <a asp-controller="Category" asp-action="Create" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Tạo danh mục</a>
 </div>
 <div class="relative shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 h-full">
@@ -23,7 +22,6 @@
                     Mô tả
                 </th>
                 <th class="px-6 py-3">
-                    
                 </th>
             </tr>
         </thead>
@@ -37,23 +35,17 @@
                     <td class="px-6 py-4">
                         @obj.Name
                     </td>
-
                     <td class="px-2 py-4">
                         @obj.Description
                     </td>
                     <td class="px-6 py-4 space-x-3">
                         <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
                     </td>
-                    @*<td>
-                            (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")
-                        </td>*@
                 </tr>
             }
         </tbody>
     </table>
-    @*@await Html.PartialAsync("_Pager", Model.Pager)*@
     <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
-       @Html.Partial("_PagerCategory", Model)        
+        @Html.Partial("_PagerCategory", Model)
     </div>
 </div>
-
