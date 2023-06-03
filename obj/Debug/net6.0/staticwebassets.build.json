@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "L84LI2dwJH6OCrOSF/SrjCLCc7DeaSSLNia3RkqMxD4=",
+  "Hash": "WCZ/orVX9Jz2+WNuA1u8Mme1KL9jx7X9di6Fry0ioCc=",
   "Source": "feast-mansion-project",
   "BasePath": "_content/feast-mansion-project",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/Pictures/Free_Food_Banner.jpeg"
+    },
+    {
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/css/Custom.css",
+      "SourceId": "feast-mansion-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
+      "BasePath": "_content/feast-mansion-project",
+      "RelativePath": "css/Custom.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/Custom.css"
     },
     {
       "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/favicon.ico",
