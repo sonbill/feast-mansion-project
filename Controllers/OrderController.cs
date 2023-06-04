@@ -205,10 +205,10 @@ namespace feast_mansion_project.Controllers
 
             _dbContext.Orders.Update(order);
 
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();            
 
-            return RedirectToAction("Index");
-        }
+            return RedirectToAction("Index");            
+        }       
 
     }
 }

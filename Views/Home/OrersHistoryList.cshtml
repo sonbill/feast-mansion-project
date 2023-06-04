@@ -4,6 +4,7 @@
     Layout = "_ProfileLayout";
 }
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4 rounded-lg bg-gray-50" id="history" role="tabpanel" aria-labelledby="history-tab">
+    <h1 class="font-bold text-xl mb-5">LỊCH SỬ GIAO HÀNG</h1>
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
@@ -44,7 +45,7 @@
                             @order.OrderDate
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <a asp-action="OrdersHistory" asp-controller="Home" asp-route-orderId="@order.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details</a>
+                            <a asp-action="OrdersHistory" asp-controller="Home" asp-route-orderId="@order.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
                         </td>
                     </tr>
                 }

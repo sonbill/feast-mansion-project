@@ -296,6 +296,25 @@ namespace feast_mansion_project.Controllers
             return View(order);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CancelOrderFromCustomer(string orderId)
+        {
+            if (HttpContext.Session.GetString("UserId") == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var order = _dbContext.Orders.Find(orderId);
+
+            order.Status = "Cancel";
+
+            _dbContext.Orders.Update(order);
+
+            await _dbContext.SaveChangesAsync();            
+
+            return RedirectToAction("OrdersHistory", new { orderId });
+        }
+
         [HttpGet("Feedback")]
         public IActionResult Feedback()
         {

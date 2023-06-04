@@ -31,7 +31,7 @@
 
 
 
-<div class="max-w-screen-md mx-auto">
+<div class="max-w-screen-md mx-auto p-4">
     <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl font-semibold">Chi tiết đơn hàng</h2>
         <p class="px-3 py-1 rounded-lg bg-[@bgColor] text-white">@Model.Status</p>
@@ -76,11 +76,20 @@
             }
         </tbody>
     </table>
-    <div class="">
+    <div class="flex flex-col">
         <div class="flex items-center space-x-3">
             <p class="font-bold">Tổng cộng:</p>
             <p class="py-4">@string.Format("{0:N0} VNĐ", Model.TotalPrice)</p>
         </div>
-        <a asp-controller="Home" asp-action="Profile" class="hover:underline">Quay lại</a>
+        <div class="flex space-x-10">
+            <a asp-controller="Home" asp-action="Profile" class="hover:bg-blue-700 bg-blue-600 text-center p-2.5 rounded text-white w-full md:max-w-[100px]">Quay lại</a>
+            @if (Model.Status == "Pending")
+            {
+                <form asp-controller="Home" asp-action="CancelOrderFromCustomer" asp-route-orderId="@Model.OrderId" method="post" id="ProcessCheckoutForm">
+                    <button type="submit" class="bg-red-700 p-2.5 rounded-lg text-white" @(Model.Status == "Complete" ? "disabled" : "")>Huỷ đơn hàng</button>
+                </form>
+            }
+        </div>
+        
     </div>
 </div>
