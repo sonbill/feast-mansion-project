@@ -79,12 +79,12 @@
                                 <span class="material-icons">
                                     account_circle
                                 </span>
-                                <p>Profile</p>
+                                <p>Trang cá nhân</p>
                             </a>
 
                             <li class="w-full">
                                 <a asp-controller="UserAuthentication" asp-action="Logout" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
-                                    <p>Logout</p>
+                                    <p>Đăng xuất</p>
                                 </a>
                             </li>
                         }
@@ -92,7 +92,7 @@
                         {
                             <li class="w-full">
                                 <a asp-controller="UserAuthentication" asp-action="Login" class="flex justify-center items-center space-x-3 py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">
-                                    <p>Login</p>
+                                    <p>Đăng nhập</p>
                                 </a>
                             </li>
                             <li>
@@ -214,12 +214,12 @@
         @RenderBody()
     </div>
     @*BANNER*@
-    <div class="w-full h-96 px-10 my-10 ">
+    <div class="w-full h-96 px-3 my-10 ">
         <img src="/assets/Pictures/Free_Food_Banner.jpeg" class="w-full h-full object-cover rounded-lg" />
     </div>
     <footer>
         <div class="bg-[#202124] text-white">
-            <div class="px-20 pt-20 pb-2 mx-auto">
+            <div class="px-10 sm:px-15 md:px-20 pt-20 pb-2 mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
                     @*LOGO*@
                     <div class="flex flex-col justify-center items-center">

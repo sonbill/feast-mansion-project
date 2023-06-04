@@ -25,11 +25,11 @@
 }
 
 
-<div class="mx-auto p-10">
+<div class="mx-auto p-3 md:p-5">
     <h2 class="text-2xl font-bold">Dashboard</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         @*Total Revenue*@
-        <div class="w-[300px] col-span-1 p-5 rounded-lg space-y-3 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50">
+        <div class="w-full md:w-[300px] col-span-1 p-5 rounded-lg space-y-3 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg shadow-blue-500/50">
             <h4 class="text-sm text-center text-white font-bold">Tổng doanh thu trong tháng</h4>
             <div class="flex justify-between">
                 <div>
@@ -53,7 +53,7 @@
             </div>
         </div>
         @*Total Completed Order in Month*@
-        <div class="w-[300px] col-span-1 p-5 space-y-3 bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-center">
+        <div class="w-full md:w-[300px] col-span-1 p-5 space-y-3 bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg text-center">
             <h4 class="text-sm text-center font-bold text-white">Tổng đơn hàng đã giao trong tháng</h4>
             <div class="flex items-center justify-between">
                 <div>
@@ -83,7 +83,7 @@
             </div>
         </div>
         @*Total Completed Order in Month*@
-        <div class="w-[300px] col-span-1 p-5 rounded-lg space-y-3 bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/50 text-sm text-center">
+        <div class="w-full md:w-[300px] col-span-1 p-5 rounded-lg space-y-3 bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/50 text-sm text-center">
             <h4 class="text-sm text-center font-bold text-white">Tổng đơn hàng đã huỷ trong tháng</h4>
             <div class="flex items-center justify-between">
                 <div>
@@ -115,10 +115,10 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 mt-10 gap-4">
         <div class="border rounded-lg bg-gray-50 shadow-lg p-5 col-span-1 md:col-span-2">
-            <h4 class="text-lg font-bold text-gray-600">Revenue Chart</h4>
+            <h4 class="text-lg font-bold text-gray-600">Sơ đồ doanh thu</h4>
             <canvas id="revenueChart" width="250" height="150"></canvas>
         </div>
-        <div class="w-[300px] border shadow-lg p-5 rounded-lg col-span-1 space-y-5">
+        <div class="w-full md:w-[300px] border shadow-lg p-5 rounded-lg col-span-1 space-y-5">
             <h4 class="text-lg font-bold text-gray-600">Tổng đơn hàng</h4>
             <div class="flex justify-between items-center">
                 <div class="text-center">
@@ -136,9 +136,9 @@
 
     <div class="space-y-5 pr-0 md:pr-4 mt-10">
         <div>
-            <form asp-controller="Dashboard" asp-action="Index" method="get">
-                <label for="selectMonth" class="block mb-2 text-sm font-bold text-gray-900">Tìm đơn hàng theo tháng, năm</label>
-                <select id="selectMonth" name="selectMonth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+            <label for="selectMonth" class="block mb-2 text-sm font-bold text-gray-900">Tìm đơn hàng theo tháng, năm</label>
+            <form asp-controller="Dashboard" asp-action="Index" method="get" class="flex flex-col md:flex-row items-center space-y-5 md:space-y-0 md:space-x-5">
+                <select id="selectMonth" name="selectMonth" class="w-full md:w-[117px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
                     <option selected>Chọn tháng</option>
                     <option value="1">Tháng 1</option>
                     <option value="2">Tháng 2</option>
@@ -153,16 +153,16 @@
                     <option value="11">Tháng 11</option>
                     <option value="12">Tháng 12</option>
                 </select>
-                <select id="selectYear" name="selectYear" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
+                <select id="selectYear" name="selectYear" class="w-full md:w-[117px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5">
                     <option selected>Chọn năm</option>
                     <option value="2023">2023</option>
                 </select>
-                <button type="submit" class="bg-red-700 p-2 rounded-lg text-white">Lấy kết quả</button>
+                <button type="submit" class="w-full md:w-[117px] bg-red-700 p-2 rounded-lg text-white">Lấy kết quả</button>
             </form>
         </div>
         @if (@selectTotalOrders != null)
         {
-            <div class="border grid grid-cols-2 rounded-lg shadow-lg p-5 gap-5">
+            <div class="border grid grid-cols-1 md:grid-cols-2 rounded-lg shadow-lg p-5 gap-5">
                 <div class="flex space-x-5 col-span-1">
                     <span class="material-icons text-green-500 border rounded border-green-500 bg-green-100">
                         delivery_dining
@@ -196,31 +196,35 @@
         @if (ViewData["OrderViewModels"] != null)
         {
             List<OrderViewModel> orderViewModels = (List<OrderViewModel>)ViewData["OrderViewModels"];
-            <table class="w-full text-sm text-left text-gray-500 shadow-lg rounded-lg">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 shadow-lg">
-                    <tr>
-                        <th class="px-6 py-3">Order ID</th>
-                        <th class="px-6 py-3">Customer Name</th>
-                        <th class="px-6 py-3">Trạng thái</th>
-                        <th class="px-6 py-3">Tổng tiền</th>
-                        <th class="px-6 py-3">Ngày đặt</th>
-                        <th class="px-6 py-3"></th>
-                    </tr>
-                </thead>
-                @foreach (var orderViewModel in orderViewModels)
-                {
-                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">@orderViewModel.OrderId</th>
-                        <td class="px-6 py-4">@orderViewModel.CustomerId</td>
-                        <td class="px-6 py-4">@orderViewModel.Status</td>
-                        <td class="px-6 py-4">@string.Format("{0:N0} VNĐ", @orderViewModel.TotalPrice)</td>
-                        <td class="px-6 py-4">@orderViewModel.OrderDate</td>
-                        <td class="px-6 py-4">
-                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@orderViewModel.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
-                        </td>
-                    </tr>
-                }
-            </table>
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3">Order ID</th>
+                            <th class="px-6 py-3">Customer Name</th>
+                            <th class="px-6 py-3">Trạng thái</th>
+                            <th class="px-6 py-3">Tổng tiền</th>
+                            <th class="px-6 py-3">Ngày đặt</th>
+                            <th class="px-6 py-3"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var orderViewModel in orderViewModels)
+                        {
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">@orderViewModel.OrderId</th>
+                                <td class="px-6 py-4">@orderViewModel.CustomerId</td>
+                                <td class="px-6 py-4">@orderViewModel.Status</td>
+                                <td class="px-6 py-4">@string.Format("{0:N0} VNĐ", @orderViewModel.TotalPrice)</td>
+                                <td class="px-6 py-4">@orderViewModel.OrderDate</td>
+                                <td class="px-6 py-4">
+                                    <a asp-controller="Order" asp-action="Edit" asp-route-id="@orderViewModel.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>                    
+                </table>
+            </div>            
         }
 
         @if (TempData["ErrorMessage"] != null)
@@ -229,23 +233,23 @@
                 @TempData["ErrorMessage"]
             </div>
         }
-        <form asp-controller="Dashboard" asp-action="ExportToExcel" method="post" class="flex items-center space-x-5">
-            <div class="mb-4">
+        <form asp-controller="Dashboard" asp-action="ExportToExcel" method="post" class="flex flex-col md:flex-row items-center md:space-x-5 md:w-[600px]">
+            <div class="mb-4 w-full">
                 <label class="block text-gray-700 text-sm font-bold" for="startDate">Ngày bắt đầu:</label>
-                <input class="border rounded py-2 px-3 text-gray-700" type="date" for="startDate" id="startDate" name="startDate" required>
+                <input class="border rounded py-2 px-3 text-gray-700 w-full" type="date" for="startDate" id="startDate" name="startDate" required>
             </div>
-            <div class="mb-4">
+            <div class="mb-4 w-full">
                 <label class="block text-gray-700 text-sm font-bold">Ngày kết thúc:</label>
-                <input class="border rounded py-2 px-3 text-gray-700" type="date" for="endDate" id="endDate" name="endDate" required>
+                <input class="border rounded py-2 px-3 text-gray-700 w-full" type="date" for="endDate" id="endDate" name="endDate" required>
             </div>
-            <div>
-                <button type="submit" class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded flex items-center space-x-2">
-                    <span class="material-icons">
-                        file_download
-                    </span>
-                    <p>Xuất ra file Excel</p>
-                </button>
-            </div>
+            
+            <button type="submit" class="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded flex items-center space-x-2">
+                <span class="material-icons">
+                    file_download
+                </span>
+                <p>Xuất ra file Excel</p>
+            </button>
+            
         </form>
     </div>    
 </div>
@@ -303,6 +307,4 @@
         });        
     </script>
 }
-
-
 

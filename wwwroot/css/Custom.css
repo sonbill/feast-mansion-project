@@ -3,3 +3,21 @@
         width: 500px;
     }
 }
+/* Responsive Styles */
+/*@media (max-width: 375px) {*/
+    /* Modify the grid layout to stack the columns vertically */
+    /*.grid-cols-1 {
+        grid-template-columns: 1fr;
+    }*/
+
+    /* Adjust the width and margin of the second column */
+    /*.col-span-1 {
+        width: 100%;
+        margin-bottom: 20px;
+    }*/
+
+    /* Adjust the width of the order chart */
+    /*#orderChart {
+        width: 100%;
+    }
+}*/
