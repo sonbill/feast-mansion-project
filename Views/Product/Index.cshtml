@@ -5,83 +5,85 @@
     Layout = "_Layout";
 }
 
-<div class="flex my-10 items-center justify-between">
-    <h1 class="font-bold text-3xl ">Quản lý món ăn</h1>
-    <a asp-controller="Product" asp-action="Create" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">TẠO MÓN ĂN</a>
-</div>
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-                <th class="px-6 py-3">
-                    ID
-                </th>
-                <th class="px-6 py-3">
-                    MÃ MÓN ĂN
-                </th>
-
-                <th class="px-6 py-3">
-                    TÊN
-                </th>
-                <th class="px-6 py-3">
-                    GIÁ
-                </th>
-                <th class="px-3 py-3">
-                    MÔ TẢ
-                </th>
-                <th class="px-3 py-3">
-                    PIN
-                </th>
-                <th class="px-6 py-3">
-                    HÌNH ẢNH
-                </th>
-                <th class="px-6 py-3">
-
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var obj in Model.Products)
-            {
-                <tr class="bg-white border-b">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        @obj.ProductId
+<div class="p-5">
+    <div class="flex my-10 items-center justify-between">
+        <h1 class="font-bold text-3xl ">Quản lý món ăn</h1>
+        <a asp-controller="Product" asp-action="Create" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm max-w-[150px] sm:w-auto px-5 py-2.5 text-center">TẠO MÓN ĂN</a>
+    </div>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3">
+                        ID
                     </th>
-                    <td class="px-6 py-4">
-                        @obj.SKU
-                    </td>
-                    <td class="px-6 py-4">
-                        @obj.Name
-                    </td>
-                    <td class="px-6 py-4">
-                        @string.Format("{0:N0} VNĐ", @obj.Price)
-                    </td>
+                    <th class="px-6 py-3">
+                        MÃ MÓN ĂN
+                    </th>
 
-                    <td class="px-2 py-4">
-                        @obj.Description
-                    </td>
+                    <th class="px-6 py-3">
+                        TÊN
+                    </th>
+                    <th class="px-6 py-3">
+                        GIÁ
+                    </th>
+                    <th class="px-3 py-3">
+                        MÔ TẢ
+                    </th>
+                    <th class="px-3 py-3">
+                        PIN
+                    </th>
+                    <th class="px-6 py-3">
+                        HÌNH ẢNH
+                    </th>
+                    <th class="px-6 py-3">
 
-                    <td class="px-2 py-4">
-                        @obj.IsPin
-                    </td>
-
-                    <td class="px-2 py-4">
-                        <div class="w-24 h-24">
-                            <img src="@Url.Content("~/Uploads/" + obj.ImagePath)" alt="Product Image" class="w-full h-full object-cover" />
-                        </div>
-                    </td>
-
-                    <td class="px-6 py-4 space-x-3">
-                        <a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.ProductId" class="font-medium text-blue-600 hover:underline">Chỉnh sửa</a>
-                    </td>
-                    @*<td>
-            (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")
-        </td>*@
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
-        @Html.Partial("_PagerProduct", Model)
+            </thead>
+            <tbody>
+                @foreach (var obj in Model.Products)
+                {
+                    <tr class="bg-white border-b">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            @obj.ProductId
+                        </th>
+                        <td class="px-6 py-4">
+                            @obj.SKU
+                        </td>
+                        <td class="px-6 py-4">
+                            @obj.Name
+                        </td>
+                        <td class="px-6 py-4">
+                            @string.Format("{0:N0} VNĐ", @obj.Price)
+                        </td>
+
+                        <td class="px-2 py-4">
+                            @obj.Description
+                        </td>
+
+                        <td class="px-2 py-4">
+                            @obj.IsPin
+                        </td>
+
+                        <td class="px-2 py-4">
+                            <div class="w-24 h-24">
+                                <img src="@Url.Content("~/Uploads/" + obj.ImagePath)" alt="Product Image" class="w-full h-full object-cover" />
+                            </div>
+                        </td>
+
+                        <td class="px-6 py-4 space-x-3">
+                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.ProductId" class="font-medium text-blue-600 hover:underline">Chỉnh sửa</a>
+                        </td>
+                        @*<td>
+                                (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")
+                            </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
+            @Html.Partial("_PagerProduct", Model)
+        </div>
     </div>
 </div>
