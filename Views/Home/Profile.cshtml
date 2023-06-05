@@ -1,6 +1,5 @@
 ﻿@model ProfileViewModel
 
-
 @{
     ViewData["Title"] = "Detail Product";
     Layout = "_ProfileLayout";
@@ -8,30 +7,53 @@
 
 <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <h1 class="font-bold text-xl mb-5">TRANG CÁ NHÂN </h1>
-    <form>
+    @{
+        var validationSummary = Html.ValidationSummary(false, "", new { @class = "text-red-500 text-sm mb-4" });
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Có lỗi xảy ra:</strong>
+            <ul class="list-disc mt-1 ml-6">
+                @foreach (var key in ViewData.ModelState.Keys)
+                {
+                    var modelStateEntry = ViewData.ModelState[key];
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+
+    <form asp-controller="Home" asp-action="UpdateProfile" method="post" class="mt-10">
+        <input type="hidden" asp-for="CustomerId" />
         <div class="relative z-0 w-full mb-6 group">
-            <input type="email" name="floating_email" id="floating_email" class="rounded block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required value="@Model.User.Email" />
-            <label for="floating_email" class="peer-focus:font-medium absolute px-3 text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
+            <input type="email" asp-for="Email" id="floating_email" class="rounded block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+            <label asp-for="Email" class="peer-focus:font-medium absolute px-3 text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
         </div>
         <div class="relative z-0 w-full mb-6 group">
-            <input type="text" name="floating_fullname" id="floating_fullname" class="rounded block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-b-2 border-gray-300 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required value="@Model.Customer.FullName" />
-            <label for="floating_fullname" class="peer-focus:font-medium absolute text-sm text-gray-500 px-3 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tên đầy đủ</label>
+            <input asp-for="FullName" type="text" id="floating_fullname" class="rounded block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-b-2 border-gray-300 appearance-none dark:text-white focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="@Model.FullName" />
+            <label asp-for="FullName" class="peer-focus:font-medium absolute text-sm text-gray-500 px-3 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tên đầy đủ</label>
         </div>
         <div class="relative z-0 w-full mb-6 group">
-            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="floating_phone" id="floating_phone" class="rounded block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required value="@Model.Customer.Phone" />
-            <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 px-3 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Số điện thoại (123-456-7890)</label>
+            <input type="tel" asp-for="Phone" id="floating_phone" class="rounded block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="@Model.Phone" />
+            <label asp-for="Phone" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 px-3 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Số điện thoại (123-456-7890)</label>
         </div>
         <div class="relative z-0 w-full mb-6 group">
-            <input type="text" name="repeat_address" id="repeat_address" class="rounded block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required value="@Model.Customer.Address" />
-            <label for="repeat_address" class="peer-focus:font-medium absolute text-sm text-gray-500 px-3 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Địa chỉ</label>
+            <input asp-for="Address" type="text" id="repeat_address" class="rounded block py-2.5 px-3 w-full text-sm text-gray-900 bg-transparent border border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="@Model.Address" />
+            <label asp-for="Address" class="peer-focus:font-medium absolute text-sm text-gray-500 px-3 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Địa chỉ</label>
         </div>
 
         <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Cập nhập</button>
     </form>
-</div>    
+</div>
 
 
-    
+
+
 
 
 

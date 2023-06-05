@@ -67,20 +67,16 @@ namespace feast_mansion_project.Controllers
             if (products == null)
             {
                 return NotFound();
-            }
-
-            //var viewModel = new HomeViewModel
-            //{
-            //    Categories = categories,
-            //};
+            }           
 
 
             return View("ProductDetail", products);
-        }
+        }      
+
         
 
         [HttpGet("Profile")]
-        public async Task<IActionResult> Profile(int page = 1, int pageSize = 5)
+        public async Task<IActionResult> Profile()
         {
             if (HttpContext.Session.GetString("userId") == null)
             {
@@ -89,25 +85,8 @@ namespace feast_mansion_project.Controllers
 
             int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
 
-
-            var order = _dbContext.Orders.OrderBy(c => c.OrderId);
-
-            int totalItems = await order.CountAsync();
-
-            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-            var paginatedProducts = order.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-
             User user = _dbContext.Users.FirstOrDefault(u => u.UserId == userId);
-
             Customer customer = _dbContext.Customers.FirstOrDefault(c => c.UserId == userId);
-
-            var orders = _dbContext.Orders
-            .Include(o => o.OrderDetails)
-            .ThenInclude(od => od.Product)
-            .Where(o => o.CustomerId == user.Customer.CustomerId)
-            .ToList();
-
-            
 
             if (user == null)
             {
@@ -118,23 +97,59 @@ namespace feast_mansion_project.Controllers
 
             ProfileViewModel profileViewModel = new ProfileViewModel
             {
-                User = user,
+                CustomerId = customer.CustomerId,
 
-                Customer = customer,
+                FullName = customer.FullName,
 
-                Orders = orders,
+                Address = customer.Address,
 
-                TotalItems = totalItems,
+                Phone = customer.Phone,
 
-                CurrentPage = page,
+                Email = user.Email
 
-                PageSize = pageSize,
+            };
 
-                TotalPages = totalPages
-            }; 
             return View("Profile", profileViewModel);
-
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(ProfileViewModel model)
+        {
+            if (!int.TryParse(HttpContext.Session.GetString("UserId"), out int userId))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            // Retrieve the existing customer record from the database
+            var customer = await _dbContext.Customers.FindAsync(userId);
+
+            if (ModelState.IsValid)
+            {
+                // Update the customer's properties with the values from the form
+                customer.CustomerId = model.CustomerId;
+
+                customer.FullName = model.FullName;
+
+                customer.Phone = model.Phone;
+
+                customer.Address = model.Address;
+
+                // Save the changes to the database
+                await _dbContext.SaveChangesAsync();
+
+                //TempData["SuccessMessage"] = "Cập nhập thông tin thành công";
+
+                // Optionally, you can redirect the user to a success page
+                return RedirectToAction("Profile");
+            }
+
+            //TempData["ErrorMessage"] = "Cập nhập thông tin không thành công";
+
+            // If the form data is not valid, return to the profile page to display errors
+            return View("Profile", model);
+        }
+
+
 
         [HttpGet("ChangePassword")]
         public async Task<IActionResult> ChangePassword()
@@ -156,13 +171,7 @@ namespace feast_mansion_project.Controllers
                 .Include(o => o.OrderDetails)
                 .ThenInclude(od => od.Product)
                 .Where(o => o.CustomerId == userId)
-                .OrderByDescending(o => o.OrderDate);
-
-            //var orders = _dbContext.Orders
-            //.Include(o => o.OrderDetails)
-            //.ThenInclude(od => od.Product)
-            //.Where(o => o.CustomerId == userId)
-            //.ToList();
+                .OrderByDescending(o => o.OrderDate);            
 
             int totalItems = await orders.CountAsync();
 
@@ -246,35 +255,7 @@ namespace feast_mansion_project.Controllers
 
 
             return View("Menu", model);
-        }
-
-        //[HttpGet("Menu")]
-        //public async Task<IActionResult> Menu(int? categoryId)
-        //{
-        //    var viewModel = new HomeViewModel();
-
-        //    // get all categories
-        //    viewModel.Categories = await _dbContext.Categories.ToListAsync();
-
-        //    // if a category id was passed, filter products by category id
-        //    if (categoryId.HasValue)
-        //    {
-        //        viewModel.Products = await _dbContext.Products
-        //            .Include(p => p.Category)
-        //            .Where(p => p.CategoryId == categoryId.Value)
-        //            .ToListAsync();
-
-        //        viewModel.SelectedCategoryId = categoryId.Value;
-        //    }
-        //    else
-        //    {
-        //        viewModel.Products = await _dbContext.Products
-        //            .Include(p => p.Category)
-        //            .ToListAsync();
-        //    }
-
-        //    return View("Menu", viewModel);
-        //}
+        }        
 
         [HttpGet("OrdersHistory/{orderId}")]
         public async Task<IActionResult> OrdersHistory(string orderId)

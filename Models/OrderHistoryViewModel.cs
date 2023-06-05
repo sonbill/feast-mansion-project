@@ -12,8 +12,6 @@ namespace feast_mansion_project.Models
         public int PageSize { get; set; }
 
         public int TotalPages { get; set; }
-
-
     }
 }
 
