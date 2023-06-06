@@ -1,37 +1,11 @@
-﻿
-//function toggleSidebarAdminLayout() {
-//    console.log("click");
-//    var toggleBtn = document.getElementById("toggleBtn");
-//    var sidebar = document.getElementById("mobile-aside");
-
-//    if (sidebar.classList.contains("hidden")) {
-//        sidebar.classList.remove("hidden");
-//        sidebar.classList.add("block");
-//    } else {
-//        sidebar.classList.add("block");
-//    }
-
-//}
-
-//document.querySelector(".toggleBtn").addEventListener("click", toggleSidebarAdminLayout);
-
-
-//const sidebar = document.getElementById('mobile-aside');
-//const toggleButton = document.getElementById('toggleBtn');
-
-//toggleButton.addEventListener('click', () => {
-//    sidebar.classList.toggle('-translate-x-full');
-//});
-
-
-
-
-const mobileAside = document.getElementById('mobile-aside');
+﻿const mobileAside = document.getElementById('mobile-aside');
 const toggleBtn = document.getElementById('toggleBtn');
+const overlay = document.getElementById('overlay');
 
 toggleBtn.addEventListener('click', () => {
     if (mobileAside.classList.contains('-translate-x-full')) {
         mobileAside.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden')
     }
     else {
         mobileAside.classList.add('-translate-x-full');
@@ -39,18 +13,26 @@ toggleBtn.addEventListener('click', () => {
     //mobileAside.classList.toggle('-translate-x-full');
 });
 
+overlay.addEventListener('click', () => {
+    console.log("click");
+    mobileAside.classList.add('-translate-x-full');
+    overlay.classList.add('hidden');
+
+})
 
 // Listen for window resize events to hide the mobile aside when the screen size changes
 window.addEventListener('resize', function () {
     const mobileAside = document.getElementById('mobile-aside');
     const desktopAside = document.getElementById('desktop-sidebar');
-
+    const headerMobile = document.getElementById('header-mobile');
     const toggleBtn = document.getElementById('toggleBtn');
 
     if (mobileAside && toggleBtn) {
         // Hide the mobile aside if the screen size is no longer mobile
         if (window.innerWidth > 640 && !mobileAside.classList.contains('-translate-x-full')) {
             mobileAside.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+            //headerMobile.classList.add('hidden');
         }
 
         // Show the mobile aside if the screen size is mobile and the toggle button is visible
@@ -61,12 +43,4 @@ window.addEventListener('resize', function () {
         console.error("Element not found.");
     }
 });
-
-// Add event listener to the toggle button
-//const toggleButton = document.getElementById('toggleBtn');
-//if (toggleButton) {
-//    toggleButton.addEventListener('click', toggleSidebarAdminLayout);
-//} else {
-//    console.error("Toggle button not found.");
-//}
 
