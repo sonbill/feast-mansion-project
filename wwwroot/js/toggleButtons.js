@@ -13,3 +13,5 @@
 
 
 document.querySelector("[data-collapse-toggle='mega-menu-full']").addEventListener("click", toggleMenu);
+
+
