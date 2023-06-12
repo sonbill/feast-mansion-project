@@ -118,38 +118,7 @@ namespace feast_mansion_project.Controllers
             return View();
         }
 
-
-        //public async Task<IActionResult> Login(LoginViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = await _accountRepository.AuthenticateAsync(model.Email, model.Password);
-        //        if (user != null)
-        //        {
-        //            HttpContext.Session.SetString("UserId", user.userId.ToString());
-        //            HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
-
-        //            if (user.IsAdmin == true)
-        //            {
-        //                return RedirectToAction("Index", "Dashboard");
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("Index", "Home");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            _notificationService.Error("Invalid email or password.");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        _notificationService.Error("Invalid input.");
-        //    }
-
-        //    return View(model);
-        //}
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]

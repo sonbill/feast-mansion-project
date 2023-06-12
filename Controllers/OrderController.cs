@@ -21,28 +21,7 @@ namespace feast_mansion_project.Controllers
         public OrderController(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
-        }
-
-        //[HttpGet("Search")]
-        //public async Task<IActionResult> Search(string searchQuery)
-        //{
-        //    var orders = _dbContext.Orders.ToList();
-
-        //    if (!string.IsNullOrWhiteSpace(searchQuery))
-        //    {
-        //        orders = orders.Where(p =>
-        //            p.OrderId.Contains(searchQuery, StringComparison.OrdinalIgnoreCase).ToList();
-        //    }
-
-        //    var viewModel = new HomeViewModel
-        //    {
-        //        Categories = categories,
-        //        SelectedCategoryId = 0,
-        //        SearchQuery = searchQuery
-        //    };
-
-        //    return View("Menu", viewModel);
-        //}
+        }        
 
         // GET: /<controller>/
         [HttpGet]

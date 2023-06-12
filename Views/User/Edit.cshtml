@@ -5,8 +5,8 @@
     Layout = "_Layout";
 }
 
-<div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-    <h1 class="font-bold text-2xl">Cập nhật thông tin khách hàng</h1>
+<div class="max-w-7xl mx-auto py-6 px-3 sm:px-6 lg:px-8">
+    <h1 class="font-bold text-xl mb-5 text-center">Cập nhật thông tin khách hàng</h1>
 
     <div class="bg-white overflow-hidden shadow sm:rounded-lg p-10">
         <form asp-controller="User" asp-action="Edit" method="post">
@@ -23,10 +23,12 @@
                 <label asp-for="Phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Số điện thoại</label>
                 <input asp-for="Phone" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="Phone" name="Phone" value="@Model.Phone" required>
             </div>
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Cập nhật</button>
-            <button type="submit" asp-controller="User" asp-action="DeleteCustomer" asp-route-id="@Model.CustomerId" method="post" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center inline-flex items-center mr-2">
-                Xoá khách hàng
-            </button>
+            <div class="space-y-5 md:space-y-0 md:space-x-10 flex flex-col md:flex-row items-center">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Cập nhật</button>
+                <button type="submit" asp-controller="User" asp-action="DeleteCustomer" asp-route-id="@Model.CustomerId" method="post" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center">
+                    Xoá khách hàng
+                </button>
+            </div>            
         </form>       
     </div>
 </div>

@@ -195,7 +195,7 @@ namespace feast_mansion_project.Controllers
             //var order = _dbContext.Orders.Where(o => o.CustomerId == userId).ToList();
 
 
-            return View("OrersHistoryList", orderHistoryViewModel);
+            return View("OrdersHistoryList", orderHistoryViewModel);
         }
 
         [HttpGet("Search")]
@@ -258,7 +258,7 @@ namespace feast_mansion_project.Controllers
         }        
 
         [HttpGet("OrdersHistory/{orderId}")]
-        public async Task<IActionResult> OrdersHistory(string orderId)
+        public async Task<IActionResult> OrdersHistoryDetail(string orderId)
         {
             if (HttpContext.Session.GetString("UserId") == null)
             {

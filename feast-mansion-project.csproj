@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <None Remove="Controllers\" />
-    <None Remove="Views\Admin\" />
     <None Remove="Models\Domain\" />
     <None Remove="Views\UserAuthentication\" />
     <None Remove="Models\DTO\" />
@@ -30,7 +29,6 @@
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\assets\" />
     <Folder Include="wwwroot\assets\logo\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Models\Domain\" />
     <Folder Include="Views\UserAuthentication\" />
     <Folder Include="Models\DTO\" />

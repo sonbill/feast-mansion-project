@@ -50,9 +50,6 @@ namespace feast_mansion_project.Controllers
 
             var paginatedCategories = categories.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
-            //IEnumerable<Category> objCategoryList = _dbContext.Categories.ToList();
-
-
             var viewModel = new CategoryViewModel
             {
                 Categories = paginatedCategories,
@@ -115,9 +112,7 @@ namespace feast_mansion_project.Controllers
                     {
                         await thumbnail.CopyToAsync(stream);
                     }
-
-                    // Set product image path
-                    //obj.ImagePath = Path.Combine("Uploads", subfolderName, fileName);
+                    
                     obj.ImagePath = fileName;
                 }                
             }            

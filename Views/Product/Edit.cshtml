@@ -6,8 +6,8 @@
 }
 
 
-<div class="p-3">
-    <h1 class="font-bold text-center text-2xl mb-5">CHỈNH SỬA MÓN ĂN</h1>
+<div class="px-3 pb-5">
+    <h1 class="font-bold text-center text-xl mb-5">CHỈNH SỬA MÓN ĂN</h1>
     @Html.AntiForgeryToken()
     <form asp-controller="Product" asp-action="EditProduct" asp-route-id="Id" enctype="multipart/form-data" method="post" class="max-w-[500px] mx-auto">
         <input type="hidden" asp-for="ProductId" />
