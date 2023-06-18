@@ -221,7 +221,7 @@ namespace feast_mansion_project.Controllers
             };
 
             return View("Menu", viewModel);
-        }        
+        }     
 
         [HttpGet("Menu")]
         public async Task<IActionResult> Menu(int? categoryId, HomeViewModel model)

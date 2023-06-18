@@ -83,13 +83,13 @@ namespace feast_mansion_project.Controllers
             
             List<Order> orders = _orderRepository.GetOrdersByMonth(selectMonth, selectYear);
 
-            List<OrderViewModel> orderViewModels = new List<OrderViewModel>();
+            List<OrderDashboardViewModel> orderViewModels = new List<OrderDashboardViewModel>();
 
             foreach (var order in orders)
             {
                 var customer = _dbContext.Customers.FirstOrDefault(c => c.CustomerId == order.CustomerId);
 
-                var orderViewModel = new OrderViewModel
+                var orderViewModel = new OrderDashboardViewModel
                 {
                     OrderId = order.OrderId,
 

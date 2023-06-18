@@ -7,19 +7,8 @@ namespace feast_mansion_project.Models
 {
 	public class OrderViewModel
 	{
-        [Key]
-        public string OrderId { get; set; }
-
-        public decimal TotalPrice { get; set; }
-
-        public string Status { get; set; }
-
-        public int CustomerId { get; set; }
-
-        public DateTime OrderDate { get; set; }
-
         //Pagination
-        public List<Order>? Orders { get; set; }
+        public List<Order> Orders { get; set; }
 
         public int TotalItems { get; set; }
 

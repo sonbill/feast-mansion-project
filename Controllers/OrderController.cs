@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,7 +25,7 @@ namespace feast_mansion_project.Controllers
         }        
 
         // GET: /<controller>/
-        [HttpGet]
+        [HttpGet("Index")]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
@@ -60,6 +61,40 @@ namespace feast_mansion_project.Controllers
             
             return View("Index", viewModel);
         }
+        [HttpGet]
+        public async Task<IActionResult> SearchOrders(string searchQuery, int page = 1, int pageSize = 10)
+        {
+            var filteredOrders = _dbContext.Orders
+                .Include(o => o.Customer)
+                .OrderByDescending(o => o.OrderDate);
+
+            if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                filteredOrders = filteredOrders
+                    .Where(o => o.OrderId.Contains(searchQuery))
+                    .OrderByDescending(o => o.OrderDate);
+            }
+
+            var totalItems = await filteredOrders.CountAsync(); // Total count of filtered orders
+
+            var paginatedOrders = await filteredOrders
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+
+            var viewModel = new OrderViewModel
+            {
+                Orders = paginatedOrders,
+                TotalItems = totalItems,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = totalPages
+            };
+            return View("Index",viewModel);
+        }
+        
 
         // GET: Edit Order
         [HttpGet("Edit/{id}")]
