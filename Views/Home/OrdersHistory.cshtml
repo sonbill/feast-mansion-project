@@ -82,7 +82,7 @@
             <p class="py-4">@string.Format("{0:N0} VNĐ", Model.TotalPrice)</p>
         </div>
         <div class="flex space-x-10">
-            <a asp-controller="Home" asp-action="Profile" class="hover:bg-blue-700 bg-blue-600 text-center p-2.5 rounded text-white w-full md:max-w-[100px]">Quay lại</a>
+            <a asp-controller="Home" asp-action="OrdersHistory" class="hover:bg-blue-700 bg-blue-600 text-center p-2.5 rounded text-white w-full md:max-w-[100px]">Quay lại</a>
             @if (Model.Status == "Pending")
             {
                 <form asp-controller="Home" asp-action="CancelOrderFromCustomer" asp-route-orderId="@Model.OrderId" method="post" id="ProcessCheckoutForm">

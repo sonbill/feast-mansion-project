@@ -39,6 +39,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Feedback/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmVlZGJhY2svRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Feedback/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmVlZGJhY2svSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

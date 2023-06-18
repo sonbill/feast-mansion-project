@@ -24,7 +24,7 @@ namespace feast_mansion_project.Controllers
         }
 
         // GET: /<controller>/
-        [HttpGet]
+        [HttpGet("Index")]
         public IActionResult Index(int page = 1, int pageSize = 10)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
@@ -52,9 +52,22 @@ namespace feast_mansion_project.Controllers
             };            
 
             return View(viewModel);
-        }       
+        }
 
-        
+        [HttpGet("Detail/{id}")]
+        public IActionResult Detail(int? id)
+        {
+            if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            var feedbackDetail = _dbContext.Feedbacks.Include(f => f.Customer).FirstOrDefault(f => f.FeedbackId == id);
+
+
+            return View(feedbackDetail);
+        }
+
     }
 }
 

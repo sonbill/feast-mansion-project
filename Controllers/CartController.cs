@@ -122,6 +122,7 @@ namespace feast_mansion_project.Controllers
             }
 
             var product = await _dbContext.Products.FirstOrDefaultAsync(p => p.ProductId == productId);
+
             if (product == null)
             {
                 return NotFound();

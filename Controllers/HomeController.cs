@@ -274,7 +274,7 @@ namespace feast_mansion_project.Controllers
                 return NotFound();
             }
 
-            return View(order);
+            return View("OrdersHistory", order);
         }
 
         [HttpPost]
