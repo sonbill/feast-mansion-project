@@ -5,28 +5,21 @@
     Layout = "_Layout";
 }
 
-<div class="space-y-10 px-3">
-    <div>        
-        <form asp-controller="Order" asp-action="SearchOrders" method="GET" class="">
-            <div class="relative flex md:w-[400px] flex-wrap items-stretch">
-                <input type="text"
-                        name="searchQuery"
-                        class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l-xl border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
-                        placeholder="Search"
-                        aria-label="Search"
-                        aria-describedby="button-addon1" />
-
-                Search button
-                <button class="relative z-[2] flex items-center rounded-r-xl bg-red-700 px-3 py-2 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-red-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg"
-                        type="submit"
-                        id="button-addon1"
-                        data-te-ripple-init
-                        data-te-ripple-color="light">
-                    <span class="material-icons">
-                        search
-                    </span>
-                </button>
+<div class="space-y-10 px-3">    
+    <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-10">
+        <h1 class="font-bold text-2xl my-5">Quản lý đơn hàng</h1>
+        <form class="flex items-center" asp-controller="Order" asp-action="SearchOrders" method="GET">
+            <label for="simple-search" class="sr-only">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                </div>
+                <input type="text" name="searchQuery" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Search" required>
             </div>
+            <button type="submit" class="p-2.5 ml-2 text-sm font-medium text-white bg-red-700 rounded-lg border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <span class="sr-only">Search</span>
+            </button>
         </form>        
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -46,7 +39,7 @@
                     </th>
                     <th class="px-6 py-3">
                         GHI CHÚ
-                    </th>                    
+                    </th>
                     <th class="px-3 py-3">
                         NGÀY ĐẶT
                     </th>
@@ -73,14 +66,14 @@
                             </td>
                             <td class="px-6 py-4">
                                 @obj.Note
-                            </td>                           
+                            </td>
                             <td class="px-2 py-4">
                                 @obj.OrderDate
                             </td>
 
                             <td class="px-6 py-4 space-x-3">
                                 <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
-                            </td>                            
+                            </td>
                         </tr>
                     }
 
@@ -109,7 +102,7 @@
                     </th>
                     <th class="px-6 py-3">
                         GHI CHÚ
-                    </th>                    
+                    </th>
                     <th class="px-3 py-3">
                         NGÀY ĐẶT
                     </th>
@@ -136,7 +129,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 @obj.Note
-                            </td>                           
+                            </td>
 
                             <td class="px-2 py-4">
                                 @obj.OrderDate
@@ -144,7 +137,7 @@
 
                             <td class="px-6 py-4 space-x-3">
                                 <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
-                            </td>                            
+                            </td>
                         </tr>
                     }
 
@@ -154,7 +147,7 @@
         <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
             @Html.Partial("_PagerOrder", Model)
         </div>
-    </div>    
+    </div>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <h1>Shipping</h1>
@@ -173,7 +166,7 @@
                     </th>
                     <th class="px-6 py-3">
                         GHI CHÚ
-                    </th>                    
+                    </th>
                     <th class="px-3 py-3">
                         NGÀY ĐẶT
                     </th>
@@ -200,7 +193,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 @obj.Note
-                            </td>                           
+                            </td>
 
                             <td class="px-2 py-4">
                                 @obj.OrderDate
@@ -208,7 +201,7 @@
 
                             <td class="px-6 py-4 space-x-3">
                                 <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
-                            </td>                            
+                            </td>
                         </tr>
                     }
 
@@ -237,7 +230,7 @@
                     </th>
                     <th class="px-6 py-3">
                         GHI CHÚ
-                    </th>                    
+                    </th>
                     <th class="px-3 py-3">
                         NGÀY ĐẶT
                     </th>
@@ -264,7 +257,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 @obj.Note
-                            </td>                           
+                            </td>
 
                             <td class="px-2 py-4">
                                 @obj.OrderDate
@@ -272,7 +265,7 @@
 
                             <td class="px-6 py-4 space-x-3">
                                 <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
-                            </td>                            
+                            </td>
                         </tr>
                     }
 

@@ -6,6 +6,9 @@ using feast_mansion_project.Models.Domain;
 using feast_mansion_project.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Drawing.Printing;
+using OfficeOpenXml.Style;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -43,7 +46,7 @@ namespace feast_mansion_project.Controllers
 
 
         [Route("Edit/{id}")]
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int page = 1, int pageSize = 5)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
@@ -55,27 +58,36 @@ namespace feast_mansion_project.Controllers
                 return NotFound();
             }
 
-
-            var customerFromDb = _dbContext.Customers.Find(id);
+            var customerFromDb = _dbContext.Customers
+                .Include(c => c.Orders)
+                .ThenInclude(o => o.OrderDetails)
+                .FirstOrDefault(c => c.CustomerId == id);
 
             if (customerFromDb == null)
             {
                 return NotFound();
             }
 
-            var CustomerViewModel = new CustomerViewModel()
+            int totalItems = customerFromDb.Orders.Count;
+
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            var paginatedOrders = customerFromDb.Orders.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            var customerViewModel = new CustomerViewModel()
             {
                 CustomerId = customerFromDb.CustomerId,
-
                 FullName = customerFromDb.FullName,
-
                 Address = customerFromDb.Address + " Tp. Hồ Chí Minh",
-
-                Phone = customerFromDb.Phone,                
+                Phone = customerFromDb.Phone,
+                Orders = paginatedOrders,
+                TotalItems = totalItems,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = totalPages
             };
 
-
-            return View("Edit", CustomerViewModel);
+            return View("Edit", customerViewModel);
         }
 
         [HttpPost("Edit/{id}")]
