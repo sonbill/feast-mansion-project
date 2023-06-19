@@ -5,9 +5,9 @@
     Layout = "_Layout";
 }
 
-<div class="space-y-10 px-3">    
+<div class="space-y-10 px-3">
     <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-10">
-        <h1 class="font-bold text-2xl my-5">Quản lý đơn hàng</h1>
+        <h1 class="font-bold text-2xl my-5">QUẢN LÝ ĐƠN HÀNG</h1>
         <form class="flex items-center" asp-controller="Order" asp-action="SearchOrders" method="GET">
             <label for="simple-search" class="sr-only">Search</label>
             <div class="relative">
@@ -20,12 +20,12 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 <span class="sr-only">Search</span>
             </button>
-        </form>        
+        </form>
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <h1>Is Pending</h1>
-        <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg border bg-gray-300 p-3">
+        <h1 class="font-bold mb-2">ĐANG CHỜ...</h1>
+        <table class="w-full text-sm text-left text-gray-500 bg-gray-200">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-200">
                 <tr>
                     <th class="px-6 py-3">
                         ID
@@ -54,8 +54,8 @@
                 {
                     @if (obj.Status == "Pending")
                     {
-                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <tr class="bg-gray-50 border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                 @obj.OrderId
                             </th>
                             <td class="px-6 py-4">
@@ -80,15 +80,12 @@
                 }
             </tbody>
         </table>
-        <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
-            @Html.Partial("_PagerOrder", Model)
-        </div>
     </div>
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <h1>Is Pending</h1>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-amber-200 p-3">
+        <h1 class="font-bold mb-2">ĐANG NẤU</h1>
         <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <thead class="text-xs text-gray-700 uppercase bg-amber-100">
                 <tr>
                     <th class="px-6 py-3">
                         ID
@@ -117,7 +114,7 @@
                 {
                     @if (obj.Status == "Cooking")
                     {
-                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <tr class="bg-amber-50 border-b">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 @obj.OrderId
                             </th>
@@ -144,15 +141,12 @@
                 }
             </tbody>
         </table>
-        <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
-            @Html.Partial("_PagerOrder", Model)
-        </div>
     </div>
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <h1>Shipping</h1>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-blue-200 p-3">
+        <h1 class="font-bold mb-2">ĐANG GIAO</h1>
         <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <thead class="text-xs text-gray-700 uppercase bg-blue-100">
                 <tr>
                     <th class="px-6 py-3">
                         ID
@@ -181,7 +175,7 @@
                 {
                     @if (obj.Status == "Shipping")
                     {
-                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <tr class="bg-blue-50 border-b">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 @obj.OrderId
                             </th>
@@ -208,15 +202,12 @@
                 }
             </tbody>
         </table>
-        <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
-            @Html.Partial("_PagerOrder", Model)
-        </div>
     </div>
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <h1>Complete</h1>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-green-200 p-3">
+        <h1 class="font-bold mb-2">HOÀN THÀNH</h1>
         <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <thead class="text-xs text-gray-700 uppercase bg-green-100">
                 <tr>
                     <th class="px-6 py-3">
                         ID
@@ -245,7 +236,7 @@
                 {
                     @if (obj.Status == "Complete")
                     {
-                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <tr class="bg-green-50 border-b">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 @obj.OrderId
                             </th>
@@ -272,8 +263,69 @@
                 }
             </tbody>
         </table>
-        <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
-            @Html.Partial("_PagerOrder", Model)
-        </div>
     </div>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-red-200 p-3">
+        <h1 class="font-bold mb-2">ĐÃ HUỶ</h1>
+        <table class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-red-100">
+                <tr>
+                    <th class="px-6 py-3">
+                        ID
+                    </th>
+                    <th class="px-6 py-3">
+                        TÌNH TRẠNG
+                    </th>
+
+                    <th class="px-6 py-3">
+                        KHÁCH HÀNG
+                    </th>
+                    <th class="px-6 py-3">
+                        GHI CHÚ
+                    </th>
+                    <th class="px-3 py-3">
+                        NGÀY ĐẶT
+                    </th>
+                    <th class="px-6 py-3">
+
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var obj in Model.Orders)
+                {
+                    @if (obj.Status == "Cancel")
+                    {
+                        <tr class="bg-red-50 border-b">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                @obj.OrderId
+                            </th>
+                            <td class="px-6 py-4">
+                                @obj.Status
+                            </td>
+                            <td class="px-6 py-4">
+                                @obj.Customer.FullName
+                            </td>
+                            <td class="px-6 py-4">
+                                @obj.Note
+                            </td>
+
+                            <td class="px-2 py-4">
+                                @obj.OrderDate
+                            </td>
+
+                            <td class="px-6 py-4 space-x-3">
+                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
+                            </td>
+                        </tr>
+                    }
+
+                }
+            </tbody>
+        </table>
+    </div>    
+</div>
+<div class="my-5 text-right">
+    @Html.Partial("_PagerOrder", Model)
 </div>

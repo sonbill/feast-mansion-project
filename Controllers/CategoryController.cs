@@ -53,9 +53,13 @@ namespace feast_mansion_project.Controllers
             var viewModel = new CategoryViewModel
             {
                 Categories = paginatedCategories,
+
                 TotalItems = totalItems,
+
                 CurrentPage = page,
+
                 PageSize = pageSize,
+
                 TotalPages = totalPages
             };
 

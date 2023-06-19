@@ -25,7 +25,7 @@ namespace feast_mansion_project.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 10)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
@@ -33,12 +33,28 @@ namespace feast_mansion_project.Controllers
             }
 
             var users = _dbContext.Users.Include(u => u.Customer).ToList();
+
             var customers = _dbContext.Customers.Include(c => c.User).ToList();
+
+            int totalItems = users.Count();
+
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            var paginatedUsers = users.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
             var userViewModel = new UserViewModel()
             {
-                Users = users,
-                Customers = customers
+                Users = paginatedUsers,
+
+                Customers = customers,
+
+                TotalItems = totalItems,
+
+                CurrentPage = page,
+
+                PageSize = pageSize,
+
+                TotalPages = totalPages
             };
 
             return View("Index", userViewModel);
