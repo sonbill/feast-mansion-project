@@ -15,9 +15,6 @@
                 <th class="px-6 py-3">
                     ID
                 </th>
-                <th class="px-6 py-3">
-                    Ý KIẾN
-                </th>
                 <th class="px-3 py-3">
                     DANH MỤC PHẢN HỒI
                 </th>
@@ -28,7 +25,10 @@
                     NGÀY TẠO
                 </th>
                 <th class="px-6 py-3">
-                    
+                    TRẠNG THÁI
+                </th>
+                <th class="px-6 py-3">
+
                 </th>
             </tr>
         </thead>
@@ -40,9 +40,6 @@
                         @obj.FeedbackId
                     </th>
                     <td class="px-6 py-4">
-                        @obj.OpinionState
-                    </td>
-                    <td class="px-6 py-4">
                         @obj.FeedbackCategory
                     </td>
                     <td class="px-2 py-4">
@@ -51,19 +48,36 @@
                     <td class="px-2 py-4">
                         @obj.CreatedAt
                     </td>
+                    <td class="px-2 py-4">
+                        @if (obj.Status == "đã đọc")
+                        {
+                            <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">
+                                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
+                                @obj.Status
+                            </span>
+                        }
+                        else if (obj.Status == "chưa đọc")
+                        {
+                            <span class="inline-flex items-center bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">
+                                <span class="w-2 h-2 mr-1 bg-gray-500 rounded-full"></span>
+                                @obj.Status
+                            </span>
+                        }
+                        else
+                        {
+                            <span>@obj.Status</span>
+                        }
+                    </td>
                     <td class="px-6 py-4 space-x-3">
                         <a asp-controller="Feedback" asp-action="Detail" asp-route-id="@obj.FeedbackId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
                     </td>
-                    @*<td>
-            (@obj.CreatedDate.HasValue ? @obj.CreatedDate.Value.ToString("dd/mm/yyyy") : "")
-        </td>*@
                 </tr>
             }
         </tbody>
     </table>
     @*@await Html.PartialAsync("_Pager", Model.Pager)*@
     <div class="fixed bottom-14 max-w-screen-xl p-2 text-right">
-        @*@Html.Partial("_PagerCategory", Model)*@
+        @Html.Partial("_PagerFeedback", Model)
     </div>
 </div>
 

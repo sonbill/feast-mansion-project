@@ -9,11 +9,11 @@ namespace feast_mansion_project.Models
 	public class Category
 	{
         [Key]
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
 
         [Required]
         public string Name { get; set; }
-
+        [Required]
         public string Description { get; set; }
 
         public string? ImagePath { get; set; }

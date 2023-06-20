@@ -155,7 +155,7 @@ namespace feast_mansion_project.Controllers
 
         // GET: Edit Product
         [HttpGet("Edit/{id}")]
-        public IActionResult Edit(int? id, string productImage)
+        public IActionResult Edit(int id, string productImage)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
@@ -174,7 +174,7 @@ namespace feast_mansion_project.Controllers
 
             var categories = _dbContext.Categories.ToList();
 
-            ViewData["Categories"] = new SelectList(categories, "Id", "Name", product.CategoryId);
+            ViewData["Categories"] = new SelectList(categories, "CategoryId", "Name", product.CategoryId);
 
             return View("Edit", productFromDb);
         }

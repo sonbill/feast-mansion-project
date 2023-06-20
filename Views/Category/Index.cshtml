@@ -30,7 +30,7 @@
             {
                 <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        @obj.Id
+                        @obj.CategoryId
                     </th>
                     <td class="px-6 py-4">
                         @obj.Name
@@ -39,7 +39,7 @@
                         @obj.Description
                     </td>
                     <td class="px-6 py-4 space-x-3">
-                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
+                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.CategoryId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chỉnh sửa</a>
                     </td>
                 </tr>
             }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "m7EIDPg8NVsFdViYu1ucD4Wbh1JRfdan4ANXQ8b9JX8=",
+  "Hash": "Alihs/4S3qKsedGwkkduGbVd2ou9/jGUwIQGjdOa1eA=",
   "Source": "feast-mansion-project",
   "BasePath": "_content/feast-mansion-project",
   "Mode": "Default",
@@ -1275,6 +1275,23 @@
       "OriginalItemSpec": "wwwroot/Uploads/2c29978a-af71-4d83-9806-f7319c5850cf.png"
     },
     {
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/3865dfa9-bd00-4e1d-bfbb-fad735808e1b.png",
+      "SourceId": "feast-mansion-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
+      "BasePath": "_content/feast-mansion-project",
+      "RelativePath": "Uploads/3865dfa9-bd00-4e1d-bfbb-fad735808e1b.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/3865dfa9-bd00-4e1d-bfbb-fad735808e1b.png"
+    },
+    {
       "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/67d28896-524d-44eb-b11b-5dd04993d44f.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
@@ -1426,6 +1443,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/54486705-7005-4427-aed2-a20cee6c3d54.png"
+    },
+    {
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/5552e14c-6f83-4a2a-bc3d-a7cbd145cde3.png",
+      "SourceId": "feast-mansion-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
+      "BasePath": "_content/feast-mansion-project",
+      "RelativePath": "Uploads/CategoryThumbnail/5552e14c-6f83-4a2a-bc3d-a7cbd145cde3.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/CategoryThumbnail/5552e14c-6f83-4a2a-bc3d-a7cbd145cde3.png"
     },
     {
       "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/Uploads/CategoryThumbnail/5fd91d51-8ab5-4cf7-a741-600bd8d65d62.png",

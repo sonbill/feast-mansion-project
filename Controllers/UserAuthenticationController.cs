@@ -49,7 +49,14 @@ namespace feast_mansion_project.Controllers
 
         // GET: /<controller>/
         public IActionResult Register()
-        {           
+        {
+            int currentUser = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+
+            if (currentUser != 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
@@ -114,7 +121,14 @@ namespace feast_mansion_project.Controllers
 
         [HttpGet]
         public IActionResult Login()
-        {           
+        {
+            int currentUser = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+
+            if (currentUser != 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 

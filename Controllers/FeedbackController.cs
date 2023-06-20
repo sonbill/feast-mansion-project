@@ -25,7 +25,7 @@ namespace feast_mansion_project.Controllers
 
         // GET: /<controller>/
         [HttpGet("Index")]
-        public IActionResult Index(int page = 1, int pageSize = 10)
+        public IActionResult Index(int page = 1, int pageSize = 5)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
@@ -64,6 +64,11 @@ namespace feast_mansion_project.Controllers
 
             var feedbackDetail = _dbContext.Feedbacks.Include(f => f.Customer).FirstOrDefault(f => f.FeedbackId == id);
 
+            if (feedbackDetail != null && feedbackDetail.Status == "chưa đọc")
+            {
+                feedbackDetail.Status = "đã đọc";
+                _dbContext.SaveChanges();
+            }
 
             return View(feedbackDetail);
         }

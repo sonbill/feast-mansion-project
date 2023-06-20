@@ -63,11 +63,6 @@
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/feast-mansion-project.MvcApplicationPartsAssemblyInfo.cache
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/feast-mansion-project.RazorAssemblyInfo.cache
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/feast-mansion-project.RazorAssemblyInfo.cs
-/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/staticwebassets/msbuild.feast-mansion-project.Microsoft.AspNetCore.StaticWebAssets.props
-/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/staticwebassets/msbuild.build.feast-mansion-project.props
-/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/staticwebassets/msbuild.buildMultiTargeting.feast-mansion-project.props
-/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/staticwebassets/msbuild.buildTransitive.feast-mansion-project.props
-/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/staticwebassets.pack.json
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/staticwebassets.build.json
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/staticwebassets.development.json
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Release/net6.0/scopedcss/Views/Shared/_Authenticate.cshtml.rz.scp.css

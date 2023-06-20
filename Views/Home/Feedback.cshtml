@@ -17,12 +17,12 @@
     }
 }
 
-<div class="max-w-screen-xl mx-auto mt-20">
-    <form id="ProcessCheckoutForm" asp-controller="Home" asp-action="SendFeedback" method="post" class="flex flex-col w-[500px] mx-auto">
+<div class="mx-auto mt-20 px-4">
+    <form id="ProcessCheckoutForm" asp-controller="Home" asp-action="SendFeedback" method="post" class="flex flex-col w-auto mx-auto">
         <input type="hidden" asp-for="CustomerId" value="@customerId" />
-        <h1 class="text-2xl font-bold text-center">We would like your feedback to improve our website</h1>
+        <h1 class="text-2xl font-bold text-center">Chúng tôi muốn nhận phản hồi của bạn để cải thiện website của chúng tôi</h1>
         <div class="w-full py-4 space-y-7 border-b-2">
-            <p class="text-center text-gray-500">What is your opinion of this page?</p>
+            <p class="text-center text-gray-500">Bạn đánh giá như thế nào về trang này?</p>
             <div class="flex items-center justify-between">
                 <div>
                     <input asp-for="OpinionState" type="radio" id="very-unhappy" name="OpinionState" value="very-unhappy" class="hidden peer" required>
@@ -67,31 +67,33 @@
             </div>
         </div>
         <div class="w-full py-4 space-y-7 border-b-2">
-            <p class="text-center text-gray-500">Please select your feedback category below.</p>
+            <p class="text-center text-gray-500">Vui lòng chọn danh mục phản hồi của bạn dưới đây.</p>
             <div class="flex items-center justify-between">
                 <div>
                     <input asp-for="FeedbackCategory" type="radio" id="suggestion" name="FeedbackCategory" value="suggestion" class="hidden peer" required>
                     <label asp-for="FeedbackCategory" for="suggestion" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
-                        Suggestion
+                        Gợi ý
                     </label>
                 </div>
                 <div>
                     <input asp-for="FeedbackCategory" type="radio" id="issue" name="FeedbackCategory" value="issue" class="hidden peer" required>
                     <label asp-for="FeedbackCategory" for="issue" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-red-600 peer-checked:text-red-600 hover:text-gray-600 hover:bg-red-100">
-                        Something is not quite right
+                        Có vấn đề xảy ra
                     </label>
                 </div>
                 <div>
                     <input asp-for="FeedbackCategory" type="radio" id="compliment" name="FeedbackCategory" value="compliment" class="hidden peer" required>
                     <label asp-for="FeedbackCategory" for="compliment" class="inline-flex items-center justify-between w-full p-2 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer peer-checked:border-green-600 peer-checked:text-green-600 hover:text-gray-600 hover:bg-gray-100">
-                        Compliment
+                        Lời khen
                     </label>
                 </div>
             </div>
         </div>
         <div class="w-full py-4 space-y-7">
-            <p class="text-center text-gray-500">Please leave your feedback below.</p>
-            <textarea asp-for="FeedbackMessage" rows="5" cols="50" class="border w-full rounded-lg">
+            <input type="hidden" asp-for="Status" value="chưa đọc" />
+
+            <p class="text-center text-gray-500">Vui lòng để lại phản hồi của bạn bên dưới.</p>
+            <textarea asp-for="FeedbackMessage" rows="5" cols="50" class="border w-full rounded-lg p-3">
             
             </textarea>
         </div>

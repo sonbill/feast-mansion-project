@@ -326,6 +326,8 @@ namespace feast_mansion_project.Controllers
                 {
                     obj.CustomerId = userId;
 
+                    obj.Status = "chưa đọc";
+
                     // Add new product to database
                     _dbContext.Feedbacks.Add(obj);
 

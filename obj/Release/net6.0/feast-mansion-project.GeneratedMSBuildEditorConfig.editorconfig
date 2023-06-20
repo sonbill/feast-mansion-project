@@ -16,10 +16,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Admin/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Cart/Checkout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FydC9DaGVja291dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,12 +40,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Feedback/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmVlZGJhY2svSW5kZXguY3NodG1s
+[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Feedback/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmVlZGJhY2svRGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/About.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BYm91dC5jc2h0bWw=
+[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Feedback/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmVlZGJhY2svSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/CategoryDetail.cshtml]
@@ -76,12 +72,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9PcmRlcnNIaXN0b3J5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/OrersHistoryList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9PcmVyc0hpc3RvcnlMaXN0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/OrdersHistoryList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9PcmRlcnNIaXN0b3J5TGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/ProductDetail.cshtml]
@@ -102,6 +94,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Order/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Order/SearchedOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXIvU2VhcmNoZWRPcmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Product/Create.cshtml]
@@ -146,6 +142,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Shared/_PagerProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QYWdlclByb2R1Y3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Shared/_PagerUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19QYWdlclVzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Shared/_ProfileLayout.cshtml]
