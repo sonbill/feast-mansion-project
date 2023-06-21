@@ -25,7 +25,7 @@
 }
 
 
-<div class="mx-auto p-3 md:p-5">
+<div class="mx-auto pb-10 px-3 md:p-5">
     <h1 class="text-2xl font-bold my-5 text-center md:text-left">DASHBOARD</h1>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         @*Total Revenue*@
@@ -229,7 +229,7 @@
 
         @if (TempData["ErrorMessage"] != null)
         {
-            <div class="alert alert-danger" role="alert">
+            <div class="text-gray-600" role="alert">
                 @TempData["ErrorMessage"]
             </div>
         }
@@ -248,8 +248,7 @@
                     file_download
                 </span>
                 <p>Xuất ra file Excel</p>
-            </button>
-            
+            </button>            
         </form>
     </div>    
 </div>

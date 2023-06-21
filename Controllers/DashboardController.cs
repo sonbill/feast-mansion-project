@@ -177,7 +177,7 @@ namespace feast_mansion_project.Controllers
             }
             else
             {
-                TempData["ErrorMessage"] = "No value";
+                TempData["ErrorMessage"] = "Không có kết quả";
                 return RedirectToAction("Index", "Dashboard");
             }
         }

@@ -7,17 +7,20 @@
 
 <div>
     @*CAROUSEL*@
-    <div class="h-[600px] mb-10">
+    <div class="h-full mb-10 px-0 md:px-10">
         <div id="carouselExampleControls" class="carousel slide h-full" data-bs-ride="carousel">
             <div class="carousel-inner h-full">
-                <div class="carousel-item active h-full">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="w-full h-full object-cover" alt="...">
+                <div class="carousel-item active">
+                    <img src="/assets/Pictures/1.png" class="w-full h-full object-cover" alt="...">
                 </div>
                 <div class="carousel-item h-full">
-                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="w-full h-full object-cover" alt="...">
+                    <img src="/assets/Pictures/2.png" class="w-full h-full object-cover" alt="...">
                 </div>
                 <div class="carousel-item h-full">
-                    <img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="w-full h-full object-cover" alt="...">
+                    <img src="/assets/Pictures/3.png" class="w-full h-full object-cover" alt="...">
+                </div>
+                <div class="carousel-item h-full">
+                    <img src="/assets/Pictures/4.png" class="w-full h-full object-cover" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -32,17 +35,17 @@
     </div>
     @*CATEGORY*@
 <div class="max-w-screen-xl mx-auto p-3 md:p-0">
-    <h1 class="font-bold text-2xl mb-10">DANH MỤC MÓN ĂN</h1>
-    <hr class="w-64 h-1 my-8 bg-gray-200 border-0 rounded dark:bg-gray-700">
+    <h1 class="font-bold text-2xl">DANH MỤC MÓN ĂN</h1>
+    <hr class="w-64 h-1 my-3 bg-gray-500 border-0 rounded dark:bg-gray-700">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         @foreach (var category in Model.Categories)
         {
             @*01*@
             <div>
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow mx-auto">
                     <a asp-controller="Home" asp-action="Menu" asp-route-categoryId="@category.CategoryId">
-                        <div class="p-3">
-                            <img src="@Url.Content("~/Uploads/CategoryThumbnail/" + @category.ImagePath)" alt="Category Thumbnail" class="rounded-t-lg w-[382px] h-[255px]" />
+                        <div class="p-2 h-[255px]">
+                            <img src="@Url.Content("~/Uploads/CategoryThumbnail/" + @category.ImagePath)" alt="Category Thumbnail" class="rounded-t-lg w-full h-full object-cover" />
                         </div>
                     </a>
                     <div class="p-3">
@@ -58,30 +61,34 @@
         }
     </div>
     @*RECOMMEND*@
-    <div>
-        <h1 class="font-bold text-2xl my-10">
-            CÓ THỂ BẠN SẼ THÍCH MÓN NÀY
-            <span class="material-icons text-yellow-500 text-xl">
-                auto_awesome
-            </span>
-        </h1>
+<div>
+    <h1 class="font-bold text-2xl my-10">
+        CÓ THỂ BẠN SẼ THÍCH MÓN NÀY
+        <span class="material-icons text-yellow-500 text-xl">
+            auto_awesome
+        </span>
+    </h1>
+    <hr class="w-64 h-1 my-3 bg-gray-500 border-0 rounded dark:bg-gray-700">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         @foreach (var product in Model.Products)
         {
             @if (product.IsPin == "Recommended")
             {
-                <div class="px-2 md:px-0 w-[300px]">
+                <div class="md:px-0 w-[300px] col-span-1">
                     <div class="border rounded border-gray-600 p-3">
-                        <div class="w-full sm:max-w-[303px] h-full sm:h-[304px] md:h-[304px] mb-3 mx-auto">
+                        <div class="mb-3 mx-auto">
                             <span class="material-icons text-yellow-500 w-full text-right" style="font-size: 2rem;">
                                 star
                             </span>
-                            <a asp-controller="Home" asp-action="Details" asp-route-id="@product.ProductId">
-                                <img class="w-full h-full object-cover " src="@Url.Content($"~/Uploads/{product.ImagePath}")" alt="@product.Name">
-                            </a>
+                            <div class="w-full h-[200px]">
+                                <a asp-controller="Home" asp-action="Details" asp-route-id="@product.ProductId">
+                                    <img class="w-full h-full object-cover " src="@Url.Content($"~/Uploads/{product.ImagePath}")" alt="@product.Name">
+                                </a>
+                            </div>
                         </div>
-                        <div class="space-y-3">
+                        <div class="space-y-2.5">
                             <p class="text-lg font-bold">@product.Name</p>
-                            <p class="">@string.Format("{0:N0} VNĐ", @product.Price)</p>
+                            <p class="text-sm text-gray-500">@string.Format("{0:N0} VNĐ", @product.Price)</p>
                             <form asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId">
                                 <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center inline-flex items-center mr-2">
                                     <svg aria-hidden="true" class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>
@@ -93,8 +100,9 @@
                 </div>
             }
         }
+    </div>   
 
-    </div>
+</div>
 </div>
    
 </div>

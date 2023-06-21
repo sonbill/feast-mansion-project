@@ -47,7 +47,7 @@
                                 <p class="">@string.Format("{0:N0} VNĐ", @product.Price)</p>
                                 <div class="flex justify-between">
 
-                                    <a href="@Url.Action("Details", new { id = product.ProductId })" class="w-[100px] text-gray-900 hover:text-white border border-gray-900 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center">View</a>
+                                    <a href="@Url.Action("Details", new { id = product.ProductId })" class="w-[100px] text-gray-900 hover:text-white border border-gray-900 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center">Xem chi tiết</a>
 
                                     <form asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId">
                                         <button type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center inline-flex items-center mr-2">

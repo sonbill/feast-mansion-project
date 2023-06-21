@@ -5,10 +5,9 @@
     Layout = "_Layout";
 }
 
-<div class="max-w-7xl mx-auto py-6 px-3 sm:px-6 lg:px-8">
-    <h1 class="font-bold text-xl mb-5 text-center">Cập nhật thông tin khách hàng</h1>
-
-    <div class="bg-white overflow-hidden shadow sm:rounded-lg p-10">
+<div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+    <h1 class="font-bold text-xl mb-5 text-center">Chi tiết thông tin khách hàng</h1>
+    <div class="bg-white overflow-hidden shadow sm:rounded-lg p-3">
         <form asp-controller="User" asp-action="Edit" method="post">
             <input type="hidden" asp-for="CustomerId" />
             <div class="mb-6">
@@ -24,10 +23,7 @@
                 <input asp-for="Phone" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" id="Phone" name="Phone" value="@Model.Phone" required>
             </div>
             <div class="space-y-5 md:space-y-0 md:space-x-10 flex flex-col md:flex-row items-center">
-                <button type="submit" class="w-full sm:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cập nhật</button>
-                <button type="submit" asp-controller="User" asp-action="DeleteCustomer" asp-route-id="@Model.CustomerId" method="post" class="w-full sm:w-auto text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-2 py-1.5 text-center">
-                    Xoá khách hàng
-                </button>
+                <button type="submit" class="w-full sm:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cập nhật</button>                
             </div>
         </form>
     </div>

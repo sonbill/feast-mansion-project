@@ -49,6 +49,11 @@ namespace feast_mansion_project.Controllers
             return View();
         }
 
+        public IActionResult Policy()
+        {
+            return View();
+        }
+
         //GET: Details Product
         [HttpGet("Details/{id}")]
         public async Task<IActionResult> Details(int? id)

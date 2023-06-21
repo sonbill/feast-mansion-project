@@ -47,6 +47,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmVlZGJhY2svSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BYm91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/CategoryDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9DYXRlZ29yeURldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -73,6 +77,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/OrdersHistoryList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9PcmRlcnNIaXN0b3J5TGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/Policy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qb2xpY3kuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/Views/Home/ProductDetail.cshtml]
