@@ -63,6 +63,22 @@ namespace feast_mansion_project.Controllers
 
        
         //GET: Create Product
+        //[HttpGet("Create")]
+        //public IActionResult Create()
+        //{
+        //    if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+
+        //    var viewModel = new ProductViewModel
+        //    {
+        //        ListCategory = _dbContext.Categories.ToList(),
+        //    };
+
+
+        //    return View("~/Views/Product/Create.cshtml", viewModel);
+        //}
         [HttpGet("Create")]
         public IActionResult Create()
         {
@@ -76,13 +92,12 @@ namespace feast_mansion_project.Controllers
                 ListCategory = _dbContext.Categories.ToList(),
             };
 
-
-            return View("~/Views/Product/Create.cshtml", viewModel);
+            return View(viewModel);
         }
 
         //POST: Create Product
 
-        [HttpPost("Create")]
+        [HttpPost("CreatePost")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateProduct(ProductViewModel model, IFormFile userFile)
         {
@@ -91,23 +106,31 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            if (userFile != null && userFile.Length > 0)
+            if (model != null)
             {
-                // Generate unique file name
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(userFile.FileName);
-
-                // Set file path
-                var filePath = Path.Combine("wwwroot", "Uploads", fileName);
-
-                // Upload file to path
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                if (userFile != null && userFile.Length > 0)
                 {
-                    await userFile.CopyToAsync(stream);
+                    // Generate unique file name
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(userFile.FileName);
+
+                    // Set file path
+                    var filePath = Path.Combine("wwwroot", "Uploads", fileName);
+
+                    // Upload file to path
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await userFile.CopyToAsync(stream);
+                    }
+
+                    // Set product image path
+                    model.ImagePath = fileName;
                 }
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Yêu cầu nhập đầy đủ thông tin";
 
-                // Set product image path
-                model.ImagePath = fileName;
-
+                return RedirectToAction("Create");
             }
 
             if (ModelState.IsValid)
@@ -117,40 +140,35 @@ namespace feast_mansion_project.Controllers
                     var product = new Product
                     {
                         Name = model.Name,
-
                         Description = model.Description,
-
                         IsPin = "None",
-
                         Price = model.Price,
-
                         CategoryId = model.CategoryId,
-
                         SKU = model.SKU,
-
                         ImagePath = model.ImagePath
                     };
 
                     // Add new product to database
                     _dbContext.Products.Add(product);
-
                     await _dbContext.SaveChangesAsync();
 
-                    TempData["SuccessMessage"] = "Product added successfully";
+                    TempData["SuccessMessage"] = "Thêm mới món ăn thành công";
 
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    TempData["ErrorMessage"] = "Error creating product: " + ex.Message;
-                }
+                    TempData["ErrorMessage"] = "Error: " + ex.Message;
 
+                    return RedirectToAction("Create");
+                }
             }
 
-            Console.WriteLine(JsonConvert.SerializeObject(model));          
+            TempData["ErrorMessage"] = "Yêu cầu nhập đầy đủ thông tin";
 
-            return View("Create", model);
+            return RedirectToAction("Create");
         }
+
 
 
         // GET: Edit Product
@@ -251,13 +269,13 @@ namespace feast_mansion_project.Controllers
 
                     await _dbContext.SaveChangesAsync();
 
-                    TempData["SuccessMessage"] = "Product updated successfully";
+                    TempData["SuccessMessage"] = "Cập nhật món ăn thành công";
 
                     return RedirectToAction("Index", model);
 
                 } catch (Exception ex)
                 {
-                    TempData["ErrorMessage"] = "Error creating product: " + ex.Message;
+                    TempData["ErrorMessage"] = "Error: " + ex.Message;
                 }
 
             }
@@ -295,13 +313,13 @@ namespace feast_mansion_project.Controllers
 
                     await _dbContext.SaveChangesAsync();
 
-                    TempData["SuccessMessage"] = "Product deleted successfully";
+                    TempData["SuccessMessage"] = "Món ăn xoá thành công";
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    TempData["ErrorMessage"] = "Error deleting product: " + ex.Message;
+                    TempData["ErrorMessage"] = "Error: " + ex.Message;
 
                     return RedirectToAction("Index");
                 }

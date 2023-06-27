@@ -16,7 +16,7 @@ namespace feast_mansion_project.Models
         [Required]
         public string Name { get; set; }
 
-        public string ImagePath { get; set; }
+        public string? ImagePath { get; set; }
 
         [Required]
         [Range(0, double.MaxValue)]
@@ -26,7 +26,6 @@ namespace feast_mansion_project.Models
 
         public string IsPin { get; set; }
 
-        [Required]
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }

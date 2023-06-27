@@ -219,7 +219,9 @@ namespace feast_mansion_project.Controllers
 
             _dbContext.Orders.Update(order);
 
-            await _dbContext.SaveChangesAsync();            
+            await _dbContext.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Huỷ đơn hàng thành công";
 
             return RedirectToAction("Index");            
         }       

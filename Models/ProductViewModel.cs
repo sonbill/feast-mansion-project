@@ -13,21 +13,27 @@ namespace feast_mansion_project.Models
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Yêu cầu nhập tên món ăn.")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Yêu cầu nhập mã SKU.")]
         public string SKU { get; set; }
 
+        [Required(ErrorMessage = "Yêu cầu nhập mô tả.")]
         public string Description { get; set; }
 
+        [Required(ErrorMessage = "Yêu cầu nhập giá món ăn.")]
         public decimal Price { get; set; }
 
-        public string ?ImagePath { get; set; }
+        public string? ImagePath { get; set; }
 
+
+        [Required(ErrorMessage = "Yêu cầu nhập giá món ăn.")]
         public int CategoryId { get; set; }
 
         //PAGINATION
 
-        public List<Category> ?ListCategory { get; set; }
+        public List<Category>? ListCategory { get; set; }
 
         public int TotalItems { get; set; }
 

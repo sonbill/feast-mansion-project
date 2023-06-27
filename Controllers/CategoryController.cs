@@ -63,7 +63,7 @@ namespace feast_mansion_project.Controllers
                 TotalPages = totalPages
             };
 
-            return View("~/Views/Category/Index.cshtml", viewModel);
+            return View("Index", viewModel);
         }
 
         //GET: Create Category
@@ -138,7 +138,7 @@ namespace feast_mansion_project.Controllers
 
                     _dbContext.SaveChanges();
 
-                    TempData["SuccessMessage"] = "Category added successfully";
+                    TempData["SuccessMessage"] = "Thêm danh mục thành công";
 
                     Console.WriteLine(JsonConvert.SerializeObject(obj));
 
@@ -146,7 +146,7 @@ namespace feast_mansion_project.Controllers
 
                 } catch (Exception ex)
                 {
-                    TempData["ErrorMessage"] = "Error creating product: " + ex.Message;
+                    TempData["ErrorMessage"] = "Error: " + ex.Message;
                 }
 
             }
@@ -256,13 +256,13 @@ namespace feast_mansion_project.Controllers
 
                     _dbContext.SaveChangesAsync();
 
-                    TempData["SuccessMessage"] = "Category updated successfully";
+                    TempData["SuccessMessage"] = "Chỉnh sửa danh mục thành công";
 
                     return RedirectToAction("Edit", obj);
                 }
                 catch (Exception ex)
                 {
-                    TempData["ErrorMessage"] = "Error creating product: " + ex.Message;
+                    TempData["ErrorMessage"] = "Error: " + ex.Message;
                 }                
             }
             return View("Edit", obj);
@@ -303,13 +303,13 @@ namespace feast_mansion_project.Controllers
 
                     await _dbContext.SaveChangesAsync();
 
-                    TempData["SuccessMessage"] = "Category deleted successfully";
+                    TempData["SuccessMessage"] = "Xoá danh mục thành công";
 
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    TempData["ErrorMessage"] = "Error creating product: " + ex.Message;
+                    TempData["ErrorMessage"] = "Error: " + ex.Message;
 
                     return RedirectToAction("Index");
                 }

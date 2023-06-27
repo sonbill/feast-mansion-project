@@ -67,6 +67,7 @@ namespace feast_mansion_project.Controllers
             if (ModelState.IsValid)
             {
                 var checkUser = _dbContext.Users.FirstOrDefault(s => s.Email == model.Email);
+
                 try
                 {
                     if (checkUser == null)
@@ -140,7 +141,6 @@ namespace feast_mansion_project.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var user = await _accountRepository.AuthenticateAsync(model.Email, model.Password);
                 if (user != null)
                 {
@@ -159,7 +159,96 @@ namespace feast_mansion_project.Controllers
                     }
                 }
             }
+            TempData["ErrorMessage"] = "Sai email hoặc mật khẩu";
+
             return View(model);
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> UpdatePassword(string currentPassword, string newPassword)
+        //{
+        //    if (HttpContext.Session.GetString("UserId") == null)
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+
+        //    int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+
+        //    var user = await _dbContext.Users.FindAsync(userId);
+
+        //    // Create an instance of the PasswordHasher
+        //    var passwordHasher = new PasswordHasher<User>();
+
+        //    // Verify the current password
+        //    var passwordVerificationResult = passwordHasher.VerifyHashedPassword(user, user.Password, currentPassword);
+
+        //    if (passwordVerificationResult != PasswordVerificationResult.Success)
+        //    {
+
+        //        // Current password is incorrect
+        //        return RedirectToAction("ChangePassword", "Home");
+        //    }
+
+        //    // Hash the new password
+        //    var hashedPassword = passwordHasher.HashPassword(user, newPassword);
+
+        //    // Update the user's password
+        //    user.Password = hashedPassword;
+
+        //    // Save changes to the user in the database (assuming you're using a database context)
+        //    await _dbContext.SaveChangesAsync();
+
+        //    TempData["SuccessMessage"] = "Cập nhập thông tin thành công";
+
+        //    return RedirectToAction("ChangePassword", "Home");
+        //}
+
+        [HttpPost]
+        public async Task<IActionResult> UpdatePassword(string currentPassword, string newPassword, string confirmPassword)
+        {
+            if (HttpContext.Session.GetString("UserId") == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
+
+            var user = await _dbContext.Users.FindAsync(userId);
+
+            // Create an instance of the PasswordHasher
+            var passwordHasher = new PasswordHasher<User>();
+
+            // Verify the current password
+            var passwordVerificationResult = passwordHasher.VerifyHashedPassword(user, user.Password, currentPassword);
+
+            if (passwordVerificationResult != PasswordVerificationResult.Success)
+            {
+                // Current password is incorrect
+                TempData["InstructionMessage"] = "Mật khẩu cũ không đúng.";
+
+                return RedirectToAction("ChangePassword", "Home");
+            }
+
+            if (newPassword != confirmPassword)
+            {
+                // New password and confirmation password do not match
+                TempData["InstructionMessage"] = "Xác nhận mật khẩu mới không khớp.";
+
+                return RedirectToAction("ChangePassword", "Home");
+            }            
+
+            // Hash the new password
+            var hashedPassword = passwordHasher.HashPassword(user, newPassword);
+
+            // Update the user's password
+            user.Password = hashedPassword;
+
+            // Save changes to the user in the database (assuming you're using a database context)
+            await _dbContext.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Cập nhập thông tin thành công";
+
+            return RedirectToAction("ChangePassword", "Home");
         }
 
 

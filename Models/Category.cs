@@ -15,11 +15,11 @@ namespace feast_mansion_project.Models
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
-
-        public string? ImagePath { get; set; }
+        [Required]
+        public string ImagePath { get; set; }
 
         [ForeignKey("CategoryId")]
-        public ICollection<Product> ?Products { get; set; }
+        public ICollection<Product>? Products { get; set; }
 
         //public Category()
         //{

@@ -22,10 +22,12 @@
                     <div>
                         <label asp-for="Email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
                         <input asp-for="Email" type="email" placeholder="email@gmail.com" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5" required>
+                        <span asp-validation-for="Email" class="text-red-500"></span> <!-- Display validation error message -->
                     </div>
                     <div>
                         <label asp-for="Password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mật khẩu</label>
                         <input asp-for="Password" type="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5" required>
+                        <span asp-validation-for="Password" class="text-red-500"></span> <!-- Display validation error message -->
                     </div>
                     <button type="submit" class="w-full text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2 text-center">Đăng nhập</button>
                 </form>

@@ -58,47 +58,8 @@ namespace feast_mansion_project.Repositories
                 }
             }
             return null;
-        }
+        }        
 
-
-
-
-        //public async Task<User> AuthenticateAsync(string email, string password)
-        //{
-        //    var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
-
-        //    try
-        //    {
-        //        if (user != null)
-        //        {
-        //            var passwordHasher = new PasswordHasher<User>();
-        //            var result = passwordHasher.VerifyHashedPassword(user, user.Password, password);
-
-        //            if (result == PasswordVerificationResult.Success)
-        //            {
-        //                _httpContextAccessor.HttpContext.Session.SetString("userId", user.userId.ToString());
-        //                _httpContextAccessor.HttpContext.Session.SetString("Username", user.Username);
-        //                _httpContextAccessor.HttpContext.Session.SetString("IsAdmin", user.IsAdmin ? "true" : "false");
-        //                _httpContextAccessor.HttpContext.Session.SetString("Email", user.Email);
-
-        //                // Set the IsAdmin property based on the value of IsAdmin
-        //                //user.IsAdmin = user.IsAdmin ?? false;
-
-        //                TempData["SuccessMessage"] = "User authenticated successfully.";
-
-        //                return user;
-        //            }
-        //        }
-        //    } catch (Exception ex)
-        //    {
-        //        TempData["ErrorMessage"] = "Error authenticating user: " + ex.Message;
-
-        //        return null;
-        //    }
-        //    TempData["ErrorMessage"] = "Invalid email or password.";
-
-        //    return null;
-        //}
 
         public async Task LogoutAsync()
         {

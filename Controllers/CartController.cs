@@ -101,6 +101,8 @@ namespace feast_mansion_project.Controllers
             int currentUser = Convert.ToInt32(HttpContext.Session.GetString("userId"));
             if (currentUser == 0)
             {
+                TempData["InstructionMessage"] = "Bạn cần phải đăng nhập trước";
+
                 // If not, redirect to login view
                 return RedirectToAction("Login", "UserAuthentication");
             }
@@ -162,7 +164,6 @@ namespace feast_mansion_project.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteCartItem(int productId)
         {
-            // Check if user is logged in
             int currentUser = Convert.ToInt32(HttpContext.Session.GetString("userId"));
             if (currentUser == 0)
             {
@@ -192,6 +193,8 @@ namespace feast_mansion_project.Controllers
 
                 CartDetails = listCartDetails
             };
+
+            TempData["SuccessMessage"] = "Đã xoá món ăn";
 
             return RedirectToAction("Index");
 

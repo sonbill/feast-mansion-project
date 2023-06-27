@@ -52,7 +52,7 @@
                     </div>
 
                     <div>
-                        <label asp-for="PasswordConfirm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nhập lại mật khẩu</label>
+                        <label asp-for="PasswordConfirm" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Xác nhận mật khẩu</label>
                         <input asp-for="PasswordConfirm" type="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2" required>
                         <span asp-validation-for="PasswordConfirm" class="items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1"></span>
                     </div>
@@ -62,7 +62,7 @@
                             <input id="terms" aria-describedby="terms" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300" required>
                         </div>
                         <div class="ml-3 text-sm">
-                            <label for="terms" class="font-light text-gray-500 dark:text-gray-300">Tôi đồng ý với các <a class="font-medium text-red-600 hover:underline" href="#">Điều khoản và diều kiện</a></label>
+                            <label for="terms" class="font-light text-gray-500 dark:text-gray-300">Tôi đồng ý với các <a class="font-medium text-red-600 hover:underline" asp-controller="Home" asp-action="Policy">Chính sách của cửa hàng</a></label>
                         </div>
                     </div>
 

@@ -142,13 +142,13 @@ namespace feast_mansion_project.Controllers
                 // Save the changes to the database
                 await _dbContext.SaveChangesAsync();
 
-                //TempData["SuccessMessage"] = "Cập nhập thông tin thành công";
+                TempData["SuccessMessage"] = "Cập nhập thông tin thành công";
 
                 // Optionally, you can redirect the user to a success page
                 return RedirectToAction("Profile");
             }
 
-            //TempData["ErrorMessage"] = "Cập nhập thông tin không thành công";
+            TempData["ErrorMessage"] = "Cập nhập thông tin không thành công";
 
             // If the form data is not valid, return to the profile page to display errors
             return View("Profile", model);
@@ -159,6 +159,11 @@ namespace feast_mansion_project.Controllers
         [HttpGet("ChangePassword")]
         public async Task<IActionResult> ChangePassword()
         {
+            if (HttpContext.Session.GetString("userId") == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
@@ -307,6 +312,8 @@ namespace feast_mansion_project.Controllers
 
             if (HttpContext.Session.GetString("UserId") == null)
             {
+                TempData["InstructionMessage"] = "Bạn cần phải đăng nhập trước";
+
                 return RedirectToAction("Index", "Home");
             }
 
