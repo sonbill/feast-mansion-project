@@ -37,7 +37,7 @@
 <div class="max-w-screen-xl mx-auto p-3 md:p-0">
     <h1 class="font-bold text-2xl">DANH MỤC MÓN ĂN</h1>
     <hr class="w-64 h-1 my-3 bg-gray-500 border-0 rounded dark:bg-gray-700">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 overflow-y-auto h-[700px] md:h-auto">
         @foreach (var category in Model.Categories)
         {
             @*01*@
@@ -61,7 +61,7 @@
         }
     </div>
     @*RECOMMEND*@
-<div>
+<div class="overflow-x-auto">
     <h1 class="font-bold text-2xl my-10">
         CÓ THỂ BẠN SẼ THÍCH MÓN NÀY
         <span class="material-icons text-yellow-500 text-xl">
@@ -69,12 +69,12 @@
         </span>
     </h1>
     <hr class="w-64 h-1 my-3 bg-gray-500 border-0 rounded dark:bg-gray-700">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="flex w-max overflow-x-auto whitespace-no-wrap space-x-3">
         @foreach (var product in Model.Products)
         {
             @if (product.IsPin == "Recommended")
             {
-                <div class="md:px-0 w-[300px] col-span-1">
+                <div class="md:px-0 w-[300px]">
                     <div class="border rounded border-gray-600 p-3">
                         <div class="mb-3 mx-auto">
                             <span class="material-icons text-yellow-500 w-full text-right" style="font-size: 2rem;">

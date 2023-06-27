@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qipWwPYzHlk0yGALp7BnbiIfq+Bk/1yLV6RFLO3dYc4=",
+  "Hash": "1pSK1KRbqyAwbln9KoQAZB5seGJIsSb72ISgnBEmYJw=",
   "Source": "feast-mansion-project",
   "BasePath": "_content/feast-mansion-project",
   "Mode": "Default",
@@ -185,6 +185,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/Pictures/4.png"
+    },
+    {
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/about-1.png",
+      "SourceId": "feast-mansion-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
+      "BasePath": "_content/feast-mansion-project",
+      "RelativePath": "assets/Pictures/about-1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/Pictures/about-1.png"
+    },
+    {
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/about-2.png",
+      "SourceId": "feast-mansion-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
+      "BasePath": "_content/feast-mansion-project",
+      "RelativePath": "assets/Pictures/about-2.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/Pictures/about-2.png"
     },
     {
       "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/banner-1.png",
