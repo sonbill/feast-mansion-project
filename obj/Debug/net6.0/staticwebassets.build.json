@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6kIlx5Rfj/Qb7onU56vp/LFSoDcL2SLeieo00pRyLOY=",
+  "Hash": "tBsKxmHXYnzWRHrpYG+CaAeAUQczMNPbtDfvp/Z6n4U=",
   "Source": "feast-mansion-project",
   "BasePath": "_content/feast-mansion-project",
   "Mode": "Default",
@@ -255,12 +255,12 @@
       "OriginalItemSpec": "wwwroot/assets/Pictures/banner-2.png"
     },
     {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/banner.png",
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/DeliciousFood.png",
       "SourceId": "feast-mansion-project",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
       "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "assets/Pictures/banner.png",
+      "RelativePath": "assets/Pictures/DeliciousFood.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -269,24 +269,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/assets/Pictures/banner.png"
-    },
-    {
-      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/Delicious Food.png",
-      "SourceId": "feast-mansion-project",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
-      "BasePath": "_content/feast-mansion-project",
-      "RelativePath": "assets/Pictures/Delicious Food.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/assets/Pictures/Delicious Food.png"
+      "OriginalItemSpec": "wwwroot/assets/Pictures/DeliciousFood.png"
     },
     {
       "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/Feastmansion.png",
@@ -304,6 +287,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/assets/Pictures/Feastmansion.png"
+    },
+    {
+      "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/footer-banner.png",
+      "SourceId": "feast-mansion-project",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/",
+      "BasePath": "_content/feast-mansion-project",
+      "RelativePath": "assets/Pictures/footer-banner.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/assets/Pictures/footer-banner.png"
     },
     {
       "Identity": "/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/wwwroot/assets/Pictures/Free_Food_Banner.jpeg",
