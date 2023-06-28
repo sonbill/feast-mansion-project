@@ -13,7 +13,6 @@ namespace feast_mansion_project.Repositories
 
         Task LogoutAsync();
 
-
     }
 }
 

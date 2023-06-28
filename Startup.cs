@@ -18,10 +18,12 @@ using feast_mansion_project.Middleware;
 using feast_mansion_project.Repositories;
 using Microsoft.Extensions.Options;
 
+
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Globalization;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 namespace feast_mansion_project
 {
@@ -47,6 +49,14 @@ namespace feast_mansion_project
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            services.Configure<KestrelServerOptions>(configuration.GetSection("Kestrel"));
+
+
             services.AddControllersWithViews();
 
             services.AddDistributedMemoryCache();

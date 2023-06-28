@@ -66,7 +66,7 @@ namespace feast_mansion_project.Controllers
         {
             if (ModelState.IsValid)
             {
-                var checkUser = _dbContext.Users.FirstOrDefault(s => s.Email == model.Email);
+                var checkUser = await _dbContext.Users.FirstOrDefaultAsync(s => s.Email == model.Email);
 
                 try
                 {
@@ -74,7 +74,6 @@ namespace feast_mansion_project.Controllers
                     {
                         var user = new User
                         {
-                            //Username = model.Username,
                             Email = model.Email,
                             IsAdmin = false
                         };
@@ -83,6 +82,7 @@ namespace feast_mansion_project.Controllers
                         user.Password = passwordHasher.HashPassword(user, model.Password);
 
                         _dbContext.Users.Add(user);
+
                         await _dbContext.SaveChangesAsync();
 
                         var customer = new Customer
@@ -95,7 +95,6 @@ namespace feast_mansion_project.Controllers
                         };
 
                         _dbContext.Customers.Add(customer);
-
                         await _dbContext.SaveChangesAsync();
 
                         TempData["SuccessMessage"] = "Đăng ký tài khoản thành công.";

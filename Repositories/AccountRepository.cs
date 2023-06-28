@@ -58,15 +58,21 @@ namespace feast_mansion_project.Repositories
                 }
             }
             return null;
-        }        
+        }
 
+
+        //public async Task LogoutAsync()
+        //{
+        //    await Task.Run(() =>
+        //    {
+        //        _httpContextAccessor.HttpContext.Session.Clear();
+        //    });
+        //}
 
         public async Task LogoutAsync()
         {
-            await Task.Run(() =>
-            {
-                _httpContextAccessor.HttpContext.Session.Clear();
-            });
+            _httpContextAccessor.HttpContext.Session.Clear();
+            await Task.CompletedTask;
         }
     }
 }

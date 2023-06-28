@@ -124,23 +124,23 @@ namespace feast_mansion_project.Controllers
             ViewData["OrderViewModels"] = orderViewModels;
 
             return View();
-        }        
+        }
 
-        public IActionResult ExportToExcel(DateTime startDate, DateTime endDate)
+        public async Task<IActionResult> ExportToExcel(DateTime startDate, DateTime endDate)
         {
             var revenueAndOrderCountByDay = new Dictionary<DateTime, (decimal Revenue, int OrderCount)>();
 
-            var orders = _dbContext.Orders
+            var orders = await _dbContext.Orders
                 .Where(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete")
-                .ToList();
+                .ToListAsync();
 
             if (orders.Count != 0)
             {
                 // Iterate over each day in the date range
                 for (DateTime date = startDate.Date; date <= endDate.Date; date = date.AddDays(1))
                 {
-                    var totalRevenue = _orderRepository.GetTotalRevenueByDaysForExcel(date, date.AddDays(1).AddSeconds(-1));
-                    var orderCount = _orderRepository.GetOrderCountByDaysForExcel(date, date.AddDays(1).AddSeconds(-1));
+                    var totalRevenue = await _orderRepository.GetTotalRevenueByDaysForExcelAsync(date, date.AddDays(1).AddSeconds(-1));
+                    var orderCount = await _orderRepository.GetOrderCountByDaysForExcelAsync(date, date.AddDays(1).AddSeconds(-1));
                     revenueAndOrderCountByDay[date] = (totalRevenue, orderCount);
                 }
 

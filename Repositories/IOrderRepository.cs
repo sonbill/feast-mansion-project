@@ -2,6 +2,7 @@
 using System.Linq;
 using feast_mansion_project.Models;
 using feast_mansion_project.Models.Domain;
+using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 
 namespace feast_mansion_project.Repositories
@@ -18,8 +19,8 @@ namespace feast_mansion_project.Repositories
         //byte[] ExportTotalRevenueToExcel(DateTime startDate, DateTime endDate);
         decimal GetTotalRevenueByDays(DateTime startDate, DateTime endDate);
         int GetOrderCountByDays(DateTime startDate, DateTime endDate);
-        decimal GetTotalRevenueByDaysForExcel(DateTime startDate, DateTime endDate);
-        int GetOrderCountByDaysForExcel(DateTime startDate, DateTime endDate);
+        Task<decimal> GetTotalRevenueByDaysForExcelAsync(DateTime startDate, DateTime endDate);
+        Task<int> GetOrderCountByDaysForExcelAsync(DateTime startDate, DateTime endDate);
 
 
     }
@@ -89,17 +90,17 @@ namespace feast_mansion_project.Repositories
                 .Count(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete");
         }
 
-        public decimal GetTotalRevenueByDaysForExcel(DateTime startDate, DateTime endDate)
+        public async Task<decimal> GetTotalRevenueByDaysForExcelAsync(DateTime startDate, DateTime endDate)
         {
-            return _dbContext.Orders
+            return await _dbContext.Orders
                 .Where(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete")
-                .Sum(o => o.TotalPrice);
+                .SumAsync(o => o.TotalPrice);
         }
 
-        public int GetOrderCountByDaysForExcel(DateTime startDate, DateTime endDate)
+        public async Task<int> GetOrderCountByDaysForExcelAsync(DateTime startDate, DateTime endDate)
         {
-            return _dbContext.Orders
-                .Count(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete");
+            return await _dbContext.Orders
+                .CountAsync(o => o.OrderDate >= startDate && o.OrderDate <= endDate && o.Status == "Complete");
         }
     }
 }

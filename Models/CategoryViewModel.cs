@@ -15,8 +15,7 @@ namespace feast_mansion_project.Models
         [Required(ErrorMessage = "Yêu cầu nhập mô tả.")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Yêu cầu chọn hình ảnh.")]
-        public string ImagePath { get; set; }
+        public string? ImagePath { get; set; }
 
         public int TotalItems { get; set; }
 

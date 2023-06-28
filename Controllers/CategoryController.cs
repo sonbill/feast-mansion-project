@@ -35,7 +35,7 @@ namespace feast_mansion_project.Controllers
 
         // GET: /<controller>/
         [HttpGet]
-        public IActionResult Index(int page = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
@@ -44,27 +44,24 @@ namespace feast_mansion_project.Controllers
 
             var categories = _dbContext.Categories.OrderBy(c => c.CategoryId);
 
-            int totalItems = categories.Count();
+            int totalItems = await categories.CountAsync();
 
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            var paginatedCategories = categories.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var paginatedCategories = await categories.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
             var viewModel = new CategoryViewModel
             {
                 Categories = paginatedCategories,
-
                 TotalItems = totalItems,
-
                 CurrentPage = page,
-
                 PageSize = pageSize,
-
                 TotalPages = totalPages
             };
 
             return View("Index", viewModel);
         }
+
 
         //GET: Create Category
         [HttpGet("Create")]
@@ -136,7 +133,7 @@ namespace feast_mansion_project.Controllers
 
                     _dbContext.Categories.Add(category);
 
-                    _dbContext.SaveChanges();
+                    await _dbContext.SaveChangesAsync();
 
                     TempData["SuccessMessage"] = "Thêm danh mục thành công";
 
@@ -158,7 +155,7 @@ namespace feast_mansion_project.Controllers
 
         //GET: Update Category
         [HttpGet("Edit/{id}")]
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
@@ -170,20 +167,19 @@ namespace feast_mansion_project.Controllers
                 return NotFound();
             }
 
-
-            var categoryFromDb = _dbContext.Categories.Find(id);
+            var categoryFromDb = await _dbContext.Categories.FindAsync(id);
 
             if (categoryFromDb == null)
             {
                 return NotFound();
             }
 
-
             return View("Edit", categoryFromDb);
         }
 
+
         //PUT: Update Category
-            
+
         [HttpPost("Edit/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditCategory(Category obj, IFormFile? newThumbnail)
@@ -248,25 +244,23 @@ namespace feast_mansion_project.Controllers
                 try
                 {
                     category.Name = obj.Name;
-
-                    category.Description = obj.Description;                    
-
+                    category.Description = obj.Description;
                     category.ImagePath = obj.ImagePath;
-                    //_dbContext.Categories.Update(category);
 
-                    _dbContext.SaveChangesAsync();
+                    await _dbContext.SaveChangesAsync();
 
                     TempData["SuccessMessage"] = "Chỉnh sửa danh mục thành công";
 
-                    return RedirectToAction("Edit", obj);
+                    return RedirectToAction("Edit", "Category", new { id = obj.CategoryId });
                 }
                 catch (Exception ex)
                 {
                     TempData["ErrorMessage"] = "Error: " + ex.Message;
-                }                
+                }
             }
             return View("Edit", obj);
         }
+
 
 
         [HttpPost]
@@ -279,7 +273,7 @@ namespace feast_mansion_project.Controllers
             }
 
             // Retrieve the product from the database
-            var category = _dbContext.Categories.FirstOrDefault(c => c.CategoryId == id);
+            var category = await _dbContext.Categories.FirstOrDefaultAsync(c => c.CategoryId == id);
 
             if (category != null)
             {
@@ -311,7 +305,7 @@ namespace feast_mansion_project.Controllers
                 {
                     TempData["ErrorMessage"] = "Error: " + ex.Message;
 
-                    return RedirectToAction("Index");
+                    return View("Edit");
                 }
             }
 

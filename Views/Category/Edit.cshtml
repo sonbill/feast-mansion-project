@@ -25,6 +25,7 @@
                 <label asp-for="ImagePath" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Thumbnail</label>
                 <input asp-for="ImagePath" name="newThumbnail" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" type="file" accept=".jpg, .jpeg, .png">
                 <div class="w-24 h-24">
+                    <input asp-for="ImagePath" value="@Model.ImagePath" hidden/>
                     <img src="@Url.Content("~/Uploads/CategoryThumbnail/" + @Model.ImagePath)" alt="Category Thumbnail" class="w-full h-full object-cover" />
                     @*<img src="@Url.Content(System.IO.Path.Combine("~/Uploads/CategoryThumbnail/", Model.ImagePath))" alt="Category Thumbnail" class="w-full h-full object-cover" />*@
                 </div>

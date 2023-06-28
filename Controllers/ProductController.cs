@@ -47,7 +47,7 @@ namespace feast_mansion_project.Controllers
 
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            var paginatedProducts = products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var paginatedProducts = await products.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
             var viewModel = new ProductViewModel
             {
@@ -59,26 +59,8 @@ namespace feast_mansion_project.Controllers
             };
 
             return View(viewModel);
-        }
-
-       
-        //GET: Create Product
-        //[HttpGet("Create")]
-        //public IActionResult Create()
-        //{
-        //    if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-
-        //    var viewModel = new ProductViewModel
-        //    {
-        //        ListCategory = _dbContext.Categories.ToList(),
-        //    };
-
-
-        //    return View("~/Views/Product/Create.cshtml", viewModel);
-        //}
+        }       
+        
         [HttpGet("Create")]
         public IActionResult Create()
         {
@@ -150,6 +132,7 @@ namespace feast_mansion_project.Controllers
 
                     // Add new product to database
                     _dbContext.Products.Add(product);
+
                     await _dbContext.SaveChangesAsync();
 
                     TempData["SuccessMessage"] = "Thêm mới món ăn thành công";
@@ -183,7 +166,6 @@ namespace feast_mansion_project.Controllers
             var product = _dbContext.Products.Include(p => p.Category).FirstOrDefault(p => p.ProductId == id);
 
             var productFromDb = _dbContext.Products.Find(id);
-
 
             if (product == null)
             {
@@ -285,7 +267,7 @@ namespace feast_mansion_project.Controllers
         // POST: Delete Product
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int id )
+        public async Task<IActionResult> Delete(int id)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {

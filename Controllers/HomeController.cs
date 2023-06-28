@@ -31,10 +31,10 @@ namespace feast_mansion_project.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index(HomeViewModel model)
+        public async Task<IActionResult> Index(HomeViewModel model)
         {
-            var categories = _dbContext.Categories.ToList();
-            var products = _dbContext.Products.ToList();
+            var categories = await _dbContext.Categories.ToListAsync();
+            var products = await _dbContext.Products.ToListAsync();
 
             var viewModel = new HomeViewModel
             {
@@ -56,26 +56,26 @@ namespace feast_mansion_project.Controllers
 
         //GET: Details Product
         [HttpGet("Details/{id}")]
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var products = await _dbContext.Products.Include(p => p.Category)
+            var product = await _dbContext.Products.Include(p => p.Category)
                 .FirstOrDefaultAsync(p => p.ProductId == id);
 
 
             //var categories = _dbContext.Categories.ToList();
 
-            if (products == null)
+            if (product == null)
             {
                 return NotFound();
-            }           
+            }
 
 
-            return View("ProductDetail", products);
+            return View("ProductDetail", product);
         }      
 
         
@@ -90,11 +90,14 @@ namespace feast_mansion_project.Controllers
 
             int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
 
-            User user = _dbContext.Users.FirstOrDefault(u => u.UserId == userId);
-            Customer customer = _dbContext.Customers.FirstOrDefault(c => c.UserId == userId);
+            User? user = await _dbContext.Users.FirstOrDefaultAsync(u => u.UserId == userId);
 
-            if (user == null)
+            Customer? customer = await _dbContext.Customers.FirstOrDefaultAsync(c => c.UserId == userId);
+
+            if (user == null && customer == null)
             {
+                TempData["ErrorMessage"] = "Không tìm thấy người dùng";
+
                 return NotFound();
             }
 
@@ -110,7 +113,7 @@ namespace feast_mansion_project.Controllers
 
                 Phone = customer.Phone,
 
-                Email = user.Email
+                Email = user?.Email
 
             };
 
@@ -127,16 +130,19 @@ namespace feast_mansion_project.Controllers
 
             // Retrieve the existing customer record from the database
             var customer = await _dbContext.Customers.FindAsync(userId);
+            if (customer == null)
+            {
+                TempData["ErrorMessage"] = "Không tìm thấy người dùng";
+
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
                 // Update the customer's properties with the values from the form
                 customer.CustomerId = model.CustomerId;
-
                 customer.FullName = model.FullName;
-
                 customer.Phone = model.Phone;
-
                 customer.Address = model.Address;
 
                 // Save the changes to the database
@@ -181,13 +187,13 @@ namespace feast_mansion_project.Controllers
                 .Include(o => o.OrderDetails)
                 .ThenInclude(od => od.Product)
                 .Where(o => o.CustomerId == userId)
-                .OrderByDescending(o => o.OrderDate);            
+                .OrderByDescending(o => o.OrderDate);
 
             int totalItems = await orders.CountAsync();
 
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            var paginatedOrders = orders.Skip((page - 1) * pageSize).Take(pageSize).ToList();            
+            var paginatedOrders = await orders.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
             OrderHistoryViewModel orderHistoryViewModel = new OrderHistoryViewModel
             {
@@ -201,18 +207,15 @@ namespace feast_mansion_project.Controllers
 
                 TotalPages = totalPages
             };
-
             //var order = _dbContext.Orders.Where(o => o.CustomerId == userId).ToList();
-
-
             return View("OrdersHistoryList", orderHistoryViewModel);
         }
 
         [HttpGet("Search")]
         public async Task<IActionResult> Search(string searchQuery)
         {
-            var products = _dbContext.Products.Include(p => p.Category).ToList();
-            var categories = _dbContext.Categories.ToList();
+            var products = await _dbContext.Products.Include(p => p.Category).ToListAsync();
+            var categories = await _dbContext.Categories.ToListAsync();
 
             if (!string.IsNullOrWhiteSpace(searchQuery))
             {
@@ -231,7 +234,8 @@ namespace feast_mansion_project.Controllers
             };
 
             return View("Menu", viewModel);
-        }     
+        }
+
 
         [HttpGet("Menu")]
         public async Task<IActionResult> Menu(int? categoryId, HomeViewModel model)
@@ -259,11 +263,8 @@ namespace feast_mansion_project.Controllers
                         .Include(p => p.Category)
                         .ToListAsync();
                 }
-
                 return View("Menu", viewModel);
-            }         
-
-
+            }
             return View("Menu", model);
         }        
 
@@ -277,7 +278,10 @@ namespace feast_mansion_project.Controllers
 
             int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
 
-            var order = _dbContext.Orders.Include(o => o.Customer).Include(o => o.OrderDetails).ThenInclude(od => od.Product).FirstOrDefault(o => o.OrderId == orderId);
+            var order = await _dbContext.Orders.Include(o => o.Customer)
+                .Include(o => o.OrderDetails).ThenInclude(od => od.Product)
+                .FirstOrDefaultAsync(o => o.OrderId == orderId);
+
 
             if (order == null)
             {
@@ -295,13 +299,15 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var order = _dbContext.Orders.Find(orderId);
+            var order = await _dbContext.Orders.FindAsync(orderId);
 
-            order.Status = "Cancel";
 
-            _dbContext.Orders.Update(order);
-
-            await _dbContext.SaveChangesAsync();            
+            if (order != null)
+            {
+                order.Status = "Cancel";
+                _dbContext.Orders.Update(order);
+                await _dbContext.SaveChangesAsync();
+            }                       
 
             return RedirectToAction("OrdersHistory", new { orderId });
         }
@@ -340,7 +346,6 @@ namespace feast_mansion_project.Controllers
 
                     obj.Status = "chưa đọc";
 
-                    // Add new product to database
                     _dbContext.Feedbacks.Add(obj);
 
                     await _dbContext.SaveChangesAsync();

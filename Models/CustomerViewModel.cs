@@ -16,7 +16,7 @@ namespace feast_mansion_project.Models
         [Required(ErrorMessage = "Phone number is required")]
         public string Phone { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        public ICollection<Order>? Orders { get; set; }
 
         public int TotalItems { get; set; }
 

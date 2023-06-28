@@ -33,9 +33,6 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            //var orders = _dbContext.Orders.OrderBy(o => o.OrderId);
-
-            //var orders = _dbContext.Orders.Include(o => o.Customer).OrderBy(o => o.OrderId);
             var orders = _dbContext.Orders
                 .Include(o => o.Customer)
                 .OrderByDescending(o => o.OrderDate);
@@ -44,7 +41,7 @@ namespace feast_mansion_project.Controllers
 
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            var paginatedOrders = orders.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var paginatedOrders = await orders.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
             var viewModel = new OrderViewModel
             {
@@ -57,8 +54,7 @@ namespace feast_mansion_project.Controllers
                 PageSize = pageSize,
 
                 TotalPages = totalPages
-            };
-            
+            };            
             return View("Index", viewModel);
         }
         [HttpGet]
@@ -75,7 +71,7 @@ namespace feast_mansion_project.Controllers
                     .OrderByDescending(o => o.OrderDate);
             }
 
-            var totalItems = await filteredOrders.CountAsync(); // Total count of filtered orders
+            var totalItems = await filteredOrders.CountAsync();
 
             var paginatedOrders = await filteredOrders
                 .Skip((page - 1) * pageSize)
@@ -152,7 +148,7 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var order = _dbContext.Orders.Find(orderId);
+            var order = await _dbContext.Orders.FindAsync(orderId);
 
             if (order == null)
             {
@@ -183,7 +179,8 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var order = _dbContext.Orders.Find(orderId);
+            var order = await _dbContext.Orders.FindAsync(orderId);
+
             if (order == null)
             {
                 // handle error
@@ -213,7 +210,12 @@ namespace feast_mansion_project.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var order = _dbContext.Orders.Find(orderId);
+            var order = await _dbContext.Orders.FindAsync(orderId);
+
+            if (order == null)
+            {
+                return NotFound();
+            }
 
             order.Status = "Cancel";
 

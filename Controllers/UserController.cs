@@ -25,18 +25,18 @@ namespace feast_mansion_project.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index(int page = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            var users = _dbContext.Users.Include(u => u.Customer).ToList();
+            var users = await _dbContext.Users.Include(u => u.Customer).ToListAsync();
 
-            var customers = _dbContext.Customers.Include(c => c.User).ToList();
+            var customers = await _dbContext.Customers.Include(c => c.User).ToListAsync();
 
-            int totalItems = users.Count();
+            int totalItems = users.Count;
 
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
@@ -62,6 +62,7 @@ namespace feast_mansion_project.Controllers
 
 
         [Route("Edit/{id}")]
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id, int page = 1, int pageSize = 5)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
@@ -74,10 +75,10 @@ namespace feast_mansion_project.Controllers
                 return NotFound();
             }
 
-            var customerFromDb = _dbContext.Customers
+            var customerFromDb = await _dbContext.Customers
                 .Include(c => c.Orders)
                 .ThenInclude(o => o.OrderDetails)
-                .FirstOrDefault(c => c.CustomerId == id);
+                .FirstOrDefaultAsync(c => c.CustomerId == id);
 
             if (customerFromDb == null)
             {
@@ -123,11 +124,15 @@ namespace feast_mansion_project.Controllers
 
             if (customerFromDb == null)
             {
+                TempData["ErrorMessage"] = "Không có thông tin";
+
                 return NotFound();
             }
 
             if (!ModelState.IsValid)
             {
+                TempData["ErrorMessage"] = "Cập nhật không thành công";
+
                 return View("Edit", customerViewModel);
             }
 
@@ -138,6 +143,8 @@ namespace feast_mansion_project.Controllers
             customerFromDb.Phone = customerViewModel.Phone;
 
             _dbContext.Customers.Update(customerFromDb);
+
+            TempData["SuccessMessage"] = "Cập nhật thành công";
 
             await _dbContext.SaveChangesAsync();
 
@@ -180,7 +187,6 @@ namespace feast_mansion_project.Controllers
 
             return RedirectToAction("Index", "User");
         }
-
     }
 }
 

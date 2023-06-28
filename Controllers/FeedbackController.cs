@@ -25,7 +25,7 @@ namespace feast_mansion_project.Controllers
 
         // GET: /<controller>/
         [HttpGet("Index")]
-        public IActionResult Index(int page = 1, int pageSize = 5)
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 5)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
@@ -36,11 +36,11 @@ namespace feast_mansion_project.Controllers
 
             var feedbacks = _dbContext.Feedbacks.Include(o => o.Customer).OrderBy(c => c.FeedbackId);
 
-            int totalItems = feedbacks.Count();
+            int totalItems = await feedbacks.CountAsync();
 
             int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            var paginatedFeedbacks = feedbacks.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            var paginatedFeedbacks = await feedbacks.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 
             var viewModel = new FeedbackViewModel
             {
@@ -55,19 +55,19 @@ namespace feast_mansion_project.Controllers
         }
 
         [HttpGet("Detail/{id}")]
-        public IActionResult Detail(int? id)
+        public async Task<IActionResult> Detail(int? id)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            var feedbackDetail = _dbContext.Feedbacks.Include(f => f.Customer).FirstOrDefault(f => f.FeedbackId == id);
+            var feedbackDetail = await _dbContext.Feedbacks.Include(f => f.Customer).FirstOrDefaultAsync(f => f.FeedbackId == id);
 
             if (feedbackDetail != null && feedbackDetail.Status == "chưa đọc")
             {
                 feedbackDetail.Status = "đã đọc";
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
             }
 
             return View(feedbackDetail);
