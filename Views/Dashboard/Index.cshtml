@@ -201,7 +201,7 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
                             <th class="px-6 py-3">Order ID</th>
-                            <th class="px-6 py-3">Customer Name</th>
+                            @*<th class="px-6 py-3">Customer Name</th>*@
                             <th class="px-6 py-3">Trạng thái</th>
                             <th class="px-6 py-3">Tổng tiền</th>
                             <th class="px-6 py-3">Ngày đặt</th>
@@ -213,7 +213,7 @@
                         {
                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">@orderViewModel.OrderId</th>
-                                <td class="px-6 py-4">@orderViewModel.CustomerId</td>
+                                @*<td class="px-6 py-4">@orderViewModel.CustomerId</td>*@
                                 <td class="px-6 py-4">@orderViewModel.Status</td>
                                 <td class="px-6 py-4">@string.Format("{0:N0} VNĐ", @orderViewModel.TotalPrice)</td>
                                 <td class="px-6 py-4">@orderViewModel.OrderDate</td>

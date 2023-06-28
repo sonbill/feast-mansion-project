@@ -42,21 +42,20 @@
                     </th>
                     <th class="px-6 py-3">
                         Order Date
-                    </th>
-                    <th class="px-6 py-3">
-                    </th>
+                    </th>                    
                 </tr>
             </thead>
             <tbody>
                 @foreach (var order in Model.Orders)
                 {
-                    <tr>
-                        <td>@order.OrderId</td>
-                        <td>@order.TotalPrice</td>
-                        <td>@order.OrderDate</td>
+                    <tr class="space-y-3">
                         <td>
-                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
+                            <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                @order.OrderId
+                            </a>
                         </td>
+                        <td>@order.TotalPrice</td>
+                        <td>@order.OrderDate</td>                       
                     </tr>
                 }
             </tbody>

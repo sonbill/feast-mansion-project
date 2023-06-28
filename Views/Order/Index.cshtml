@@ -42,10 +42,7 @@
                     </th>
                     <th class="px-3 py-3">
                         NGÀY ĐẶT
-                    </th>
-                    <th class="px-6 py-3">
-
-                    </th>
+                    </th>                   
                 </tr>
             </thead>
 
@@ -56,7 +53,9 @@
                     {
                         <tr class="bg-gray-50 border-b">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                @obj.OrderId
+                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium hover:underline">
+                                    @obj.OrderId
+                                </a>
                             </th>
                             <td class="px-6 py-4">
                                 @obj.Status
@@ -69,11 +68,7 @@
                             </td>
                             <td class="px-2 py-4">
                                 @obj.OrderDate
-                            </td>
-
-                            <td class="px-6 py-4 space-x-3">
-                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
-                            </td>
+                            </td>                            
                         </tr>
                     }
 
@@ -102,10 +97,7 @@
                     </th>
                     <th class="px-3 py-3">
                         NGÀY ĐẶT
-                    </th>
-                    <th class="px-6 py-3">
-
-                    </th>
+                    </th>                   
                 </tr>
             </thead>
 
@@ -115,8 +107,10 @@
                     @if (obj.Status == "Cooking")
                     {
                         <tr class="bg-amber-50 border-b">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                @obj.OrderId
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium hover:underline">
+                                    @obj.OrderId
+                                </a>
                             </th>
                             <td class="px-6 py-4">
                                 @obj.Status
@@ -130,11 +124,7 @@
 
                             <td class="px-2 py-4">
                                 @obj.OrderDate
-                            </td>
-
-                            <td class="px-6 py-4 space-x-3">
-                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
-                            </td>
+                            </td>                            
                         </tr>
                     }
 
@@ -163,10 +153,7 @@
                     </th>
                     <th class="px-3 py-3">
                         NGÀY ĐẶT
-                    </th>
-                    <th class="px-6 py-3">
-
-                    </th>
+                    </th>                    
                 </tr>
             </thead>
 
@@ -176,8 +163,10 @@
                     @if (obj.Status == "Shipping")
                     {
                         <tr class="bg-blue-50 border-b">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                @obj.OrderId
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium hover:underline">
+                                    @obj.OrderId
+                                </a>
                             </th>
                             <td class="px-6 py-4">
                                 @obj.Status
@@ -191,11 +180,7 @@
 
                             <td class="px-2 py-4">
                                 @obj.OrderDate
-                            </td>
-
-                            <td class="px-6 py-4 space-x-3">
-                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
-                            </td>
+                            </td>                            
                         </tr>
                     }
 
@@ -224,10 +209,7 @@
                     </th>
                     <th class="px-3 py-3">
                         NGÀY ĐẶT
-                    </th>
-                    <th class="px-6 py-3">
-
-                    </th>
+                    </th>                    
                 </tr>
             </thead>
 
@@ -237,8 +219,10 @@
                     @if (obj.Status == "Complete")
                     {
                         <tr class="bg-green-50 border-b">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                @obj.OrderId
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium hover:underline">
+                                    @obj.OrderId
+                                </a>
                             </th>
                             <td class="px-6 py-4">
                                 @obj.Status
@@ -252,11 +236,7 @@
 
                             <td class="px-2 py-4">
                                 @obj.OrderDate
-                            </td>
-
-                            <td class="px-6 py-4 space-x-3">
-                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
-                            </td>
+                            </td>                            
                         </tr>
                     }
 
@@ -286,9 +266,6 @@
                     <th class="px-3 py-3">
                         NGÀY ĐẶT
                     </th>
-                    <th class="px-6 py-3">
-
-                    </th>
                 </tr>
             </thead>
 
@@ -299,7 +276,9 @@
                     {
                         <tr class="bg-red-50 border-b">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                @obj.OrderId
+                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium hover:underline">
+                                    @obj.OrderId
+                                </a>
                             </th>
                             <td class="px-6 py-4">
                                 @obj.Status
@@ -313,11 +292,7 @@
 
                             <td class="px-2 py-4">
                                 @obj.OrderDate
-                            </td>
-
-                            <td class="px-6 py-4 space-x-3">
-                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Chi tiết</a>
-                            </td>
+                            </td>                            
                         </tr>
                     }
 
