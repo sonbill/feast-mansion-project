@@ -60,6 +60,7 @@ namespace feast_mansion_project.Controllers
             return View();
         }
 
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -88,11 +89,19 @@ namespace feast_mansion_project.Controllers
                         var customer = new Customer
                         {
                             FullName = model.FullName,
-                            Address = model.Address + " Tp. Hồ Chí Minh",
                             Phone = model.Phone,
                             CreatedAt = DateTime.Now,
                             User = user
                         };
+
+                        // Validate address for Ho Chi Minh City
+                        if (model.Address.EndsWith("Tp. Hồ Chí Minh", StringComparison.OrdinalIgnoreCase) || model.Address.EndsWith("HCM", StringComparison.OrdinalIgnoreCase) || model.Address.EndsWith("Ho Chi Minh", StringComparison.OrdinalIgnoreCase))
+                        {
+                            TempData["ErrorMessage"] = "Địa chỉ không được kết thúc bằng 'Tp. Hồ Chí Minh' hoặc 'HCM'.";
+                            return RedirectToAction("Register", "UserAuthentication");
+                        }
+
+                        customer.Address = model.Address;
 
                         _dbContext.Customers.Add(customer);
                         await _dbContext.SaveChangesAsync();
@@ -104,7 +113,6 @@ namespace feast_mansion_project.Controllers
                     else
                     {
                         TempData["ErrorMessage"] = "Email đã tồn tại, vui lòng chọn email khác.";
-
                         return RedirectToAction("Register", "UserAuthentication");
                     }
                 }
@@ -113,7 +121,6 @@ namespace feast_mansion_project.Controllers
                     TempData["ErrorMessage"] = "Error authenticating user: " + ex.Message;
                 }
             }
-            //Console.WriteLine(JsonConvert.SerializeObject(model));
 
             return View(model);
         }
@@ -246,7 +253,7 @@ namespace feast_mansion_project.Controllers
             await _dbContext.SaveChangesAsync();
 
             TempData["SuccessMessage"] = "Cập nhập thông tin thành công";
-
+            
             return RedirectToAction("ChangePassword", "Home");
         }
 

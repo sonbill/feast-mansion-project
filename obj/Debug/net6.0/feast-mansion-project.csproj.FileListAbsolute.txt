@@ -75,8 +75,3 @@
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/bin/Debug/net6.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
 /Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/bin/Debug/net6.0/runtimes/win/lib/net6.0/System.Security.Cryptography.Pkcs.dll
-/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Debug/net6.0/staticwebassets/msbuild.feast-mansion-project.Microsoft.AspNetCore.StaticWebAssets.props
-/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Debug/net6.0/staticwebassets/msbuild.build.feast-mansion-project.props
-/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.feast-mansion-project.props
-/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.feast-mansion-project.props
-/Users/sonpewds/Projects/feast-mansion-project/feast-mansion-project/obj/Debug/net6.0/staticwebassets.pack.json

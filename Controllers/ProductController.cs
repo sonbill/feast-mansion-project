@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
+
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace feast_mansion_project.Controllers
@@ -111,12 +112,19 @@ namespace feast_mansion_project.Controllers
             else
             {
                 TempData["ErrorMessage"] = "Yêu cầu nhập đầy đủ thông tin";
-
-                return RedirectToAction("Create");
+                model.ListCategory = await GetCategoriesAsync();
+                return View("Create", model);
             }
 
             if (ModelState.IsValid)
             {
+                if (await _dbContext.Products.AnyAsync(p => p.SKU == model.SKU))
+                {
+                    ModelState.AddModelError("SKU", "Mã SKU đã tồn tại");
+                    model.ListCategory = await GetCategoriesAsync();
+                    return View("Create", model);
+                }
+
                 try
                 {
                     var product = new Product
@@ -132,47 +140,49 @@ namespace feast_mansion_project.Controllers
 
                     // Add new product to database
                     _dbContext.Products.Add(product);
-
                     await _dbContext.SaveChangesAsync();
 
                     TempData["SuccessMessage"] = "Thêm mới món ăn thành công";
-
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
                     TempData["ErrorMessage"] = "Error: " + ex.Message;
-
-                    return RedirectToAction("Create");
+                    model.ListCategory = await GetCategoriesAsync();
+                    return View("Create", model);
                 }
             }
 
             TempData["ErrorMessage"] = "Yêu cầu nhập đầy đủ thông tin";
-
-            return RedirectToAction("Create");
+            model.ListCategory = await GetCategoriesAsync();
+            return View("Create", model);
         }
 
+        private async Task<List<Category>> GetCategoriesAsync()
+        {
+            return await _dbContext.Categories.ToListAsync();
+        }
 
 
         // GET: Edit Product
         [HttpGet("Edit/{id}")]
-        public IActionResult Edit(int id, string productImage)
+        public async Task<IActionResult> Edit(int id, string productImage)
         {
             if (HttpContext.Session.GetString("UserId") == null || HttpContext.Session.GetString("IsAdmin") != "true")
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            var product = _dbContext.Products.Include(p => p.Category).FirstOrDefault(p => p.ProductId == id);
+            var product = await _dbContext.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.ProductId == id);
 
-            var productFromDb = _dbContext.Products.Find(id);
+            var productFromDb = await _dbContext.Products.FindAsync(id);
 
             if (product == null)
             {
                 return NotFound();
             }
 
-            var categories = _dbContext.Categories.ToList();
+            var categories = await _dbContext.Categories.ToListAsync();
 
             ViewData["Categories"] = new SelectList(categories, "CategoryId", "Name", product.CategoryId);
 
@@ -230,39 +240,41 @@ namespace feast_mansion_project.Controllers
             {
                 model.ImagePath = oldImagePath;
             }
-           
-            if (product != null)
+
+            try
             {
-                try
+                // Check if SKU already exists for other products
+                var existingProduct = await _dbContext.Products.FirstOrDefaultAsync(p => p.SKU == model.SKU && p.ProductId != model.ProductId);
+                if (existingProduct != null)
                 {
-                    product.Name = model.Name;
-
-                    product.Description = model.Description;
-
-                    product.Price = model.Price;
-
-                    product.CategoryId = model.CategoryId;
-
-                    product.SKU = model.SKU;
-
-                    product.IsPin = model.IsPin;
-
-                    product.ImagePath = model.ImagePath;
-
-                    await _dbContext.SaveChangesAsync();
-
-                    TempData["SuccessMessage"] = "Cập nhật món ăn thành công";
-
-                    return RedirectToAction("Index", model);
-
-                } catch (Exception ex)
-                {
-                    TempData["ErrorMessage"] = "Error: " + ex.Message;
+                    ModelState.AddModelError("SKU", "Mã SKU đã tồn tại");
+                    var categories = await _dbContext.Categories.ToListAsync();
+                    ViewData["Categories"] = new SelectList(categories, "CategoryId", "Name", model.CategoryId);
+                    return View("Edit", model);
                 }
 
+                product.Name = model.Name;
+                product.Description = model.Description;
+                product.Price = model.Price;
+                product.CategoryId = model.CategoryId;
+                product.SKU = model.SKU;
+                product.IsPin = model.IsPin;
+                product.ImagePath = model.ImagePath;
+
+                await _dbContext.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Cập nhật món ăn thành công";
+                return RedirectToAction("Index", model);
             }
-            return RedirectToAction("Index", model);
-        }      
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Error: " + ex.Message;
+            }
+
+            var categoriesForView = await _dbContext.Categories.ToListAsync();
+            ViewData["Categories"] = new SelectList(categoriesForView, "CategoryId", "Name", model.CategoryId);
+            return View("Edit", model);
+        }
 
         // POST: Delete Product
         [HttpPost]
@@ -275,17 +287,13 @@ namespace feast_mansion_project.Controllers
             }
 
             // Retrieve the product from the database
-            var product = _dbContext.Products.FirstOrDefault(p => p.ProductId == id);
+            var product = await _dbContext.Products.FindAsync(id);
 
             if (product != null)
-            {               
+            {
                 try
                 {
-                    // Delete the product from the database
-                    _dbContext.Products.Remove(product);
-
                     // Delete the product image from the wwwroot folder
-                    //var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, "images", product.ImagePath);
                     var oldFilePath = Path.Combine("wwwroot", "Uploads", product.ImagePath);
 
                     if (System.IO.File.Exists(oldFilePath))
@@ -293,6 +301,8 @@ namespace feast_mansion_project.Controllers
                         System.IO.File.Delete(oldFilePath);
                     }
 
+                    // Delete the product from the database
+                    _dbContext.Products.Remove(product);
                     await _dbContext.SaveChangesAsync();
 
                     TempData["SuccessMessage"] = "Món ăn xoá thành công";
@@ -302,13 +312,13 @@ namespace feast_mansion_project.Controllers
                 catch (Exception ex)
                 {
                     TempData["ErrorMessage"] = "Error: " + ex.Message;
-
                     return RedirectToAction("Index");
                 }
             }
 
             return View("Index");
         }
+
     }
 }
 

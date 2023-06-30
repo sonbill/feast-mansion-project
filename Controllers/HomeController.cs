@@ -131,7 +131,10 @@ namespace feast_mansion_project.Controllers
             int userId = Convert.ToInt32(HttpContext.Session.GetString("userId"));
 
             // Retrieve the existing customer record from the database
-            var customer = await _dbContext.Customers.FindAsync(userId);
+            var customer = await _dbContext.Customers
+                .Include(c => c.User) // Include the associated user
+                .SingleOrDefaultAsync(c => c.CustomerId == userId);
+
             if (customer == null)
             {
                 TempData["ErrorMessage"] = "Không tìm thấy người dùng";
@@ -139,24 +142,35 @@ namespace feast_mansion_project.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                // Update the customer's properties with the values from the form
-                customer.CustomerId = model.CustomerId;
-                customer.FullName = model.FullName;
-                customer.Phone = model.Phone;
-                customer.Address = model.Address;
+            //if (ModelState.IsValid)
+            //{
+            //    // Update the customer's properties with the values from the form
+            //    customer.CustomerId = model.CustomerId;
+            //    customer.FullName = model.FullName;
+            //    customer.Phone = model.Phone;
+            //    customer.Address = model.Address;
 
-                // Save the changes to the database
-                await _dbContext.SaveChangesAsync();
+            //    // Save the changes to the database
+            //    await _dbContext.SaveChangesAsync();
 
-                TempData["SuccessMessage"] = "Cập nhập thông tin thành công";
+            //    TempData["SuccessMessage"] = "Cập nhập thông tin thành công";
 
-                // Optionally, you can redirect the user to a success page
-                return RedirectToAction("Profile");
-            }
+            //    // Optionally, you can redirect the user to a success page
+            //    return RedirectToAction("Profile");
+            //}
+
+            customer.FullName = model.FullName;
+            customer.Phone = model.Phone;
+            customer.Address = model.Address;
+
+            // Update the associated user's UserId
+            customer.User.UserId = model.CustomerId;
 
             TempData["ErrorMessage"] = "Cập nhập thông tin không thành công";
+
+            // Save the changes to the database
+            await _dbContext.SaveChangesAsync();
+
 
             // If the form data is not valid, return to the profile page to display errors
             return View("Profile", model);
@@ -307,16 +321,35 @@ namespace feast_mansion_project.Controllers
 
             var order = await _dbContext.Orders.FindAsync(orderId);
 
-
             if (order != null)
             {
                 order.Status = "Cancel";
                 _dbContext.Orders.Update(order);
                 await _dbContext.SaveChangesAsync();
-            }                       
+            }
 
-            return RedirectToAction("OrdersHistory", new { orderId });
+            return RedirectToAction("OrdersHistoryDetail", new { orderId });
         }
+        //[HttpPost]
+        //public async Task<IActionResult> CancelOrderFromCustomer(string orderId)
+        //{
+        //    if (HttpContext.Session.GetString("UserId") == null)
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+
+        //    var order = await _dbContext.Orders.FindAsync(orderId);
+
+
+        //    if (order != null)
+        //    {
+        //        order.Status = "Cancel";
+        //        _dbContext.Orders.Update(order);
+        //        await _dbContext.SaveChangesAsync();
+        //    }                       
+
+        //    return RedirectToAction("OrdersHistory", new { orderId });
+        //}
 
         [HttpGet("Feedback")]
         public IActionResult Feedback()

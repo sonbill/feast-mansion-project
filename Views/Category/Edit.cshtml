@@ -25,14 +25,14 @@
                 <label asp-for="ImagePath" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Thumbnail</label>
                 <input asp-for="ImagePath" name="newThumbnail" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" type="file" accept=".jpg, .jpeg, .png">
                 <div class="w-24 h-24">
-                    <input asp-for="ImagePath" value="@Model.ImagePath" hidden/>
+                    <input asp-for="ImagePath" value="@Model.ImagePath" hidden />
                     <img src="@Url.Content("~/Uploads/CategoryThumbnail/" + @Model.ImagePath)" alt="Category Thumbnail" class="w-full h-full object-cover" />
                     @*<img src="@Url.Content(System.IO.Path.Combine("~/Uploads/CategoryThumbnail/", Model.ImagePath))" alt="Category Thumbnail" class="w-full h-full object-cover" />*@
                 </div>
             </div>
             <div class="flex flex-col md:flex-row justify-center md:justify-start w-full items-center space-y-5 md:space-y-0 md:space-x-5">
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Cập nhật</button>
-                <button type="submit" asp-controller="Category" asp-action="Delete" asp-route-id="@Model.CategoryId" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Xoá</button>
+                <button type="button" id="deleteBtn" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Xoá</button>
                 <a asp-controller="Category" asp-action="Index" class="hover:underline text-center hover:text-blue-500">Trở lại</a>
             </div>
         </form>
@@ -46,3 +46,32 @@
         </div>
     </div>
 </div>
+
+<!-- Confirmation Popup -->
+<div id="deleteConfirmationPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-5 rounded-lg text-center">
+        <p class="text-lg mb-3">Bạn có chắc chắn muốn xoá danh mục này?</p>
+        <div class="flex justify-center">
+            <form asp-controller="Category" asp-action="Delete" asp-route-id="@Model.CategoryId" id="DeleteCategoryForm">
+                <button id="deleteConfirmBtn" type="submit" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-auto px-5 py-2.5 text-center mr-2">Xoá</button>
+            </form>
+            <button id="deleteCancelBtn" type="button" class="text-gray-600 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-auto px-5 py-2.5 text-center">Hủy</button>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>document.getElementById("deleteBtn").addEventListener("click", function () {
+            document.getElementById("deleteConfirmationPopup").classList.remove("hidden");
+        });
+
+        document.getElementById("deleteCancelBtn").addEventListener("click", function () {
+            document.getElementById("deleteConfirmationPopup").classList.add("hidden");
+        });
+
+        document.getElementById("deleteConfirmBtn").addEventListener("click", function () {
+            document.getElementById("deleteConfirmationPopup").classList.add("hidden");
+            document.getElementById("DeleteCategoryForm").submit(); // Submit the form
+        });</script>
+}

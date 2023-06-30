@@ -24,6 +24,7 @@
             </div>
             <div class="space-y-5 md:space-y-0 md:space-x-10 flex flex-col md:flex-row items-center">
                 <button type="submit" class="w-full sm:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cập nhật</button>                
+                <a asp-controller="User" asp-action="Index">Quay lại</a>
             </div>
         </form>
     </div>
@@ -48,14 +49,14 @@
             <tbody>
                 @foreach (var order in Model.Orders)
                 {
-                    <tr class="space-y-3">
-                        <td>
+                    <tr class="space-y-3 border-b border-gray-200">
+                        <td class="px-6 py-4">
                             <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.OrderId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                 @order.OrderId
                             </a>
                         </td>
-                        <td>@order.TotalPrice</td>
-                        <td>@order.OrderDate</td>                       
+                        <td class="px-6 py-4">@order.TotalPrice</td>
+                        <td class="px-6 py-4">@order.OrderDate</td>                       
                     </tr>
                 }
             </tbody>
