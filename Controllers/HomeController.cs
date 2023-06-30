@@ -142,29 +142,33 @@ namespace feast_mansion_project.Controllers
                 return NotFound();
             }
 
-            //if (ModelState.IsValid)
-            //{
-            //    // Update the customer's properties with the values from the form
-            //    customer.CustomerId = model.CustomerId;
-            //    customer.FullName = model.FullName;
-            //    customer.Phone = model.Phone;
-            //    customer.Address = model.Address;
+            if (ModelState.IsValid)
+            {
+                // Update the customer's properties with the values from the form
+                customer.CustomerId = model.CustomerId;
+                customer.FullName = model.FullName;
+                customer.Phone = model.Phone;
+                customer.Address = model.Address;
 
-            //    // Save the changes to the database
-            //    await _dbContext.SaveChangesAsync();
+                _dbContext.Customers.Update(customer);
 
-            //    TempData["SuccessMessage"] = "Cập nhập thông tin thành công";
+                // Save the changes to the database
+                await _dbContext.SaveChangesAsync();
 
-            //    // Optionally, you can redirect the user to a success page
-            //    return RedirectToAction("Profile");
-            //}
+                TempData["SuccessMessage"] = "Cập nhập thông tin thành công";
 
-            customer.FullName = model.FullName;
-            customer.Phone = model.Phone;
-            customer.Address = model.Address;
+                // Optionally, you can redirect the user to a success page
+                return RedirectToAction("Profile");
+            }
 
-            // Update the associated user's UserId
-            customer.User.UserId = model.CustomerId;
+            //customer.FullName = model.FullName;
+            //customer.Phone = model.Phone;
+            //customer.Address = model.Address;
+
+            //// Update the associated user's UserId
+            //customer.User.UserId = model.CustomerId;
+
+
 
             TempData["ErrorMessage"] = "Cập nhập thông tin không thành công";
 
